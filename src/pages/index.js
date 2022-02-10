@@ -2,8 +2,9 @@ import spinner from '/Users/gurleenkaur/Desktop/Team6/src/assets/spinner.svg';
 import logo from '/Users/gurleenkaur/Desktop/Team6/src/assets/roadmap.jpg';
 import '/Users/gurleenkaur/Desktop/Team6/src/App.css';
 import Header from '/Users/gurleenkaur/Desktop/Team6/src/components/Header.js';
+import '/Users/gurleenkaur/Desktop/Team6/src/App.css';
 
-function Home() {
+function home() {
   window.onload = function(){
     setInterval(function(){
         // alert("Hello");
@@ -25,4 +26,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default home;

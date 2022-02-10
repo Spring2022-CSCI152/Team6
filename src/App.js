@@ -1,8 +1,9 @@
 import React from 'react'; 
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages';
+import home from './pages';
 import Login from './pages/login';
+import SignUp from './pages/signup';
 
 
 
@@ -16,8 +17,9 @@ function App() {
           
           {/* <AuthContext.Provider value={[authState, setAuthState]}> */}
           <Routes>
-              <Route path="/" exact component={Home} />
+              <Route path="/" exact component={home} />
               <Route path="/login" component={Login} />
+              <Route path="/login" component={SignUp} />
            </Routes>
            {/* </AuthContext.Provider> */}
     </Router>
