@@ -10,7 +10,7 @@ const Header = () => {
         <a href="#default">Page</a>
         <a href="#default">Page</a>
         <div class="right-nav">
-        <Link to='/Users/gurleenkaur/Desktop/Team6/src/pages/login.js'>Log In</Link>
+        <Link to='../src/pages/login.js'><button>Log In</button></Link>
             <a href="#default">Log Out</a>
         </div>
   </div>;
