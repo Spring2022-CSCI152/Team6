@@ -1,13 +1,13 @@
 import React from 'react'; 
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import home from './pages';
+import Home from './pages';
 import Login from './pages/login';
 import SignUp from './pages/signup';
 
 
 
-export const AuthContext = React.createContext()
+// export const AuthContext = React.createContext()
 
 function App() {
   //const [authState, setAuthState] = useState(localStorage.getItem("user") ? true : false)
@@ -17,7 +17,7 @@ function App() {
           
           {/* <AuthContext.Provider value={[authState, setAuthState]}> */}
           <Routes>
-              <Route path="/" exact component={home} />
+              <Route path="/" exact component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/login" component={SignUp} />
            </Routes>
