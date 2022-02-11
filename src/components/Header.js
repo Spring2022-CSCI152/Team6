@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 
@@ -9,7 +10,7 @@ const Header = () => {
         <a href="#default">Page</a>
         <a href="#default">Page</a>
         <div class="right-nav">
-            <a href="#default">Log In</a>
+        <Link to='/Users/gurleenkaur/Desktop/Team6/src/pages/login.js'>Log In</Link>
             <a href="#default">Log Out</a>
         </div>
   </div>;
