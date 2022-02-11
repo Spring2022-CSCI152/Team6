@@ -1,27 +1,29 @@
-import spinner from './assets/spinner.svg';
-import logo from './assets/roadmap.jpg';
+import React from 'react'; 
 import './App.css';
-import Header from './components/Header';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './pages';
+import Login from './pages/login';
+import SignUp from './pages/signup';
+import {useState} from 'react';
+
+
+
+//  export const AuthContext = React.createContext()
 
 function App() {
-  window.onload = function(){
-    setInterval(function(){
-        // alert("Hello");
-    }, 5000);
- };
+  // const [authState, setAuthState] = useState(localStorage.getItem("user") ? true : false)
+
   return (
-    <div className="App">
-      <style>
-      @import url('https://fonts.googleapis.com/css2?family=Quintessential&display=swap');
-      </style>
-      <Header/>
-      <header className="App-header">
-        <p>Welcome to Roadmap</p>
-        <img src={spinner} width="15%" className="spinner" alt="logo" />
-        <img src={logo} height="auto"/>
-        <p1>Set your education path ...</p1>
-      </header>
-    </div>
+    <Router>
+          
+          {/* <AuthContext.Provider value={[authState, setAuthState]}> */}
+          <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/login" component={SignUp} />
+           </Switch>
+           {/* </AuthContext.Provider> */}
+    </Router>
   );
 }
 
