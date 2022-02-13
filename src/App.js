@@ -2,26 +2,24 @@ import spinner from './assets/spinner.svg';
 import logo from './assets/roadmap.jpg';
 import './App.css';
 import Header from './components/Header';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import HomePageAfterLogIn from './pages/HomePageAfterLogIn';
+import HomePage from './pages/HomePage';
+import LogIn from './pages/LogIn';
+import CreateAccountPage from './pages/CreateAccountPage'
+
 
 function App() {
-  window.onload = function(){
-    setInterval(function(){
-        // alert("Hello");
-    }, 5000);
- };
   return (
-    <div className="App">
-      <style>
-      @import url('https://fonts.googleapis.com/css2?family=Quintessential&display=swap');
-      </style>
-      <Header/>
-      <header className="App-header">
-        <p>Welcome to Roadmap</p>
-        <img src={spinner} width="15%" className="spinner" alt="logo" />
-        <img src={logo} height="auto"/>
-        <p1>Set your education path ...</p1>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/"><HomePage /></Route>
+        <Route exact path="/HomePageAfterLogIn"><HomePageAfterLogIn /></Route>      
+        <Route exact path="/LogIn"><LogIn /></Route>
+        <Route exact path="/CreateAccountPage"><CreateAccountPage /></Route>
+      </Switch>
+    </Router>
+    
   );
 }
 
