@@ -7,6 +7,7 @@ import HomePageAfterLogIn from './pages/HomePageAfterLogIn';
 import HomePage from './pages/HomePage';
 import LogIn from './pages/LogIn';
 import CreateAccountPage from './pages/CreateAccountPage'
+import RecordList from './components/RecordList';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/HomePageAfterLogIn"><HomePageAfterLogIn /></Route>      
         <Route exact path="/LogIn"><LogIn /></Route>
         <Route exact path="/CreateAccountPage"><CreateAccountPage /></Route>
+        <Route exact path="/RecordList"><RecordList /></Route>
       </Switch>
     </Router>
     
