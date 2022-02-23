@@ -17,7 +17,7 @@ function LogIn() {
                     <label for="lname">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
                     <input type="text" /> <br/>
                     <button><Link to="/HomePageAfterLogIn">Log In</Link></button>
-                    <button><Link to="/CreateAccountPage">Create an account</Link></button>
+                    <button><Link to="/Signup">Create an account</Link></button>
                 </form>
             </div>
         </div>

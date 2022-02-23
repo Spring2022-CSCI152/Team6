@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
-const cardSchema = mongoose.Schema({
-    name: String,
-    major: String,
+const accountSchema = mongoose.Schema({
+    firstname: String,
+    lastname: String,
+    email: String,
+    password: String,
 })
 
-export default mongoose.model("cards", cardSchema);
+export default mongoose.model("accounts", accountSchema);

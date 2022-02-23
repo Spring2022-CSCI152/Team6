@@ -20,7 +20,7 @@ mongoose.connect(connection_url, {
 // API Endpoints
 app.get("/", (req, res) => res.status(200).send("Hello World"));
 
-app.post('/cards', (req, res) => {
+app.post('/accounts', (req, res) => {
     const dbCard = req.body;
 
     Cards.create(dbCard, (err, data) => {
@@ -33,7 +33,7 @@ app.post('/cards', (req, res) => {
     })
 })
 
-app.get('/cards', (req, res) => {
+app.get('/accounts', (req, res) => {
     Cards.find((err, data) => {
         if(err){
             res.status(500).send(err);
