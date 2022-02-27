@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import LogIn from './pages/LogIn';
 import Signup from './pages/Signup'
 import RecordList from './components/RecordList';
+import CoursesParser from './pages/CoursesParser';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route exact path="/LogIn"><LogIn /></Route>
         <Route exact path="/Signup"><Signup /></Route>
         <Route exact path="/RecordList"><RecordList /></Route>
+        <Route exact path="/CoursesParser"><CoursesParser /></Route>
       </Switch>
     </Router>
     
