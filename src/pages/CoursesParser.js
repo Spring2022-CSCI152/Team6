@@ -1,7 +1,5 @@
-import './LogIn.css';
+import './LogIn.css';//temporary css use
 import Header from '../components/Header';
-import { Link } from 'react-router-dom';
-
 
 
 function CoursesParser() {
@@ -12,8 +10,8 @@ function CoursesParser() {
             <div className='LogIn-Box'>
                 <p id="title">Courses Parser</p>
                 <form>
-                    <label for="fname">Select Catalog Courses PDF</label>
-                    <input type="file" />
+                    <label for="pdfName">Select Catalog Courses PDF</label>
+                    <input type="file" id="pdfName"/>
                 </form>
             </div>
         </div>
