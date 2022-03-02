@@ -16,7 +16,7 @@ app.use(cors());
 // DB config
 mongoose.connect(connection_url, {
 })
-
+// console.log(app.findOne());
 // API Endpoints
 app.get("/", (req, res) => res.status(200).send("Hello World"));
 
@@ -40,6 +40,21 @@ app.get('/accounts', (req, res) => {
         }
         else{
             res.status(200).send(data);
+        }
+    })
+})
+
+
+app.get('/accounts/email', function(req, res) {
+    const dbCard = req.body;
+    console.log(req.body);
+    Cards.findOne(dbCard, (err, data) => {
+        if(err){
+            res.status(500).send(err);
+        }
+        else{
+            res.status(200).send(data);
+            res.json(result)
         }
     })
 })

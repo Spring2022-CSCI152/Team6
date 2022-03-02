@@ -69,7 +69,7 @@ function Signup() {
                     <label for="email">Email</label>
                     <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." /> <br/>
                     <label for="pword">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
-                    <input type="text" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br/>
+                    <input type="password" onChange={handlePass}  name="password" className="password" id="password" placeholder="password..." /> <br/>
                     {/* <button><Link to="/HomePageAfterLogIn">Create an account</Link></button> */}
                     <button onClick={signup} type="button" className="signupbutton"> Submit </button>
                 </form>
