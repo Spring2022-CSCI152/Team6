@@ -25,17 +25,17 @@ function App() {
 
 export default App;
 
-/*
+{/*
 AuthContext is an authorization method?  Saved old code here for future reference.  Will delete once authorization problem is solved/approved.
 import {useState} from 'react';
 //  export const AuthContext = React.createContext()
   // const [authState, setAuthState] = useState(localStorage.getItem("user") ? true : false)
         function App(){
         return(
-          {/* <AuthContext.Provider value={[authState, setAuthState]}> */}
-          {Routes Here}
-           {/* </AuthContext.Provider> */}
+          { <AuthContext.Provider value={[authState, setAuthState]}> }
+          /*{Routes Here}
+           { </AuthContext.Provider>}
 );
 }
 
-*/
+*/}
