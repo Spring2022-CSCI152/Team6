@@ -11,7 +11,8 @@ const Header = () => {
         <a href="#default">Page</a>
         <div className="right-nav">
           <Link to="/LogIn">Log In</Link>
-          <Link to="/">Log Out</Link>
+          <Link to="/">Log Out</Link> {/*This link will need to be updated such that the token will be forfeited.  onClick=forfeit(tokenId).*/}
+
         </div>
   </div>;
 };
