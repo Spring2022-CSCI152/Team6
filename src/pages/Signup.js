@@ -15,27 +15,22 @@ function Signup() {
 
 
   const handleEmail = (event) => {
-    console.log("email", event.target.value)
     setEmail(event.target.value)
   }
 
   const handlePass = (e) => {
-      console.log("pass", e.target.value)
       setPass(e.target.value)
   }
 
   const handleFirstName = (e) => {
-      console.log("fname", e.target.value)
       setFirstName(e.target.value)
   }
 
   const handleLastName = (e) => {
-      console.log("lname", e.target.value)
       setLastName(e.target.value)
   }
 
   const signup = async () => {
-    console.log(email, pass)
     const user = {
       "firstname" : firstname,
       "lastname" : lastname,

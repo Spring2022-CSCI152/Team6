@@ -8,20 +8,16 @@ import axios from '../axios';
 
 
 function LogIn() {
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
   const [email, setEmail]= useState("");
   const [pass, setPass] = useState("");
   const [account, setAccount] = useState([]);
 
 
   const handleEmail = (event) => {
-    console.log("email", event.target.value)
     setEmail(event.target.value)
   }
 
   const handlePass = (e) => {
-      console.log("pass", e.target.value)
       setPass(e.target.value)
     
   }
@@ -31,7 +27,6 @@ function LogIn() {
       "email" : email,
       "password" : pass
     };
-    console.log(user);
     //sending to server
       const req = await axios.post('/user/login', user)
       .then((res) => {
@@ -54,7 +49,7 @@ function LogIn() {
                     <label for="fname">Email</label>
                     <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." /> <br/>
                     <label for="lname">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
-                    <input type="text" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br/>
+                    <input type="password" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br/>
                     <button type="button" onClick={login}>Log In</button>
                     <button type="button"><Link to="/Signup">Create an account</Link></button>
                 </form>
