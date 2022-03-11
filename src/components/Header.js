@@ -5,13 +5,14 @@ import './Header.css';
 
 const Header = () => {
   return <div className='header'>
-        <a class="home" href="#home">Home</a>
+        <Link to="/" className="home">Home</Link>
         <a href="#default">Page</a>
         <a href="#default">Page</a>
         <a href="#default">Page</a>
-        <div class="right-nav">
-        <Link to='../src/pages/login.js'><button>Log In</button></Link>
-            <a href="#default">Log Out</a>
+        <div className="right-nav">
+          <Link to="/LogIn">Log In</Link>
+          <Link to="/">Log Out</Link> {/*This link will need to be updated such that the token will be forfeited.  onClick=forfeit(tokenId).*/}
+
         </div>
   </div>;
 };
