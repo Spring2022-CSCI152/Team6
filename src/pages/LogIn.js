@@ -27,23 +27,21 @@ function LogIn() {
   }
 
   const login = async () => {
-    console.log("email "+ email + " pass "+ pass);
     const user = {
       "email" : email,
       "password" : pass
     };
     console.log(user);
     //sending to server
-      const req = await axios.get('/accounts/email', {body: {"email" : "vi"}})
+      const req = await axios.post('/user/login', user)
       .then((res) => {
-          alert("go through "+res.data)
-          alert(res.data)
+          console.log(res);
+          alert(res.data.message);
+          window.location.href="/HomePageAfterLogIn";
       }).catch((error) => {
-          console.log(error)
-          alert(error)
+          console.log(error.response.data.message)
+          alert(error.response.data.message);
       });
-
-      // setAccount(req.data);
   }
   
   return (
@@ -57,8 +55,8 @@ function LogIn() {
                     <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." /> <br/>
                     <label for="lname">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
                     <input type="text" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br/>
-                    <button onClick={login}>Log In</button>
-                    <button><Link to="/Signup">Create an account</Link></button>
+                    <button type="button" onClick={login}>Log In</button>
+                    <button type="button"><Link to="/Signup">Create an account</Link></button>
                 </form>
             </div>
         </div>

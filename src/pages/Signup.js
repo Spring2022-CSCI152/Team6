@@ -37,21 +37,19 @@ function Signup() {
   const signup = async () => {
     console.log(email, pass)
     const user = {
+      "firstname" : firstname,
+      "lastname" : lastname,
       "email" : email,
       "password" : pass,
-      "firstname" : firstname,
-      "lastname" : lastname
     };
     console.log(user);
     //sending to server
-      const req = await axios.post('/accounts', user)
+      const req = await axios.post('/user/signup', user)
       .then((res) => {
           console.log(res.data)
       }).catch((error) => {
           console.log(error)
       });
-
-      // setAccount(req.data);
   }
   
 
