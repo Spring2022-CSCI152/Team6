@@ -1,3 +1,4 @@
+import e from 'express';
 import axios from '../axios';
 const User = require("../../backend/model/User");
 
@@ -18,22 +19,29 @@ const user = {
 //         });
 // });
 
-//sign up test.  
-test("Sign Up: Check if email already registered to another user.", async () => {
+//sign up tests
+//check if email already registered to another user.
+test("Sign Up: Check for email uniqueness within db.", async () => {
 
     //ensure the test user is in the roadmap mongodb collection "users" through an attempt to add him
     //could move to beforeAll function
-    axios.post('/user/signup', user)
+    await axios.post('/user/signup', user)
         .then((res) => {
             // console.log(res.data)
         }).catch((error) => {
             // console.log(error)
         });
 
-    //store user's email into a variable
-    let email = user.firstname;
+    //create a different user but has the same email address as first
+    const user2 = {
+        "firstname": "TestFirst2",
+        "lastname": "TestLast2",
+        "email": "Test@Test.Test",
+        "password": "Test2",
+    }
 
-    //check if user is found by email
-    expect(User.findOne({ email })).not.toBe(undefined)
+    //try to sign up user2 up with duplicate email
+    return expect(axios.post('/user/signup', user2)).rejects.toThrowError()
 
-})
+
+});
