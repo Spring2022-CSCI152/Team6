@@ -1,4 +1,3 @@
-import e from 'express';
 import axios from '../axios';
 const User = require("../../backend/model/User");
 
@@ -43,6 +42,4 @@ test("Sign Up: Check for email uniqueness within db.", async () => {
 
     //try to sign up user2 up with duplicate email
     return expect(axios.post('/user/signup', user2)).rejects.toThrowError("Request failed with status code 400")
-
-
 });
