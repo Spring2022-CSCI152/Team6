@@ -21,6 +21,7 @@ const user = {
 
 //sign up tests
 //check if email already registered to another user.
+// needs the backend to be on/started
 test("Sign Up: Check for email uniqueness within db.", async () => {
 
     //ensure the test user is in the roadmap mongodb collection "users" through an attempt to add him
@@ -41,7 +42,7 @@ test("Sign Up: Check for email uniqueness within db.", async () => {
     }
 
     //try to sign up user2 up with duplicate email
-    return expect(axios.post('/user/signup', user2)).rejects.toThrowError()
+    return expect(axios.post('/user/signup', user2)).rejects.toThrowError("Request failed with status code 400")
 
 
 });
