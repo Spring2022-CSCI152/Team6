@@ -4,9 +4,11 @@ import Header from './components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePageAfterLogIn from './pages/HomePageAfterLogIn';
 import HomePage from './pages/HomePage';
-import LogIn from './pages/LogIn';
-import Signup from './pages/Signup'
+import LogIn from './pages/login';
+import Signup from './pages/signup';
 import RecordList from './components/RecordList';
+import Calendar1 from './pages/calendar';
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Route exact path="/LogIn"><LogIn /></Route>
         <Route exact path="/Signup"><Signup /></Route>
         <Route exact path="/RecordList"><RecordList /></Route>
+        <Route exact path="/Calendar"><Calendar1 /></Route>
       </Switch>
     </Router>
   );
