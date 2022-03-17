@@ -4,7 +4,7 @@ import Header from './components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePageAfterLogIn from './pages/HomePageAfterLogIn';
 import HomePage from './pages/HomePage';
-import LogIn from './pages/login';
+import LogIn from './pages/LogIn';
 import Signup from './pages/signup';
 import RecordList from './components/RecordList';
 import Calendar1 from './pages/calendar';
