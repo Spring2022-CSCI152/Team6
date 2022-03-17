@@ -6,7 +6,7 @@ import './Header.css';
 const Header = () => {
   return <div className='header'>
         <Link to="/" className="home">Home</Link>
-        <a href="#default">Page</a>
+        <Link to="/Calendar" className="Calendar">Calendar</Link>
         <a href="#default">Page</a>
         <a href="#default">Page</a>
         <div className="right-nav">
