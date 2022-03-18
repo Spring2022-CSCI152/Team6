@@ -43,7 +43,8 @@ router.post(
             firstname,
             lastname,
             email,
-            password
+            password,
+            role,
         } = req.body;
         try {
             let user = await User.findOne({
@@ -59,9 +60,10 @@ router.post(
                 firstname,
                 lastname,
                 email,
-                password
+                password,
+                role,
             });
-
+            console.log(user);
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(password, salt);
 
@@ -81,6 +83,7 @@ router.post(
                 (err, token) => {
                     if (err) throw err;
                     res.status(200).json({
+                        message: "Signed Up!",
                         token
                     });
                 }

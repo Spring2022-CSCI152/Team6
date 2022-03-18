@@ -15,43 +15,36 @@ function Signup() {
 
 
   const handleEmail = (event) => {
-    console.log("email", event.target.value)
     setEmail(event.target.value)
   }
 
   const handlePass = (e) => {
-      console.log("pass", e.target.value)
       setPass(e.target.value)
   }
 
   const handleFirstName = (e) => {
-      console.log("fname", e.target.value)
       setFirstName(e.target.value)
   }
 
   const handleLastName = (e) => {
-      console.log("lname", e.target.value)
       setLastName(e.target.value)
   }
 
   const signup = async () => {
-    console.log(email, pass)
     const user = {
+      "firstname" : firstname,
+      "lastname" : lastname,
       "email" : email,
       "password" : pass,
-      "firstname" : firstname,
-      "lastname" : lastname
     };
     console.log(user);
     //sending to server
-      const req = await axios.post('/accounts', user)
+      const req = await axios.post('/user/signup', user)
       .then((res) => {
           console.log(res.data)
       }).catch((error) => {
           console.log(error)
       });
-
-      // setAccount(req.data);
   }
   
 
@@ -69,7 +62,7 @@ function Signup() {
                     <label for="email">Email</label>
                     <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." /> <br/>
                     <label for="pword">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
-                    <input type="text" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br/>
+                    <input type="password" onChange={handlePass}  name="password" className="password" id="password" placeholder="password..." /> <br/>
                     {/* <button><Link to="/HomePageAfterLogIn">Create an account</Link></button> */}
                     <button onClick={signup} type="button" className="signupbutton"> Submit </button>
                 </form>
@@ -81,40 +74,3 @@ function Signup() {
 }
 
 export default Signup;
-
-/*
-
-
-
-import React, { Component } from "react";
-import '../App.css';
-
-export default class SignUp extends Component {
-    render() {
-        return (
-            <form>
-                <h3>Create a New Account</h3>
-
-                <div className="form-group">
-                    <label>Full name</label>
-                    <input type="text" className="form-control" placeholder="Full name" />
-                </div>
-
-                <div className="form-group">
-                    <label>Email</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
-                </div>
-
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Create Account</button>
-                {/* <p className="forgot-password text-right">
-                    Already registered <a href="#">log in?</a>
-                </p> (comment here)}
-            </form>
-        );
-    }
-}*/
