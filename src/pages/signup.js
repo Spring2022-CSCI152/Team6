@@ -37,11 +37,11 @@ function Signup() {
       "email" : email,
       "password" : pass,
     };
+    console.log(user);
     //sending to server
       const req = await axios.post('/user/signup', user)
       .then((res) => {
-        console.log(res);
-        alert(res.data.message);
+          console.log(res.data)
       }).catch((error) => {
           console.log(error)
       });
