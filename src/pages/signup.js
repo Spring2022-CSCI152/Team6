@@ -41,7 +41,8 @@ function Signup() {
     //sending to server
       const req = await axios.post('/user/signup', user)
       .then((res) => {
-          console.log(res.data)
+        console.log(res);
+        alert(res.data.message);
       }).catch((error) => {
           console.log(error)
       });
