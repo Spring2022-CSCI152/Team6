@@ -56,14 +56,14 @@ function Signup() {
             <div className='LogIn-Box'>
                 <p id="title">Create a new account</p>
                 <form>
-                    <label for="fname">First name</label>
-                    <input type="text" onChange={handleFirstName} name="firstname" className="firstname" placeholder="firstname..." /> <br/>
-                    <label for="lname">Last name</label>
-                    <input type="text" onChange={handleLastName} name="lastname" className="lastname" placeholder="lastname..." /> <br/>
-                    <label for="email">Email</label>
-                    <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." /> <br/>
-                    <label for="pword">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
-                    <input type="password" onChange={handlePass}  name="password" className="password" id="password" placeholder="password..." /> <br/>
+                    <label htmlFor="fname">First name</label>
+                    <input type="text" onChange={handleFirstName} name="firstname" className="firstname" placeholder="firstname..." id="fname" /> <br/>
+                    <label htmlFor="lname">Last name</label>
+                    <input type="text" onChange={handleLastName} name="lastname" className="lastname" placeholder="lastname..." id="lname" /> <br/>
+                    <label htmlFor="email">Email</label>
+                    <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br/>
+                    <label htmlFor="pword">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
+                    <input type="password" onChange={handlePass}  name="password" className="password" id="pword" placeholder="password..." /> <br/>
                     {/* <button><Link to="/HomePageAfterLogIn">Create an account</Link></button> */}
                     <button onClick={signup} type="button" className="signupbutton"> Submit </button>
                 </form>
