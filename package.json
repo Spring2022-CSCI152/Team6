@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
     "react-scripts": "^5.0.0"
   },
   "dependencies": {
