@@ -32,6 +32,7 @@ function LogIn() {
       .then((res) => {
           console.log(res);
           alert(res.data.message);
+          // alert("Token: " + res.data.token); //test
           window.location.href="/HomePageAfterLogIn";
       }).catch((error) => {
           console.log(error.response.data.message)
@@ -46,9 +47,9 @@ function LogIn() {
             <div className='LogIn-Box'>
                 <p id="title">Log In</p>
                 <form>
-                    <label for="fname">Email</label>
-                    <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." /> <br/>
-                    <label for="lname">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
+                    <label htmlFor='email'>Email</label>
+                    <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." id="email"/> <br/>
+                    <label htmlFor="password">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
                     <input type="password" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br/>
                     <button type="button" onClick={login}>Log In</button>
                     <button type="button"><Link to="/Signup">Create an account</Link></button>
