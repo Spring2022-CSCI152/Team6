@@ -7,9 +7,8 @@ import HomePage from './pages/HomePage';
 import LogIn from './pages/login';
 import Signup from './pages/signup';
 import RecordList from './components/RecordList';
+import CoursesParser from './pages/Admin/CoursesParser';
 import Calendar1 from './pages/calendar';
-
-
 
 function App() {
   return (
@@ -20,6 +19,7 @@ function App() {
         <Route exact path="/LogIn"><LogIn /></Route>
         <Route exact path="/Signup"><Signup /></Route>
         <Route exact path="/RecordList"><RecordList /></Route>
+        <Route exact path="/CoursesParser"><CoursesParser /></Route>
         <Route exact path="/Calendar"><Calendar1 /></Route>
       </Switch>
     </Router>
