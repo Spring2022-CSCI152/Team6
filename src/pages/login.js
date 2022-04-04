@@ -7,8 +7,8 @@ import axios from '../axios';
 
 
 
-function LogIn() {
-  const [email, setEmail]= useState("");
+function LogIn(setToken) {
+  const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [account, setAccount] = useState([]);
 
@@ -18,46 +18,48 @@ function LogIn() {
   }
 
   const handlePass = (e) => {
-      setPass(e.target.value)
-    
+    setPass(e.target.value)
+
   }
 
   const login = async () => {
     const user = {
-      "email" : email,
-      "password" : pass
+      "email": email,
+      "password": pass
     };
     //sending to server
-      const req = await axios.post('/user/login', user)
+    const req = await axios.post('/user/login', user)
       .then((res) => {
-          console.log(res);
-          alert(res.data.message);
-          // alert("Token: " + res.data.token); //test
-          window.location.href="/HomePageAfterLogIn";
+        console.log(res);
+        alert(res.data.message);
+        // alert("Token: " + res.data.token); //test
+        // setToken(res.data.token); //inefficient
+        localStorage.setItem('token', res.data.token);
+        window.location.href = "/HomePageAfterLogIn";
       }).catch((error) => {
-          console.log(error.response.data.message)
-          alert(error.response.data.message);
+        console.log(error.response.data.message)
+        alert(error.response.data.message);
       });
   }
-  
+
   return (
-      <div className="App">
-        <Header />
-        <div className='LogIn-Box-wrapper'>
-            <div className='LogIn-Box'>
-                <p id="title">Log In</p>
-                <form>
-                    <label htmlFor='email'>Email</label>
-                    <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." id="email"/> <br/>
-                    <label htmlFor="password">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
-                    <input type="password" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br/>
-                    <button type="button" onClick={login}>Log In</button>
-                    <button type="button"><Link to="/Signup">Create an account</Link></button>
-                </form>
-            </div>
+    <div className="App">
+      <Header />
+      <div className='LogIn-Box-wrapper'>
+        <div className='LogIn-Box'>
+          <p id="title">Log In</p>
+          <form>
+            <label htmlFor='email'>Email</label>
+            <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />
+            <label htmlFor="password">Password<span /><a href="#forgotpw">Forgot Password?</a></label>
+            <input type="password" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br />
+            <button type="button" onClick={login}>Log In</button>
+            <button type="button"><Link to="/Signup">Create an account</Link></button>
+          </form>
         </div>
       </div>
-    
+    </div>
+
   );
 }
 
