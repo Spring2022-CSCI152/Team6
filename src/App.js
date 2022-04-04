@@ -8,7 +8,7 @@ import HomePage from './pages/HomePage';
 import LogIn from './pages/LogIn';
 import Signup from './pages/Signup'
 import RecordList from './components/RecordList';
-import CoursesParser from './pages/CoursesParser';
+import CoursesParser from './pages/Admin/CoursesParser';
 
 
 function App() {

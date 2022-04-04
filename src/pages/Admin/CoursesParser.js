@@ -1,5 +1,5 @@
-import './LogIn.css';//temporary css use
-import Header from '../components/Header';
+import '../LogIn.css';//temporary css use
+import Header from '../../components/Header';
 
 
 function CoursesParser() {
