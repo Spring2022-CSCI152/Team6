@@ -30,15 +30,15 @@ function App() {
     }
   );
 
-  const { token, setToken } = useState(undefined);
+  // const { token, setToken } = useState(undefined);
 
   return (
     <Router>
       <Switch>
         <Route exact path="/"><HomePage /></Route>
         <Route exact path="/HomePageAfterLogIn"><HomePageAfterLogIn /></Route>
-        <Route exact path="/LogIn" setToken={setToken}><LogIn /></Route>
-        <Route exact path="/Signup" setToken={setToken}><Signup /></Route>
+        <Route exact path="/LogIn"><LogIn /></Route>
+        <Route exact path="/Signup"><Signup /></Route>
         <Route exact path="/RecordList"><RecordList /></Route>
         <Route exact path="/CoursesParser"><CoursesParser /></Route>
         <Route exact path="/Calendar"><Calendar1 /></Route>

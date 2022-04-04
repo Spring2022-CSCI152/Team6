@@ -7,7 +7,7 @@ const Header = () => {
   return <div className='header'>
         <Link to="/" className="home">Home</Link>
         <Link to="/Calendar" className="Calendar">Calendar</Link>
-        <Link to="/Profile/test">Profile</Link>
+        <Link to="/Profile">Profile</Link>
         <a href="#default">Page</a>
         <div className="right-nav">
           <Link to="/LogIn">Log In</Link>

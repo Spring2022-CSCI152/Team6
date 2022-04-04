@@ -8,7 +8,9 @@ const User = require('../model/User');
 
 
 router.get('/test',(req, res) => {
-    const decoded = jwt.verify(token, "randomString");
+    let token = req.headers.tk;
+    // const decoded = jwt.verify(token, "randomString");
+    res.json({test:55, token:"abc"});
 });
 
 module.exports = router;

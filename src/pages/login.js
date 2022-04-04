@@ -32,8 +32,6 @@ function LogIn(setToken) {
       .then((res) => {
         console.log(res);
         alert(res.data.message);
-        // alert("Token: " + res.data.token); //test
-        // setToken(res.data.token); //inefficient
         localStorage.setItem('token', res.data.token);
         window.location.href = "/HomePageAfterLogIn";
       }).catch((error) => {
