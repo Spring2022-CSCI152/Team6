@@ -1,3 +1,14 @@
+# Jest
+Our testing framework.  It might need to be individually installed similarly to the other react dependencies with terminal command:
+```
+npm install --save-dev jest
+```
+Use this command to initiate the tests:
+```
+npx react-scripts test --env=./src/test/custom-test-env.js
+```
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,15 +1,14 @@
-import spinner from './assets/spinner.svg';
-import logo from './assets/roadmap.jpg';
+import React from 'react'; 
 import './App.css';
 import Header from './components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePageAfterLogIn from './pages/HomePageAfterLogIn';
 import HomePage from './pages/HomePage';
-import LogIn from './pages/LogIn';
-import Signup from './pages/Signup'
+import LogIn from './pages/login';
+import Signup from './pages/signup';
 import RecordList from './components/RecordList';
 import CoursesParser from './pages/Admin/CoursesParser';
-
+import Calendar1 from './pages/calendar';
 
 function App() {
   return (
@@ -21,10 +20,25 @@ function App() {
         <Route exact path="/Signup"><Signup /></Route>
         <Route exact path="/RecordList"><RecordList /></Route>
         <Route exact path="/CoursesParser"><CoursesParser /></Route>
+        <Route exact path="/Calendar"><Calendar1 /></Route>
       </Switch>
     </Router>
-    
   );
 }
 
 export default App;
+
+{/*
+AuthContext is an authorization method?  Saved old code here for future reference.  Will delete once authorization problem is solved/approved.
+import {useState} from 'react';
+//  export const AuthContext = React.createContext()
+  // const [authState, setAuthState] = useState(localStorage.getItem("user") ? true : false)
+        function App(){
+        return(
+          { <AuthContext.Provider value={[authState, setAuthState]}> }
+          /*{Routes Here}
+           { </AuthContext.Provider>}
+);
+}
+
+*/}

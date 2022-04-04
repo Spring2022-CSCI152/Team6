@@ -15,43 +15,37 @@ function Signup() {
 
 
   const handleEmail = (event) => {
-    console.log("email", event.target.value)
     setEmail(event.target.value)
   }
 
   const handlePass = (e) => {
-      console.log("pass", e.target.value)
       setPass(e.target.value)
   }
 
   const handleFirstName = (e) => {
-      console.log("fname", e.target.value)
       setFirstName(e.target.value)
   }
 
   const handleLastName = (e) => {
-      console.log("lname", e.target.value)
       setLastName(e.target.value)
   }
 
   const signup = async () => {
-    console.log(email, pass)
     const user = {
+      "firstname" : firstname,
+      "lastname" : lastname,
       "email" : email,
       "password" : pass,
-      "firstname" : firstname,
-      "lastname" : lastname
     };
     console.log(user);
     //sending to server
-      const req = await axios.post('/accounts', user)
+      const req = await axios.post('/user/signup', user)
       .then((res) => {
-          console.log(res.data)
+        console.log(res);
+        alert(res.data.message);
       }).catch((error) => {
           console.log(error)
       });
-
-      // setAccount(req.data);
   }
   
 
@@ -69,7 +63,7 @@ function Signup() {
                     <label for="email">Email</label>
                     <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." /> <br/>
                     <label for="pword">Password<span/><a href="#forgotpw">Forgot Password?</a></label>
-                    <input type="text" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br/>
+                    <input type="password" onChange={handlePass}  name="password" className="password" id="password" placeholder="password..." /> <br/>
                     {/* <button><Link to="/HomePageAfterLogIn">Create an account</Link></button> */}
                     <button onClick={signup} type="button" className="signupbutton"> Submit </button>
                 </form>
