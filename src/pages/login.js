@@ -32,7 +32,11 @@ function LogIn(setToken) {
       .then((res) => {
         console.log(res);
         alert(res.data.message);
+
+        //store json web token in local storage.
         localStorage.setItem('token', res.data.token);
+
+        //navigate to home page
         window.location.href = "/HomePageAfterLogIn";
       }).catch((error) => {
         console.log(error.response.data.message)

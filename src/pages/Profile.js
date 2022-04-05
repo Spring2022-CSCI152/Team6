@@ -1,5 +1,5 @@
+import './LogIn.css';
 import axios from '../axios'
-import React from 'react'
 import { Link } from 'react-router-dom';
 
 
@@ -19,13 +19,13 @@ axios.interceptors.request.use(
 );
 
 //test
-const profileBackendTest = async () => {
+const getUserInfo = async () => {
 
-    let firstname = await axios.get("/profile/test")
+    //request user information from server
+    const user = await axios.get("/profile/test")
         .then((res) => {
-            alert("It worked!");
-            console.log(res.data.test);
-            console.log(res.data.token);
+            // console.log(res.data);
+            return res.data;
         }).catch((error) => {
             console.log(error);
         })
@@ -34,12 +34,18 @@ const profileBackendTest = async () => {
 const Profile = () => {
 
 
+    // const firstName = user.firstname;
 
-    const a = profileBackendTest();
+    const user = getUserInfo();
+    console.log("user", user);
+    let firstName = user.firstname;
+    console.log(firstName);
+
 
     return (<>
         <h1>Profile Page</h1>
         <Link to="/Login">Login</Link><button>Test</button>
+        <p>First Name: {firstName}</p>
     </>
 
     )
