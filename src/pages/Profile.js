@@ -1,4 +1,4 @@
-import './LogIn.css';
+// import '../CSS/profile.css';
 import axios from '../axios'
 import { Link } from 'react-router-dom';
 
@@ -24,8 +24,12 @@ const getUserInfo = async () => {
     //request user information from server
     const user = await axios.get("/profile/test")
         .then((res) => {
-            // console.log(res.data);
-            return res.data;
+            console.log("data",res.data);
+
+            let user = res.data.user;
+            console.log(user);
+            console.log("firstname",user.firstname);
+            return res.data.user;
         }).catch((error) => {
             console.log(error);
         })
@@ -33,20 +37,17 @@ const getUserInfo = async () => {
 
 const Profile = () => {
 
-
-    // const firstName = user.firstname;
-
     const user = getUserInfo();
     console.log("user", user);
     let firstName = user.firstname;
-    console.log(firstName);
+    console.log("firstName",firstName);
 
 
-    return (<>
+    return (<div className='App'>
         <h1>Profile Page</h1>
         <Link to="/Login">Login</Link><button>Test</button>
-        <p>First Name: {firstName}</p>
-    </>
+        <p>First {firstName} Name: {firstName}</p> {firstName}
+    </div>
 
     )
 }

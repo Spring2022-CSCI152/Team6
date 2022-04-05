@@ -1,15 +1,15 @@
 import React from 'react';
-import './App.css';
+import './CSS/App.css'
 import Header from './components/Header';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePageAfterLogIn from './pages/HomePageAfterLogIn';
+import Profile from './pages/Profile';
 import HomePage from './pages/HomePage';
 import LogIn from './pages/login';
 import Signup from './pages/signup';
 import RecordList from './components/RecordList';
 import CoursesParser from './pages/Admin/CoursesParser';
 import Calendar1 from './pages/calendar';
-import Profile from './pages/Profile';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -27,8 +27,9 @@ function App() {
         <Route exact path="/Signup"><Signup /></Route>
         <Route exact path="/RecordList"><RecordList /></Route>
         <Route exact path="/CoursesParser"><CoursesParser /></Route>
-        <Route exact path="/Calendar"><Calendar1 /></Route>
         <Route exact path="/Profile"><Profile /></Route>
+        <Route exact path="/Calendar"><Calendar1 /></Route>
+
       </Switch>
     </Router>
   );
