@@ -15,9 +15,6 @@ import axios from 'axios';
 
 function App() {
 
-
-  // const { token, setToken } = useState(undefined);
-
   return (
     <Router>
       <Switch>
