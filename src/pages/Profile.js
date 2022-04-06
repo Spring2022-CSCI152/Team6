@@ -1,6 +1,8 @@
 // import '../CSS/profile.css';
 import axios from '../axios'
 import { Link } from 'react-router-dom';
+// import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 
 axios.interceptors.request.use(
@@ -18,38 +20,49 @@ axios.interceptors.request.use(
     }
 );
 
-//test
-const getUserInfo = async () => {
 
-    //request user information from server
-    const user = await axios.get("/profile/test")
-        .then((res) => {
-            console.log("data",res.data);
-
-            let user = res.data.user;
-            console.log(user);
-            console.log("firstname",user.firstname);
-            return res.data.user;
-        }).catch((error) => {
-            console.log(error);
-        })
-}
 
 const Profile = () => {
 
-    const user = getUserInfo();
-    console.log("user", user);
-    let firstName = user.firstname;
-    console.log("firstName",firstName);
+    const [user, setUser] = useState({});
+
+
+    //calls user load on mount
+    useEffect(() => {
+        getUserInfo();
+    }, []);
+
+    //gets user information from backend
+    const getUserInfo = async () => {
+        //request user information from server
+        const user = await axios.get("/profile/test")
+            .then((res) => {
+                let user = res.data.user;
+                setUser(user);
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
 
 
     return (<div className='App'>
         <h1>Profile Page</h1>
         <Link to="/Login">Login</Link><button>Test</button>
-        <p>First {firstName} Name: {firstName}</p> {firstName}
+        <ul>
+            <li>First Name: {user.firstname}</li>
+            <li>Last Name: {user.lastname}</li>
+            <li>Email: {user.email}</li>
+        </ul>
+
     </div>
 
     )
 }
 
 export default Profile
+
+/*
+To access user attributes, append its name to "user.", and put inside curly brackets.
+Example: {user.firstname}
+All user attributes can be found on the mongodb cluster under the "users" collection.  Any not found can be added, too.
+*/
