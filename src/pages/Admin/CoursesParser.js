@@ -1,4 +1,4 @@
-import '../LogIn.css';//temporary css use
+import '../../CSS/LogIn.css';//temporary css use
 import Header from '../../components/Header';
 
 

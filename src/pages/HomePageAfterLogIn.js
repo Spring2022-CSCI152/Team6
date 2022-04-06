@@ -1,4 +1,4 @@
-import '../App.css';
+import '../CSS/App.css';
 import Header from '../components/Header';
 
 function HomePageAfterLogIn() {
