@@ -26,13 +26,23 @@
   }
   
   /* Add a color to the home/current link */
-  .NavBar a.home {
+  /* .NavBar a.home {
     background-color: rgb(255, 58, 58);
     color: white;
     border-radius: 6px;
     text-decoration: none;
-  }
+  } */
+
+  /*Log-in and Log-out links*/
   .NavBar .right-nav{
     float: right;
     margin-right: 25px;
+  }
+
+  /*Styles the active link to indicate which page user currently view*/
+  .NavLink-Active{
+    background-color: rgb(255, 58, 58);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
   }

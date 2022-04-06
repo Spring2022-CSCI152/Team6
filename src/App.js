@@ -23,7 +23,7 @@ function App() {
           <Route exact path={["/", "/:page"]}><NavBar /></Route>
         </Switch >
         <Switch>
-          <Route exact path="/"><HomePage /></Route>
+          <Route exact path={["/", "/Home"]}><HomePage /></Route>
           {/* <Route exact path="/HomePageAfterLogIn"><HomePageAfterLogIn /></Route> */}
           <Route exact path="/LogIn"><LogIn /></Route>
           <Route exact path="/Signup"><Signup /></Route>
