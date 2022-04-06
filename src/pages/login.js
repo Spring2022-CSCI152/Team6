@@ -1,5 +1,4 @@
 import '../CSS/LogIn.css';
-import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from '../axios';
@@ -37,7 +36,7 @@ function LogIn(setToken) {
         localStorage.setItem('token', res.data.token);
 
         //navigate to home page
-        window.location.href = "/HomePageAfterLogIn";
+        window.location.href = "/";
       }).catch((error) => {
         console.log(error.response.data.message)
         alert(error.response.data.message);
@@ -46,10 +45,9 @@ function LogIn(setToken) {
 
   return (
     <div className="App">
-      <Header />
       <div className='LogIn-Box-wrapper'>
         <div className='LogIn-Box'>
-          <p id="title">Log In</p>
+          <h1 id="title">Log In</h1>
           <form>
             <label htmlFor='email'>Email</label>
             <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />

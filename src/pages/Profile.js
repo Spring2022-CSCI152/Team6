@@ -1,6 +1,6 @@
 import axios from '../axios'
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import '../CSS/profile.css'
 
 
 //ensures requests to backend include the json web token
@@ -33,32 +33,34 @@ const Profile = () => {
 
     //gets user information from backend
     const getUserInfo = async () => {
+
         //request user information from server
-        const user = await axios.get("/profile/test")
+        const user = await axios.get("/profile")
+
             .then((res) => {
-                let user = res.data.user;
-                setUser(user);
+
+                //set user state
+                setUser(res.data.user);
+
             }).catch((error) => {
                 console.log(error);
             })
     }
 
 
-    return (<div className='App'>
-        <h1>Profile Page</h1>
+    return (<>
+        <div className='profile'>
+            <h1>Profile Page</h1>
 
-        {/* This is just temporary until a header is included. */}
-        <Link to="/Login">Login</Link><button>Test</button>
+            {/* Example of how to use user object */}
+            <ul>
+                <li>First Name: {user.firstname}</li>
+                <li>Last Name: {user.lastname}</li>
+                <li>Email: {user.email}</li>
+            </ul>
 
-        {/* Example of how to use user object */}
-        <ul>
-            <li>First Name: {user.firstname}</li>
-            <li>Last Name: {user.lastname}</li>
-            <li>Email: {user.email}</li>
-        </ul>
-
-    </div>
-
+        </div>
+    </>
     )
 }
 

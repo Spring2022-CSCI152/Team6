@@ -1,13 +1,13 @@
 /* Add a black background color to the top navigation */
-.header {
-    background-color: transparent;
+.NavBar {
+    background-color: black;
     overflow: hidden;
     font-family: "Lucida Console", Courier, monospace;
-    padding-top:10px;
+    padding:10px 0;
   }
   
   /* Style the links inside the navigation bar */
-  .header a {
+  .NavBar a {
     float: left;
     color: #f2f2f2;
     text-align: center;
@@ -19,20 +19,34 @@
   }
   
   /* Change the color of links on hover */
-  .header a:hover {
+  .NavLink:hover {
     text-decoration: underline;
     color: rgb(255, 58, 58);;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   
   /* Add a color to the home/current link */
-  .header a.home {
+  /* .NavBar a.home {
+    background-color: rgb(255, 58, 58);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+  } */
+
+  /*Log-in and Log-out links*/
+  .NavBar .right-nav{
+    float: right;
+    margin-right: 25px;
+  }
+
+  /*Styles the active link to indicate which page user currently views*/
+  .NavLink-Active{
     background-color: rgb(255, 58, 58);
     color: white;
     border-radius: 6px;
     text-decoration: none;
   }
-  .header .right-nav{
-    float: right;
-    margin-right: 25px;
+
+  .NavLink-Hover{
+
   }

@@ -1,11 +1,9 @@
 import '../../CSS/LogIn.css';//temporary css use
-import Header from '../../components/Header';
 
 
 function CoursesParser() {
   return (
       <div className="App">
-        <Header />
         <div className='Parser'>
             <div className='LogIn-Box'>
                 <p id="title">Courses Parser</p>
