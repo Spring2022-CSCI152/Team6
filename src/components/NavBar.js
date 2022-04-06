@@ -3,11 +3,11 @@ import { Link, useParams } from 'react-router-dom';
 import '../CSS/NavBar.css';
 
 
-const NavLink = ({ page, selected }) => {
+const NavLink = ({ page, selected, extraClass }) => {
   const title = page.charAt(0).toUpperCase() + page.slice(1);
-  return <Link to={'/' + page}>
-    <li className={selected ? "NavLink-Active" : "NavLink"}>{title}</li>
-  </Link>
+  let classes = selected ? 'NavLink-Active' : 'NavLink';
+  if(extraClass) classes+= ' ' + extraClass;
+  return <Link to={'/' + page} className={classes}>{title}</Link>
 }
 
 const NavBar = () => {
@@ -31,10 +31,10 @@ const NavBar = () => {
 
 
   //Changes the log in/out button to correctly represent the user's current status
-  let logInOut = logStatus ? <Link to="/" onClick={deleteToken} className="right-nav">Log Out</Link> : <Link to="/LogIn" className="right-nav">Log In</Link>
+  let logInOut = logStatus ? <Link to="/" onClick={deleteToken} className="right-nav">Log Out</Link> : <NavLink page="LogIn" selected={page === 'LogIn'} extraClass='right-nav' />
 
   //Reveals the profile link based on log in status
-  let profile = logStatus ? <NavLink page="Profile" selected={page === 'Profile'} />: ""
+  let profile = logStatus ? <NavLink page="Profile" selected={page === 'Profile'} /> : ""
 
   //Reveals degree plan link based on log-in status
   let degreePlan = logStatus ? <NavLink page="Roadmap" selected={page === 'Roadmap'} /> : ""

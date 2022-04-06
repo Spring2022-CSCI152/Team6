@@ -19,10 +19,10 @@
   }
   
   /* Change the color of links on hover */
-  .NavBar a:hover {
+  .NavLink:hover {
     text-decoration: underline;
     color: rgb(255, 58, 58);;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   
   /* Add a color to the home/current link */
@@ -39,10 +39,14 @@
     margin-right: 25px;
   }
 
-  /*Styles the active link to indicate which page user currently view*/
+  /*Styles the active link to indicate which page user currently views*/
   .NavLink-Active{
     background-color: rgb(255, 58, 58);
     color: white;
     border-radius: 6px;
     text-decoration: none;
+  }
+
+  .NavLink-Hover{
+
   }

@@ -42,8 +42,7 @@ h1{
   font-size: 100px;
   font-style: italic;
   font-weight: 700;
-  margin-top: 80px;
-  margin-bottom: 0;
+  margin: 0;
   position: relative;
 }
 /* p1{
@@ -55,14 +54,6 @@ h1{
 body{
   color:white;
   font-style: normal;
-}
-.LogIn-Box{
-  position: relative;
-  margin: auto;
-  width: 35%;
-  border: 7px solid rgb(255, 58, 58)  ;
-  border-radius: 30px;
-  align-items: center;
 }
 #title{
   padding-bottom: 50px;
@@ -112,5 +103,5 @@ button:hover{
 html, body, #root{
   /* height: 100vh; */
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
