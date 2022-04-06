@@ -17,7 +17,7 @@ const User = require('../model/User');
 const ObjectId = require('mongodb').ObjectId;
 
 
-router.get('/test', async (req, res) => {
+router.get('/', async (req, res) => {
 
     //grab the token from the header
     const rawToken = req.headers.authorization;

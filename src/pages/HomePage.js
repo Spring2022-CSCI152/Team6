@@ -1,27 +1,36 @@
 import spinner from '../assets/spinner.svg';
 import logo from '../assets/roadmap.jpg';
 import '../CSS/App.css';
-import Header from '../components/Header';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePageAfterLogIn from './HomePageAfterLogIn';
+import React from 'react';
 
 
 function HomePage() {
+
+
+
+  let loggedOutTags = []
+  loggedOutTags.push(<img src={spinner} width="15%" className="spinner" alt="logo" />)
+  loggedOutTags.push(<img src={logo} height="auto" />)
+  loggedOutTags.push(<p>Set your education path ...</p>)
+
+  const [logStatusView, setLogStatusView] = React.useState(localStorage.getItem('token') ? "" : loggedOutTags)
+
+  // const logStatusView = ;
+
   return (
-      <div className="App">
-        <Header />
-        <style>
+    <div className="App">
+      <style>
         @import url('https://fonts.googleapis.com/css2?family=Quintessential&display=swap');
-        </style>
-        
-        <header className="App-header">
-          <p>Welcome to Roadmap</p>
-          <img src={spinner} width="15%" className="spinner" alt="logo" />
-          <img src={logo} height="auto"/>
-          <p>Set your education path ...</p>
-        </header>
-      </div>
-    
+      </style>
+
+      <header className="App-header">
+        <p>Welcome to Roadmap</p>
+
+        {logStatusView}
+
+      </header>
+    </div>
+
   );
 }
 

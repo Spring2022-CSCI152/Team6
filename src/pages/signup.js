@@ -1,5 +1,4 @@
 import '../CSS/LogIn.css';
-import Header from '../components/Header';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from '../axios';
@@ -55,7 +54,6 @@ function Signup() {
 
   return (
     <div className="App">
-      <Header />
       <div className='LogIn-Box-wrapper'>
         <div className='LogIn-Box'>
           <p id="title">Create a new account</p>
