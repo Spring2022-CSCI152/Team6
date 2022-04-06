@@ -14,29 +14,29 @@ const NavBar = () => {
     setLogStatus(null);
   }
 
-  // useEffect()
-  // const token = localStorage.getItem('token');
+  //this might be needed if user is not navigated away from log-in page after success.
+  // useEffect(() => {
+  //   setLogStatus(1);
+  // }, [localStorage.getItem('token')])
 
-  // console.log("token", token);
 
   //Changes the log in/out button to correctly represent the user's current status
-  let logInOut = logStatus ? <Link to="/" onClick={deleteToken}>Log Out</Link> : <Link to="/LogIn">Log In</Link>
+  let logInOut = logStatus ? <Link to="/" onClick={deleteToken} className="right-nav">Log Out</Link> : <Link to="/LogIn" className="right-nav">Log In</Link>
 
   //Reveals the profile link based on log in status
   let profile = logStatus ? <Link to="/Profile">Profile</Link> : ""
+
+  //Reveals degree plan link based on log-in status
+  let degreePlan = logStatus ? <a href="#default">Degree Plan</a> : ""
 
   return <div className='NavBar'>
     <Link to="/" className="home">Home</Link>
     <Link to="/Calendar" className="Calendar">Calendar</Link>
     {profile}
+    {degreePlan}
 
-    <a href="#default">Page</a>
-    <div className="right-nav">
-      {logInOut}
-      {/* <Link to="/LogIn">Log In</Link> */}
-      {/* <Link to="/" onClick={deleteToken}>Log Out</Link> This link will need to be updated such that the token will be forfeited.  onClick=forfeit(tokenId). */}
+    {logInOut}
 
-    </div>
   </div>;
 };
 
