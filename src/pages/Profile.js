@@ -1,5 +1,6 @@
 import axios from '../axios'
 import { useState, useEffect } from 'react';
+import '../CSS/profile.css'
 
 
 //ensures requests to backend include the json web token
@@ -35,7 +36,7 @@ const Profile = () => {
 
         //request user information from server
         const user = await axios.get("/profile")
-        
+
             .then((res) => {
 
                 //set user state
@@ -47,18 +48,19 @@ const Profile = () => {
     }
 
 
-    return (<div className='App'>
-        <h1>Profile Page</h1>
+    return (<>
+        <div className='profile'>
+            <h1>Profile Page</h1>
 
-        {/* Example of how to use user object */}
-        <ul>
-            <li>First Name: {user.firstname}</li>
-            <li>Last Name: {user.lastname}</li>
-            <li>Email: {user.email}</li>
-        </ul>
+            {/* Example of how to use user object */}
+            <ul>
+                <li>First Name: {user.firstname}</li>
+                <li>Last Name: {user.lastname}</li>
+                <li>Email: {user.email}</li>
+            </ul>
 
-    </div>
-
+        </div>
+    </>
     )
 }
 

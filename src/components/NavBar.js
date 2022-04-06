@@ -14,7 +14,7 @@ const NavBar = () => {
     setLogStatus(null);
   }
 
-  //this might be needed if user is not navigated away from log-in page after success.
+  //this might be needed if user is not navigated away from log-in page after success, because currently this component needs to re-render in order to update the logStatus state.  useEffect() would be able to change its state based on the token change, I think.
   // useEffect(() => {
   //   setLogStatus(1);
   // }, [localStorage.getItem('token')])
