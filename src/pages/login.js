@@ -47,7 +47,7 @@ function LogIn(setToken) {
     <div className="App">
       <div className='LogIn-Box-wrapper'>
         <div className='LogIn-Box'>
-          <p id="title">Log In</p>
+          <h1 id="title">Log In</h1>
           <form>
             <label htmlFor='email'>Email</label>
             <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />

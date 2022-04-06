@@ -1,6 +1,6 @@
 .App {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100%;
 }
 
 .spinner {
@@ -37,7 +37,7 @@
     transform: rotate(360deg);
   }
 }
-p{
+h1{
   font-family: 'Quintessential', cursive;
   font-size: 100px;
   font-style: italic;
@@ -46,21 +46,15 @@ p{
   margin-bottom: 0;
   position: relative;
 }
-p1{
+/* p1{
   font-family: 'Quintessential', cursive;
   font-size: 30px;
   margin: 0;
   position: relative;
-}
+} */
 body{
   color:white;
   font-style: normal;
-}
-.LogIn-Box-wrapper{
-  display: block;
-  position: relative;
-  text-align: center;
-  margin-top: 7%;
 }
 .LogIn-Box{
   position: relative;
@@ -113,10 +107,6 @@ button{
 }
 button:hover{
   background-color: #ff4646;
-}
-
-h1{
-  margin: 0;
 }
 
 html, body, #root{

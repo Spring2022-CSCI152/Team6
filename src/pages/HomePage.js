@@ -24,7 +24,7 @@ function HomePage() {
       </style>
 
       <header className="App-header">
-        <p>Welcome to Roadmap</p>
+        <h1>Welcome to Roadmap</h1>
 
         {logStatusView}
 
