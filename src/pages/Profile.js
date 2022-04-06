@@ -1,10 +1,9 @@
-// import '../CSS/profile.css';
 import axios from '../axios'
 import { Link } from 'react-router-dom';
-// import React, { useState, useEffect } from 'react';
 import { useState, useEffect } from 'react';
 
 
+//ensures requests to backend include the json web token
 axios.interceptors.request.use(
     config => {
         // const { origin } = new URL(config.url);
@@ -24,10 +23,10 @@ axios.interceptors.request.use(
 
 const Profile = () => {
 
+    //state and state change function for user object
     const [user, setUser] = useState({});
 
-
-    //calls user load on mount
+    //loads user info on mount
     useEffect(() => {
         getUserInfo();
     }, []);
@@ -47,7 +46,11 @@ const Profile = () => {
 
     return (<div className='App'>
         <h1>Profile Page</h1>
+
+        {/* This is just temporary until a header is included. */}
         <Link to="/Login">Login</Link><button>Test</button>
+
+        {/* Example of how to use user object */}
         <ul>
             <li>First Name: {user.firstname}</li>
             <li>Last Name: {user.lastname}</li>
