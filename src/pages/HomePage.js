@@ -1,21 +1,21 @@
 import spinner from '../assets/spinner.svg';
 import logo from '../assets/roadmap.jpg';
 import '../CSS/App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 
 function HomePage() {
 
 
-
+  //logged out view
   let loggedOutTags = []
-  loggedOutTags.push(<img src={spinner} width="15%" className="spinner" alt="logo" />)
-  loggedOutTags.push(<img src={logo} height="auto" />)
-  loggedOutTags.push(<p>Set your education path ...</p>)
+  loggedOutTags.push(<img src={spinner} width="15%" className="spinner" alt="logo" key={0} />)
+  loggedOutTags.push(<img src={logo} height="auto" key={1}/>)
+  loggedOutTags.push(<p key={2}>Set your education path ...</p>)
 
+  //current view state
   const [logStatusView, setLogStatusView] = React.useState(localStorage.getItem('token') ? "" : loggedOutTags)
 
-  // const logStatusView = ;
 
   return (
     <div className="App">
