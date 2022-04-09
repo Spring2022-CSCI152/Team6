@@ -2,7 +2,6 @@ import React from 'react';
 import './CSS/App.css'
 import NavBar from './components/NavBar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import HomePageAfterLogIn from './pages/HomePageAfterLogIn';
 import Profile from './pages/Profile';
 import HomePage from './pages/HomePage';
 import LogIn from './pages/login';
@@ -10,8 +9,7 @@ import Signup from './pages/signup';
 import RecordList from './components/RecordList';
 import CoursesParser from './pages/Admin/CoursesParser';
 import Calendar1 from './pages/calendar';
-import { useState } from 'react';
-import axios from 'axios';
+import Courses from './pages/Courses';
 
 function App() {
 
@@ -31,6 +29,7 @@ function App() {
           <Route exact path="/CoursesParser"><CoursesParser /></Route>
           <Route exact path="/Profile"><Profile /></Route>
           <Route exact path="/Calendar"><Calendar1 /></Route>
+          <Route exact path="/Courses"><Courses /></Route>
 
         </Switch>
       </Router>
@@ -40,17 +39,17 @@ function App() {
 
 export default App;
 
-{/*
-AuthContext is an authorization method?  Saved old code here for future reference.  Will delete once authorization problem is solved/approved.
-import {useState} from 'react';
-//  export const AuthContext = React.createContext()
-  // const [authState, setAuthState] = useState(localStorage.getItem("user") ? true : false)
-        function App(){
-        return(
-          { <AuthContext.Provider value={[authState, setAuthState]}> }
-          /*{Routes Here}
-           { </AuthContext.Provider>}
-);
-}
+// {/*
+// AuthContext is an authorization method?  Saved old code here for future reference.  Will delete once authorization problem is solved/approved.
+// import {useState} from 'react';
+// //  export const AuthContext = React.createContext()
+//   // const [authState, setAuthState] = useState(localStorage.getItem("user") ? true : false)
+//         function App(){
+//         return(
+//           { <AuthContext.Provider value={[authState, setAuthState]}> }
+//           /*{Routes Here}
+//            { </AuthContext.Provider>}
+// );
+// }
 
-*/}
+// */}

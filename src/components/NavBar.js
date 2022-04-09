@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import '../CSS/NavBar.css';
 
@@ -45,11 +45,13 @@ const NavBar = () => {
 
   //Reveals degree plan link based on log-in status
   let degreePlan = logStatus ? <NavLink page="Roadmap" selected={page === 'Roadmap'} /> : ""
+  
 
   return <div className='NavBar'>
 
     <NavLink page='Home' selected={page === 'Home' || !page} />
     <NavLink page='Calendar' selected={page === 'Calendar'} />
+    <NavLink page='Courses' selected={page === 'Courses'} />
     {profile}
     {degreePlan}
 

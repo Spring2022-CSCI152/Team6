@@ -53,14 +53,9 @@ router.post(
 
       await course.save();
 
-      const payload = {
-        course: {
-          id: course.id,
-        },
-      };
-
       res.status(200).json({
         message: "Course Created!",
+        course
       });
     } catch (err) {
       console.log(err.message);
@@ -70,36 +65,27 @@ router.post(
 );
 
 router.post(
-  "/findCourse",
-  [
-    check("className", "Please enter a valid className").isLength({
-      min: 1,
-    }),
-  ],
+  "/",
   async (req, res) => {
-    const errors = validationResult(req);
+    console.log(req.body);
+    // console.log(res);
 
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array(),
-      });
-    }
-
-    const { className } = req.body;
+    const { classNameAb, className  } = req.body;
     try {
-      let course = await Class.findOne({
-        className,
+      let course = await Class.find({
+        $or:
+        [{classNameAb},
+        {className}]
       });
       if (!course)
         return res.status(400).json({
           message: "Course Not Exist",
         });
 
-      const payload = {
-        course: {
-          id: course.id,
-        },
-      };
+      res.status(200).json({
+        message: "Course Founded!",
+        course
+      });
     } catch (e) {
       console.error(e);
       res.status(500).json({
@@ -108,5 +94,9 @@ router.post(
     }
   }
 );
+
+// router.get("/", (req, res) => {
+//   res.json({ message: "API Working" });
+// });
 
 module.exports = router;
