@@ -12,12 +12,11 @@ import Calendar1 from './pages/calendar';
 import SearchCourse from './pages/SearchCourse';
 import Courses from './pages/Courses';
 
-function App() {
 
+function App() {
   return (
     <>
-
-      <Router>
+      <Router forceRefresh={true}>
         <Switch>
           <Route exact path={["/", "/:page"]}><NavBar /></Route>
         </Switch >

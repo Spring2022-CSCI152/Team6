@@ -33,8 +33,10 @@ router.post(
       TermTypicallyOffered,
     } = req.body;
     try {
-      let course = await Class.findOne({
-        className,
+      var course = await Class.findOne({
+        $or:
+        [{classNameAb},
+        {className}]
       });
       if (course) {
         return res.status(400).json({
@@ -65,20 +67,21 @@ router.post(
 );
 
 router.post(
-  "/",
+  "/search",
   async (req, res) => {
     const { classNameAb, className  } = req.body;
     try {
-      let courses = await Class.find({
+      var courses = await Class.find({
         $or:
         [{classNameAb},
         {className}]
       });
-      if (!courses)
+      if (courses.toString()=="")
+      {
         return res.status(400).json({
           message: "Course Not Exist",
         });
-
+      }
       res.status(200).json({
         message: "Course Founded!",
         courses
@@ -94,7 +97,7 @@ router.post(
 
 router.get("/", async (req, res) => {
   try {
-    let courses = await Class.find();
+    var courses = await Class.find();
     if (!courses)
       return res.status(400).json({
         message: "There is no course",

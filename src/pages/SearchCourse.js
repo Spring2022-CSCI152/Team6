@@ -2,16 +2,20 @@ import '../CSS/course.css';
 import { useState } from 'react';
 import axios from '../axios';
 
-
 function FindCourse() {
     const [findingcourses, setcourse] = useState("");
     const handleFinding = (e) => {
         setcourse(e.target.value)
       }
     const search = async () => {
+        if(findingcourses == "")
+        {
+            alert("Please input class for searching");
+            return;
+        }
         const finding = {"classNameAb": findingcourses};
         //sending to server
-        const req = await axios.post('/course', finding)
+        const req = await axios.post('/course/search', finding)
             .then((res) => {
             const classNameAb = document.getElementById("classNameAb");
             classNameAb.innerHTML ="<p>Class Name Abbreviation: "+res.data.courses[0].classNameAb+"</p>";

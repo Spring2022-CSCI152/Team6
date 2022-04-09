@@ -9,11 +9,15 @@ function Courses() {
         setcourse(e.target.value)
       }
     const search = async () => {
+        if(findingcourse == "")
+        {
+            alert("Please input class for searching");
+            return;
+        }
         const finding = {"classNameAb": findingcourse};
         //sending to server
-        const req = await axios.post('/course', finding)
+        const req = await axios.post('/course/search', finding)
             .then((res) => {
-                console.log(res.data)
                 for(let i of res.data.courses){
                     console.log(i);
                     var CourseList = document.getElementById("CourseList");
@@ -42,7 +46,7 @@ function Courses() {
                 }
 
             }).catch((error) => {
-            console.log(error);
+                alert(error.response.data.message);
             });
     }
     const viewAll = async () => {
@@ -72,14 +76,18 @@ function Courses() {
 
                 CourseList.appendChild(tableRow);
             }
+            var searchBox = document.getElementById("finding");
+            searchBox.innerHTML="";
         }).catch((error) => {
         console.log(error);
         });
     }
     window.onload= function() {
-        if(document.readyState == 'complete') {
+        if(document.readyState=="complete")
+        {
             viewAll();
         }
+        
     };
     
   return (
@@ -91,7 +99,7 @@ function Courses() {
         </form>
         <table>
             <thead>
-                <tr>
+                <tr onLoad={viewAll}>
                     <th>Class</th>
                     <th>Class Name</th>
                     <th>Prerequisites</th>
