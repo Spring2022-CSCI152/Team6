@@ -1,7 +1,12 @@
-body{
+/* body{
     color:rgb(0, 0, 0);
     font-style: normal;
     background-color: #000000;
+} */
+
+.calendar{
+    background-color: #000000;
+    min-height: 100vh;
 }
 
 .react-calendar { 

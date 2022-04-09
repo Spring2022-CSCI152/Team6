@@ -2,8 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const user = require("./routes/user"); //new addition
 const course = require("./routes/course"); //new addition
+const profile = require("./routes/profile");
 const InitiateMongoServer = require("./config/db");
 const cors = require("cors");
+const jwt = require('express-jwt');
 
 // Initiate Mongo Server
 InitiateMongoServer();
@@ -24,6 +26,11 @@ app.get("/", (req, res) => {
 // API Endpoints
 app.use("/user", user);
 app.use("/course", course);
+
+//any calls defined below this line will require the java web token in their headers
+app.use(jwt({secret: "randomString", algorithms: ['HS256']}))
+
+app.use('/profile', profile);
 
 app.listen(PORT, (req, res) => {
   console.log(`Server Started at PORT ${PORT}`);
