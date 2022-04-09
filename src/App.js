@@ -9,6 +9,7 @@ import Signup from './pages/signup';
 import RecordList from './components/RecordList';
 import CoursesParser from './pages/Admin/CoursesParser';
 import Calendar1 from './pages/calendar';
+import SearchCourse from './pages/SearchCourse';
 import Courses from './pages/Courses';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/CoursesParser"><CoursesParser /></Route>
           <Route exact path="/Profile"><Profile /></Route>
           <Route exact path="/Calendar"><Calendar1 /></Route>
+          <Route exact path="/SearchCourse"><SearchCourse /></Route>
           <Route exact path="/Courses"><Courses /></Route>
 
         </Switch>

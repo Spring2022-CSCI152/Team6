@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import Calendar from 'react-calendar';
-// import 'react-calendar/dist/calendar.css';
-import calendar from "../CSS/calendar.css"
+import "../CSS/calendar.css"
 import {Container, Row, Col} from 'react-bootstrap/';
 
 

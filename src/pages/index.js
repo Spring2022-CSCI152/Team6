@@ -1,13 +1,11 @@
 import spinner from '../assets//spinner.svg';
 import logo from '../assets/roadmap.jpg';
-// import '/Users/gurleenkaur/Desktop/Team6/src/App.css';
 import Header from '../components/Header.js';
 import '../App.css';
 
 function Home() {
   window.onload = function(){
     setInterval(function(){
-        // alert("Hello");
     }, 5000);
  };
   return (

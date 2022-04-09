@@ -67,24 +67,21 @@ router.post(
 router.post(
   "/",
   async (req, res) => {
-    console.log(req.body);
-    // console.log(res);
-
     const { classNameAb, className  } = req.body;
     try {
-      let course = await Class.find({
+      let courses = await Class.find({
         $or:
         [{classNameAb},
         {className}]
       });
-      if (!course)
+      if (!courses)
         return res.status(400).json({
           message: "Course Not Exist",
         });
 
       res.status(200).json({
         message: "Course Founded!",
-        course
+        courses
       });
     } catch (e) {
       console.error(e);
@@ -95,8 +92,24 @@ router.post(
   }
 );
 
-// router.get("/", (req, res) => {
-//   res.json({ message: "API Working" });
-// });
+router.get("/", async (req, res) => {
+  try {
+    let courses = await Class.find();
+    if (!courses)
+      return res.status(400).json({
+        message: "There is no course",
+      });
+
+    res.status(200).json({
+      message: "All courses Founded!",
+      courses
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      message: "Server Error",
+    });
+  }
+});
 
 module.exports = router;

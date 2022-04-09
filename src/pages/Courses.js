@@ -13,37 +13,75 @@ function Courses() {
         //sending to server
         const req = await axios.post('/course', finding)
             .then((res) => {
-            const classNameAb = document.getElementById("classNameAb");
-            classNameAb.innerHTML ="<p>Class Name Abbreviation: "+res.data.course[0].classNameAb+"</p>";
-
-            const className = document.getElementById("className");
-            className.innerHTML ="<p>Class Name: "+res.data.course[0].className+"</p>";
-
-            const prerequisites = document.getElementById("prerequisites");
-            prerequisites.innerHTML +="<p>Prerequisites:<p>";
-            for (let i of res.data.course[0].Prerequisites)
-            {
-                prerequisites.innerHTML +="<li>"+ i +"</li>";
-            }
-
-            const description = document.getElementById("description");
-            description.innerHTML ="<p>Description: "+res.data.course[0].Description+"</p>";
-
-            const units = document.getElementById("units");
-            units.innerHTML ="<p>Units: "+res.data.course[0].Units+"</p>";
-
-            const term = document.getElementById("term");
-            term.innerHTML +="<p>Course Typically Offered:<p>";
-            for (let i of res.data.course[0].TermTypicallyOffered)
-            {
-                term.innerHTML +="<li>"+i+"</li>";
-            }
+                console.log(res.data)
+                for(let i of res.data.courses){
+                    console.log(i);
+                    var CourseList = document.getElementById("CourseList");
+                    CourseList.innerHTML="";
+                    var tableRow =document.createElement("tr");
+                    tableRow.innerHTML +="<td>"+i.classNameAb+"</td>";
+                    tableRow.innerHTML +="<td>"+i.className+"</td>";
+                    if(i.Prerequisites.length==0){
+                        tableRow.innerHTML +="<td></td>";
+                    }
+                    for(let j of i.Prerequisites)
+                    {
+                        tableRow.innerHTML +="<li>"+ j +"</li>";
+                    }
+                    tableRow.innerHTML +="<td>"+i.Description+"</td>";
+                    tableRow.innerHTML +="<td>"+i.Units+"</td>";
+                    if(i.TermTypicallyOffered.length==0){
+                        tableRow.innerHTML +="<td></td>";
+                    }
+                    for(let k of i.TermTypicallyOffered)
+                    {
+                        tableRow.innerHTML +="<li>"+ k +"</li>";
+                    }
+    
+                    CourseList.appendChild(tableRow);
+                }
 
             }).catch((error) => {
             console.log(error);
             });
-        }
+    }
+    const viewAll = async () => {
+        const req = await axios.get('/course')
+        .then((res) => {
+            for(let i of res.data.courses){
+                var CourseList = document.getElementById("CourseList");
+                var tableRow =document.createElement("tr");
+                tableRow.innerHTML +="<td>"+i.classNameAb+"</td>";
+                tableRow.innerHTML +="<td>"+i.className+"</td>";
+                if(i.Prerequisites.length==0){
+                    tableRow.innerHTML +="<td></td>";
+                }
+                for(let j of i.Prerequisites)
+                {
+                    tableRow.innerHTML +="<li>"+ j +"</li>";
+                }
+                tableRow.innerHTML +="<td>"+i.Description+"</td>";
+                tableRow.innerHTML +="<td>"+i.Units+"</td>";
+                if(i.TermTypicallyOffered.length==0){
+                    tableRow.innerHTML +="<td></td>";
+                }
+                for(let k of i.TermTypicallyOffered)
+                {
+                    tableRow.innerHTML +="<li>"+ k +"</li>";
+                }
 
+                CourseList.appendChild(tableRow);
+            }
+        }).catch((error) => {
+        console.log(error);
+        });
+    }
+    window.onload= function() {
+        if(document.readyState == 'complete') {
+            viewAll();
+        }
+    };
+    
   return (
     <div className="Course">
         <form>
@@ -51,14 +89,20 @@ function Courses() {
             <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" /> <br />
             <button type="button" onClick={search}>Search</button>
         </form>
-        <div id="result">
-            <p id="classNameAb"></p>
-            <p id="className"></p>
-            <div id="prerequisites"></div>
-            <p id="description"></p>
-            <p id="units"></p>
-            <p id="term"></p>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>Class Name</th>
+                    <th>Prerequisites</th>
+                    <th>Description</th>
+                    <th>Units</th>
+                    <th>Course Typically Offered</th>
+                </tr>
+            </thead>
+            <tbody id="CourseList">
+            </tbody>
+        </table>
     </div>
 
   );
