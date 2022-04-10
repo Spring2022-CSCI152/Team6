@@ -51,12 +51,12 @@ const NavBar = () => {
 
     <NavLink page='Home' selected={page === 'Home' || !page} />
     <NavLink page='Calendar' selected={page === 'Calendar'} />
-    <NavLink page='SearchCourse' selected={page === 'SearchCourse'} />
-    <NavLink page='Courses' selected={page === 'Courses'} />
     {profile}
     {degreePlan}
 
     {logInOut}
+    <NavLink page='Courses' selected={page === 'Courses'} />
+    <NavLink page='SearchCourse' selected={page === 'SearchCourse'} />
 
   </div>;
 };

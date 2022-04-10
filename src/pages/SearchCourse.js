@@ -13,7 +13,7 @@ function FindCourse() {
             alert("Please input class for searching");
             return;
         }
-        const finding = {"classNameAb": findingcourses};
+        const finding = {"classNameAb": findingcourses, "className": findingcourses};
         //sending to server
         const req = await axios.post('/course/search', finding)
             .then((res) => {

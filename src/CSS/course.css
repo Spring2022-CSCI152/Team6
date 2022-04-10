@@ -89,3 +89,6 @@ body{
   td{
       border: 2px black solid;
   }
+  select{
+      width: 150px;
+  }

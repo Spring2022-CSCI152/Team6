@@ -115,4 +115,64 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.post(
+  "/searchWithTermFilter",
+  async (req, res) => {
+    console.log(req.body);
+    const { classNameAb, className, TermTypicallyOffered  } = req.body;
+    console.log(classNameAb,className);
+    if(!classNameAb || !className)
+    {
+      console.log("hi");
+      try {
+        var courses = await Class.find({
+          TermTypicallyOffered
+        });
+        console.log(courses.toString());
+        if (courses.toString()=="")
+        {
+          console.log("hi");
+          return res.status(400).json({
+            message: "Course Not Exist",
+          });
+        }
+        res.status(200).json({
+          message: "Course Founded!",
+          courses
+        });
+      } catch (e) {
+        console.error(e);
+        res.status(500).json({
+          message: "Server Error",
+        });
+      }
+    }
+    else{
+      try {
+        var courses = await Class.find({
+          $or:
+          [{classNameAb},
+          {className}],
+          TermTypicallyOffered
+        });
+        if (courses.toString()=="")
+        {
+          return res.status(400).json({
+            message: "Course Not Exist",
+          });
+        }
+        res.status(200).json({
+          message: "Course Founded!",
+          courses
+        });
+      } catch (e) {
+        console.error(e);
+        res.status(500).json({
+          message: "Server Error",
+        });
+      }
+    }
+  }
+);
+
 module.exports = router;
