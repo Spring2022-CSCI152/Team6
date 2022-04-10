@@ -271,13 +271,13 @@ function CoursesForAdmin() {
                 <label id="hidden">Class Name:</label>
                 <input type="text" onChange={classNameHandle}/> <br />
                 <label id="hidden">Prerequisites:</label>
-                <input type="text" onChange={prerequisitesHandle}/> <br />
+                <input type="text" onChange={prerequisitesHandle} placeholder="Example: MATH 75, CSCI 115 (seperate the additional term by comma)" /> <br />
                 <label id="hidden">Description:</label>
                 <input type="text" onChange={descriptionHandle} /> <br />
                 <label id="hidden">Units:</label>
                 <input type="text" onChange={unitHandle} id="Units"/> <br />
                 <label id="hidden">Course Typically Offered:</label>
-                <input type="text" onChange={termHandle} /> <br />
+                <input type="text" onChange={termHandle} placeholder="Example: Spring, Fall (seperate the additional term by comma)" /> <br />
                 <button type="button" onClick={addCourse} id="hiddenButton">Add</button>
                 <button type="button" onClick={closeAddBox} id="hiddenButton">Close</button>
             </form>
