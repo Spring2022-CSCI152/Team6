@@ -13,7 +13,7 @@ function Courses() {
     const search = async () => {
         if(findingcourse == "")
         {
-            alert("Please input class for searching");
+            viewAll();
             return;
         }
         const finding = {"classNameAb": findingcourse, "className": findingcourse};
@@ -129,7 +129,8 @@ function Courses() {
     }
     const filter = async (e) => {
         var findingTerm=[];
-        if(e=="Every Term")
+        var finding;
+        if(e.target.value=="Every Term")
         {
             search();
             return;
@@ -143,22 +144,17 @@ function Courses() {
             findingTerm.push(e.target.value);
         }
         if(findingcourse ==""){
-            var finding = {"TermTypicallyOffered": findingTerm};
+            finding = {"TermTypicallyOffered": findingTerm};
         }
         else{
-            var finding = {"classNameAb": findingcourse, "className": findingcourse, "TermTypicallyOffered": findingTerm};
+            finding = {"classNameAb": findingcourse, "className": findingcourse, "TermTypicallyOffered": findingTerm};
         }
         //sending to server
         const req = await axios.post('/course/searchWithTermFilter', finding)
             .then((res) => {
-                result=res.data.courses;
-                console.log(result);
-                filterterm = new Set();
                 var CourseList = document.getElementById("CourseList");
                 CourseList.innerHTML="";
-                for(let i of result){
-                    console.log(i);
-                    console.log(i.classNameAb);
+                for(let i of res.data.courses){
                     filterterm.add(JSON.stringify(i.TermTypicallyOffered));
                     var tableRow =document.createElement("tr");
                     tableRow.innerHTML +="<td>"+i.classNameAb+"</td>";
