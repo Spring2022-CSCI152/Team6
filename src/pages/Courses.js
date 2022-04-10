@@ -22,10 +22,10 @@ function Courses() {
             .then((res) => {
                 result=res.data.courses;
                 filterterm = new Set();
+                var CourseList = document.getElementById("CourseList");
+                CourseList.innerHTML="";
                 for(let i of result){
                     filterterm.add(JSON.stringify(i.TermTypicallyOffered));
-                    var CourseList = document.getElementById("CourseList");
-                    CourseList.innerHTML="";
                     var tableRow =document.createElement("tr");
                     tableRow.innerHTML +="<td>"+i.classNameAb+"</td>";
                     tableRow.innerHTML +="<td>"+i.className+"</td>";

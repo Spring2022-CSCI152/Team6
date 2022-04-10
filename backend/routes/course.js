@@ -38,7 +38,7 @@ router.post(
         $or:
         [{classNameAb},
         {className}]
-      });
+      }).sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
       if (course) {
         return res.status(400).json({
           msg: "Class Already Exists",
@@ -76,7 +76,7 @@ router.post(
         $or:
         [{classNameAb},
         {className}]
-      });
+      }).sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
       if (courses.toString()=="")
       {
         return res.status(400).json({
@@ -98,7 +98,7 @@ router.post(
 
 router.get("/", async (req, res) => {
   try {
-    var courses = await Class.find();
+    var courses = await Class.find().sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
     if (!courses)
       return res.status(400).json({
         message: "There is no course",
@@ -128,7 +128,7 @@ router.post(
       try {
         var courses = await Class.find({
           TermTypicallyOffered
-        });
+        }).sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
         console.log(courses.toString());
         if (courses.toString()=="")
         {
@@ -155,7 +155,7 @@ router.post(
           [{classNameAb},
           {className}],
           TermTypicallyOffered
-        });
+        }).sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
         if (courses.toString()=="")
         {
           return res.status(400).json({

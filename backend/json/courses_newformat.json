@@ -1,0 +1,614 @@
+[{
+  "classNameAb": [
+    "CSCI",
+    "1"
+  ],
+  "className": "Critical Thinking and Computer Science",
+  "Prerequisites": [
+    "intermediate algebra"
+  ],
+  "Description": "Overview of the field of computer science with an emphasis on critical thinking skills. Problem-solving strategies, algorithm design, and data abstraction. Introduction to hardware, theoretical limitations of computers, and issues arising from the growing role of computers in society. G.E. Foundation A3.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "5"
+  ],
+  "className": "Computer and Applications",
+  "Prerequisites": [],
+  "Description": "An introduction to the computer: tools, applications, and graphics. Overview of the components of computer systems; discussion on software systems, electronic mail, influence of computers on society and the future of computing; extensive hands-on experience with application tools and programming. PC (Windows) environment. CR/NC grading only. (2 lecture, 2 lab hours)",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "30"
+  ],
+  "className": "Introduction to the Internet",
+  "Prerequisites": [],
+  "Description": "Topics include email, web browsers, searching, evaluation of web resources, HTML, web-page design, encryption, basic network communication. Special emphasis on the underlying technologies. (2 lecture (1 traditional/1 on-line), 2 lab hours)",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "39"
+  ],
+  "className": "Computer Science Principles",
+  "Prerequisites": [],
+  "Description": "Overview of computer science principles and computational thinking. Creativity and computing, abstraction, data and information, algorithms, programming, the Internet, global impacts. Data analysis and collaborative problem solving. (2 lecture, 2 lab hours, integrated format.)",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "40"
+  ],
+  "className": "Introduction to Programming and Problem Solving",
+  "Prerequisites": [
+    "Math 75 (may be taken concurrently) OR",
+    "Math 75A (may be taken concurrently) OR",
+    "permission from instructor OR"
+  ],
+  "Description": "Introduction to problem solving, algorithm development, procedural and data abstraction; program design, coding, debugging, testing and documentation; a high-level programming language. (3 lecture, 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "41"
+  ],
+  "className": "Introduction to Data Structures",
+  "Prerequisites": [
+    "CSCI 40 OR",
+    "ECE 71 OR"
+  ],
+  "Description": "Programming methodology, program correctness. Review of data types. Data structures: linear and nonlinear structures, files. Implementation of data structures. Recursion. Searching and sorting. (3 lecture, 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "60"
+  ],
+  "className": "Foundations of Computer Science",
+  "Prerequisites": [
+    "CSCI 40 (may be taken concurrently)"
+  ],
+  "Description": "Abstraction, iteration, induction, recursion, complexity of programs, data models, and logic. (3 lecture 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "68"
+  ],
+  "className": "Computing Practice and Programming",
+  "Prerequisites": [
+    "CSCI 75"
+  ],
+  "Description": "A project-based learning (PBL) course covering critical thinking methods through a series of small projects, using Python to solve problems using pedagogies from creativity and critical theories, writing scripts to automate problem-solving. (3 lecture, 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "100"
+  ],
+  "className": "Introduction to Computational Science",
+  "Prerequisites": [
+    "GE Area: IB"
+  ],
+  "Description": "Fundamental concepts of computational science, computational modeling, computer simulations, and scientific applications. Topics include system-dynamics models, cellular-automaton simulations, computational and modeling tools, scientific visualization, high-performance computing. G.E. Integration IB.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "101"
+  ],
+  "className": "Computational Foundations for Bioinformatics",
+  "Prerequisites": [
+    "CSCI 1",
+    "BIOL 102"
+  ],
+  "Description": "Computational approaches to problems in molecular biology. Algorithms, heuristics, strings, graphs. Sequence comparison, mulitple alignment. Selected topics such as scripting, visual programming, laboratory workflow, databases, and queries. (2 lecture, 2 lab hours). (Formerly computer applications in the sciences).",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "108"
+  ],
+  "className": "Algorithmic Thinking",
+  "Prerequisites": [
+    "CSCI 68 OR",
+    "permission of instructor OR"
+  ],
+  "Description": "A project-based learning (PBL) course covering object-oriented algorithmic thinking and data structures for science and mathematics pre-service and in-service teachers. (3 lecture, 2 lab hours) (Formerly CSCI 191T)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "112"
+  ],
+  "className": "Introduction to Computer Systems",
+  "Prerequisites": [
+    "CSCI 41",
+    "CSCI 60"
+  ],
+  "Description": "Computer arithmetic. Von Neumann architecture. Instruction sets, data types, formats, addressing. Register and ALU organization. Memory hierarchy. I/O Bus organization. Study of one or more assembly languages. Basics of implementation of higher-level languages. (3 lecture, 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "113"
+  ],
+  "className": "Introduction to Computer Organization",
+  "Prerequisites": [
+    "CSCI 112"
+  ],
+  "Description": "Fundamental issues of computer design at register-transfer level. Logical design of basic combinational and sequential modules. Organization and design of major functional blocks: ALU, CPU, memory, cache, input/output, hard-wired and microprogrammed control. Simulation of computer organization. INtroduction to high performance superscalar computer organization. (3 lecture, 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "114"
+  ],
+  "className": "Introduction to Operating Systems",
+  "Prerequisites": [
+    "CSCI 41",
+    "CSCI 112 OR",
+    "ECE 118 OR"
+  ],
+  "Description": "Operating system history and services. File systems. Memory management. Process management - concurrent processes, communication, semaphores, monitors, deadlocks. Resource management - processor and disk scheduling. Security and protection mechanisms. (Formerly CSCI 144)",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "115"
+  ],
+  "className": "Algorithms and Data Structures",
+  "Prerequisites": [
+    "CSCI 41",
+    "CSCI 60",
+    "MATH 75"
+  ],
+  "Description": "Review of basic data structures. Graph, search paths, and spanning trees. Algorithm design and analysis of sorting, merging, and searching. Memory management, hashing, dynamic storage allocation. Integration of data structures into system design. (3 lecture 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "117"
+  ],
+  "className": "Structures of Programming Languages",
+  "Prerequisites": [
+    "CSCI 41",
+    "CSCI 60"
+  ],
+  "Description": "General concepts and paradigms of programming languages; scope and binding rules, applications and implementations of language concepts. Languages selected from: ADA, ICON, Miranda, ML, MODULA 2, OCCAM 2, PROLOG, LISP, Scheme, Smalltalk. (3 lecture, 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "119"
+  ],
+  "className": "Introduction to Finite Automata",
+  "Prerequisites": [
+    "CSCI 41",
+    "CSCI 60"
+  ],
+  "Description": "Strings, languages, and fundamental proof techniques. Regular expression, regular grammar, regular languages, finite automata, their interrelationship, and their properties. Introduction to context-free languages. (3 lecture 2 lab hours)",
+  "Units": 4,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "124"
+  ],
+  "className": "Introduction to File Processing",
+  "Prerequisites": [
+    "CSCI 115"
+  ],
+  "Description": "Definition of file components, access methods, and file operations. Algorithms for efficient implementation of data structures; characteristics of bulk storage media for mainframe and microcomputers. Introduction to database management systems.",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "126"
+  ],
+  "className": "Database Systems",
+  "Prerequisites": [
+    "CSCI 115 (can be taken concurrently)"
+  ],
+  "Description": "Database concepts; hierarchical and relational network models; object-oriented data models. Data normalization, data description languages, data manipulation languages, and query design.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "130"
+  ],
+  "className": "Web Programming",
+  "Prerequisites": [
+    "CSCI 115"
+  ],
+  "Description": "Programming for the World Wide Web. Web servers and clients, Internet and Web protocols, and mark-up languages. Client side scripting, including both gateway and filter-based approaches. (2 lecture, 2 lab hours). (Formerly CSCI 191T).",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "134"
+  ],
+  "className": "Compiler Design",
+  "Prerequisites": [
+    "CSCI 112",
+    "CSCI 115",
+    "CSCI 119"
+  ],
+  "Description": "Syntax and semantics of programming languages. Lexical analysis, parsing techniques, parser generator, SLR and LALR parsing. Introduction to symbol table organization and semantic routines. Compiler generators.",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "136"
+  ],
+  "className": "Systems Architecture",
+  "Prerequisites": [
+    "CSCI 113",
+    "CSCI 144"
+  ],
+  "Description": "An in-depth analysis of one or more operating systems -- system data structures, hardware architecture, shell and kernel functions, I/O routines, interrupt handling. Other topics may include parallel hardware architectures, performance analysis.",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "148"
+  ],
+  "className": "Systems Programming",
+  "Prerequisites": [
+    "CSCI 113",
+    "CSCI 144"
+  ],
+  "Description": "Topics include implementation of operating system components and modification of existing systems. Device drivers, memory management, communication networks, and file systems will be examined. Projects will be emphasized.",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "150"
+  ],
+  "className": "Introduction to Software Engineering",
+  "Prerequisites": [
+    "CSCI 41"
+  ],
+  "Description": "History, goals, and motivation of software engineering. Study and use of software engineering methods. Requirements, specification, design, implementation, testing, verification, and maintenance of large software systems. Team programming. (2 lecture, 3 lab hours)",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "152"
+  ],
+  "className": "Software Engineering",
+  "Prerequisites": [
+    "CSCI 150"
+  ],
+  "Description": "In-depth examination of techniques for specification, design, implementation, testing, and verification of software. Human-computer interfaces. Formal methods of software development. Use of software engineering tools for the development of substantial software projects. (2 lecture, 2 lab hours)",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "154"
+  ],
+  "className": "Simulation",
+  "Prerequisites": [
+    "CSCI 41",
+    "CSCI 60",
+    "MATH 75"
+  ],
+  "Description": "Simulation as a tool for the study of complex systems in computer science, statistics and operations research. Generating random variables. Review of principles behind and examples of simulation languages.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "156"
+  ],
+  "className": "Internetworking Systems and Protocols",
+  "Prerequisites": [
+    "CSCI 114 (may be taken concurrently) OR",
+    "permission of instructor OR"
+  ],
+  "Description": "Review of underlying network technologies. Application-level interconnections, network architectures, addressing, mapping abstract addresses to physical addresses, routing datagrams, error and control messages, protocol layering, gateways, subnets. Client-server interactions. Upper layers of protocol stacks.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "164"
+  ],
+  "className": "Artificial Intelligence Programming",
+  "Prerequisites": [
+    "CSCI 117"
+  ],
+  "Description": "Introduction to problem-solving methods from artificial intelligence. Production systems. Knowledge-based systems. Machine learning. Topics chosen from fuzzy logic, neural network models, genetic algorithms. Verification, validation, testing.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "166"
+  ],
+  "className": "Principles of Artificial Intelligence",
+  "Prerequisites": [
+    "CSCI 164"
+  ],
+  "Description": "Analysis of knowledge-based and neural models, including self-organization, sequential learning models, neurally inspired models of reasoning and perception. Integration of different paradigms.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "168"
+  ],
+  "className": "Big Data Analytics",
+  "Prerequisites": [
+    "MATH 75",
+    "CSCI 115",
+    "CSCI 164 OR",
+    "permission of instructor OR"
+  ],
+  "Description": "Introduction to data mining and knowledge discovery process, big data fundamentals, Map-Reduce: Map and Reduce procedures, dimensionality reduction: Singular Value Decomposition and low-rank approximation, frequent itemsets and association rules, recommender systems: similarity search, spam detection, and mining data streams. (2 lecture, 2 lab hours) (Formerly CSCI 191T)",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "172"
+  ],
+  "className": "Computer Graphics",
+  "Prerequisites": [
+    "MATH 76",
+    "CSCI 41",
+    "CSCI 112 OR",
+    "ECE 118 OR"
+  ],
+  "Description": "Hardware devices, raster graphics, device in dependence, graphic data structure and representations, interactive techniques, and algorithms for the display of two- and three-dimensional objects, graphic transformation, graphics standards, modeling ,animation, VRML, and scientific visualization. (3 lecture hours)",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "173"
+  ],
+  "className": "Advanced Computer Graphics",
+  "Prerequisites": [
+    "MATH 172"
+  ],
+  "Description": "Visible surface algorithms, lighting and shading, textures, curves and surfaces, computer-aided design, advanced modeling techniques, solid modeling, advanced raster graphics architecture, advanced geometric and raster algorithms, user interface, ray tracing, animation techniques, and fractals. (2 lecture, 2 lab hours)",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "174"
+  ],
+  "className": "Design and Analysis of Algorithms",
+  "Prerequisites": [
+    "MATH 115",
+    "MATH 119"
+  ],
+  "Description": "Models of computation and measures of complexity, algorithms for sorting and searching, set representation and manipulation, branch and bound, integer and polynomial arithmetic, pattern-matching algorithms, parsing algorithm, graph algorithm, NP-complete problems.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "176"
+  ],
+  "className": "Parallel Processing",
+  "Prerequisites": [
+    "MATH 113",
+    "MATH 144"
+  ],
+  "Description": "Characteristics, and classification of computer systems. Notion and realization of parallelism. Pipeline design techniques. Vector processing. Array processing. Multiprocessing. Multiprocessing vs. multicomputers. Shared memory vs message-passing, problem solving and parallel programming. Architectural trends.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Spring"
+  ]
+},{
+  "classNameAb": [
+    "CSCI",
+    "177"
+  ],
+  "className": "Distributed Computer Systems",
+  "Prerequisites": [
+    "MATH 113",
+    "MATH 144"
+  ],
+  "Description": "Characteristics and design of distributed systems. Application and network interconnectivity. Enterprise computing. Distributed data and transaction management. Distributed operating systems. Distributed problem solving and programming.",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "186"
+  ],
+  "className": "Formal Languages and Automata",
+  "Prerequisites": [
+    "MATH 119"
+  ],
+  "Description": "Introduction to formal language theory. Context-free grammars, context-sensitive grammars, unrestricted grammars; properties of context-free languages, push-down automata.",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "188"
+  ],
+  "className": "Introduction to Computability",
+  "Prerequisites": [
+    "MATH 119"
+  ],
+  "Description": "Introduction to computability and complexity. Turing machines, recursive functions, reduction, undecidability, classes P and NP, and intractable problems.",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "190"
+  ],
+  "className": "Independent Study",
+  "Prerequisites": [
+    "See Academic Placement. Approved for SP grading."
+  ],
+  "Description": "See Academic Placement. Approved for SP grading. Units: 1-3, Repeatable up to 6 units",
+  "Units": 6,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "191T"
+  ],
+  "className": "Introduction to Bioinformatics Computing",
+  "Prerequisites": [
+    "CSCI 115",
+    "Biology GE course OR",
+    "permission of instructor OR"
+  ],
+  "Description": "Computational and algorithmic approaches in bioinformatics. Biological sequence alignment algorithms and heuristics. Study of bioinformatics tools. Combinatorial pattern matching, Motif finding, Gene prediction, Gene expression measurement, High throughput sequencing technologies and data analysis methodologies in molecular and micro-biology. Selected topics from current research. This topic may not be repeated for credit. (Offered Spring 2022)",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "191T"
+  ],
+  "className": "Bio-Inspired Machine Learning",
+  "Prerequisites": [
+    "CSCI 115"
+  ],
+  "Description": "This course focuses on selected bio-inspired machine learning topics with an emphasis on reinforcement learning and supervised learning. Topics include cognitive science, learning theory, probability theory, optimization, temporal difference methods, and artificial neural networks. This topic may not be repeated for credit. (Offered Spring 2022)",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "191T"
+  ],
+  "className": "Topics in Computer Science",
+  "Prerequisites": [
+    "CSCI 115 OR",
+    "permission of instructor OR"
+  ],
+  "Description": "Special topics in computer science of current interest and importance. Repeatable up to 9 units",
+  "Units": 3,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "194I"
+  ],
+  "className": "Cooperative Education",
+  "Prerequisites": [
+    "courses appropriate to the work experience; approval by major department cooperative education coordinator."
+  ],
+  "Description": "Integration of work experience with academic program, individually planned through coordinator. CR/NC grading only. Units: 1-4, Repeatable up to 8 units",
+  "Units": 4,
+  "TermTypicallyOffered": []
+},{
+  "classNameAb": [
+    "CSCI",
+    "198"
+  ],
+  "className": "Project",
+  "Prerequisites": [
+    "senior standing in computer science or permission of instructor and approved subject"
+  ],
+  "Description": "Study of a problem under the supervision of a faculty member. Presentation by the student in a seminar setting and a final report are required. Satisfies the senior major requirement for the B.S. in Computer Science. Approved for RP grading.",
+  "Units": 3,
+  "TermTypicallyOffered": [
+    "Fall",
+    "Spring"
+  ]
+}]
