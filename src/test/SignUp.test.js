@@ -81,6 +81,11 @@ describe("SignUp component's signup function", () => {
     })
 });
 
+
+
+
+//Below is was a test that did both front end, backend, and database.  Did not use a mock.  Was probably not as safe to use, which is why above was implemented.
+
 // const user = {
 //     "firstname": "TestFirst",
 //     "lastname": "TestLast",
