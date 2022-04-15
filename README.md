@@ -5,6 +5,15 @@ npm install --save-dev jest
 ```
 Use this command to initiate the tests:
 ```
+npm test
+```
+or,
+```
+jest
+```
+
+If neither work.  Try:
+```
 npx react-scripts test --env=./src/test/custom-test-env.js
 ```
 
