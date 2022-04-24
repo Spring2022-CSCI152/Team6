@@ -33,12 +33,20 @@ list-style: none;
 
 .Course td{
   text-align: center;
-  border-style: ;
+  border-style: none;
 }
 
 .Course table{
   border-collapse: collapse;
   border-style: none;
+}
+
+.Course tr.odd{
+  background-color: rgb(34, 34, 34);
+}
+
+.Course tr.even{
+  background-color: rgb(0, 0, 0);
 }
 
 h1 {
