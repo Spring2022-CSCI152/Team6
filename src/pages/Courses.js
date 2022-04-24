@@ -2,89 +2,52 @@ import '../CSS/course.css';
 import { useState, useEffect } from 'react';
 import axios from '../axios';
 
-var result = [];
+// var result = [];
 var filterterm = new Set();
+
 function Courses() {
+
+    //state: text to be used in DB search
     const [findingcourse, setcourse] = useState("");
+
+    //updates text to be used in DB search
     const handleFinding = (e) => {
         setcourse(e.target.value)
     }
 
+    //query database
     const search = async () => {
 
         let response;
+
+        //view all
         if (findingcourse == "") {
             const req = await axios.get('/course')
                 .then((res) => {
                     response = res;
                 })
+                .catch((error) => {
+                    console(error);
+                })
         }
+        //specific criteria
         else {
             const finding = { "classNameAb": findingcourse, "className": findingcourse };
 
-            const req = await axios.post('/course/search', finding).then((res) => {
-                response = res;
-            })
+            const req = await axios.post('/course/search', finding)
+                .then((res) => {
+                    response = res;
+                })
+                .catch((error) => {
+                    console(error);
+                })
         }
 
         buildTable(response.data.courses);
 
-        // const finding = { "classNameAb": findingcourse, "className": findingcourse };
-        // //sending to server
-        // const req = await axios.post('/course/search', finding)
-        //     .then((res) => {
-        //         result = res.data.courses;
-        //         filterterm = new Set();
-        //         var CourseList = document.getElementById("CourseList");
-        //         CourseList.innerHTML = "";
-        //         for (let i of result) {
-        //             filterterm.add(JSON.stringify(i.TermTypicallyOffered));
-        //             var tableRow = document.createElement("tr");
-        //             tableRow.innerHTML += "<td>" + i.classNameAb + "</td>";
-        //             tableRow.innerHTML += "<td>" + i.className + "</td>";
-        //             if (i.Prerequisites.length == 0) {
-        //                 tableRow.innerHTML += "<td></td>";
-        //             }
-        //             for (let j of i.Prerequisites) {
-        //                 tableRow.innerHTML += "<li>" + j + "</li>";
-        //             }
-        //             tableRow.innerHTML += "<td>" + i.Description + "</td>";
-        //             tableRow.innerHTML += "<td>" + i.Units + "</td>";
-        //             if (i.TermTypicallyOffered.length == 0) {
-        //                 tableRow.innerHTML += "<td></td>";
-        //             }
-        //             for (let k of i.TermTypicallyOffered) {
-        //                 tableRow.innerHTML += "<li>" + k + "</li>";
-        //             }
-
-        //             CourseList.appendChild(tableRow);
-        //         }
-        //         var searchBox = document.getElementById("term");
-        //         searchBox.innerHTML = "";
-        //         var a = Array.from(filterterm);
-        //         a.sort();
-        //         a.reverse();
-        //         for (var i of a) {
-        //             i = i.replace("[", '');
-        //             i = i.replace("]", '');
-        //             i = i.replaceAll("\"", '');
-        //             var option = document.createElement("option");
-        //             if (i == "") {
-        //                 option.innerHTML += "<option>Every Term</option>";
-        //             }
-        //             else {
-        //                 option.innerHTML += "<option>" + i + "</option>";
-        //             }
-        //             searchBox.appendChild(option);
-        //         }
-
-        //     }).catch((error) => {
-        //         alert(error.response.data.message);
-        //     });
-
-
     }
 
+    //use query results to build html table
     const buildTable = (result) => {
 
         filterterm = new Set();
@@ -130,6 +93,8 @@ function Courses() {
 
             CourseList.appendChild(tableRow);
         }
+
+        //dynamically fill in options of term drop down menu
         var searchBox = document.getElementById("term");
         searchBox.innerHTML = "";
         var a = Array.from(filterterm);
@@ -151,62 +116,14 @@ function Courses() {
 
     }
 
+    //prompts search to happen on mount (component load)
     useEffect(() => {
         search();
     }, [])
 
-
-    // const viewAll = async () => {
-    //     const req = await axios.get('/course')
-    //         .then((res) => {
-    //             result = res.data.courses;
-    //             filterterm = new Set();
-    //             var CourseList = document.getElementById("CourseList");
-    //             CourseList.innerHTML = "";
-    //             for (let i of result) {
-    //                 filterterm.add(JSON.stringify(i.TermTypicallyOffered));
-    //                 var tableRow = document.createElement("tr");
-    //                 tableRow.innerHTML += "<td>" + i.classNameAb + "</td>";
-    //                 tableRow.innerHTML += "<td>" + i.className + "</td>";
-    //                 if (i.Prerequisites.length == 0) {
-    //                     tableRow.innerHTML += "<td></td>";
-    //                 }
-    //                 for (let j of i.Prerequisites) {
-    //                     tableRow.innerHTML += "<li>" + j + "</li>";
-    //                 }
-    //                 tableRow.innerHTML += "<td>" + i.Description + "</td>";
-    //                 tableRow.innerHTML += "<td>" + i.Units + "</td>";
-    //                 if (i.TermTypicallyOffered.length == 0) {
-    //                     tableRow.innerHTML += "<td></td>";
-    //                 }
-    //                 for (let k of i.TermTypicallyOffered) {
-    //                     tableRow.innerHTML += "<li>" + k + "</li>";
-    //                 }
-    //                 CourseList.appendChild(tableRow);
-    //             }
-    //             var searchBox = document.getElementById("term");
-    //             searchBox.innerHTML = "";
-    //             var a = Array.from(filterterm);
-    //             a.sort();
-    //             a.reverse();
-    //             for (var i of a) {
-    //                 i = i.replace("[", '');
-    //                 i = i.replace("]", '');
-    //                 i = i.replaceAll("\"", '');
-    //                 var option = document.createElement("option");
-    //                 if (i == "") {
-    //                     option.innerHTML += "<option>Every Term</option>";
-    //                 }
-    //                 else {
-    //                     option.innerHTML += "<option>" + i + "</option>";
-    //                 }
-    //                 searchBox.appendChild(option);
-    //             }
-    //         }).catch((error) => {
-    //             console.log(error);
-    //         });
-    // }
+    //term filter
     const filter = async (e) => {
+
         var findingTerm = [];
         var finding;
         if (e.target.value == "Every Term") {
@@ -226,37 +143,14 @@ function Courses() {
         else {
             finding = { "classNameAb": findingcourse, "className": findingcourse, "TermTypicallyOffered": findingTerm };
         }
-        //sending to server
+
         const req = await axios.post('/course/searchWithTermFilter', finding)
             .then((res) => {
-                var CourseList = document.getElementById("CourseList");
-                CourseList.innerHTML = "";
-                for (let i of res.data.courses) {
-                    filterterm.add(JSON.stringify(i.TermTypicallyOffered));
-                    var tableRow = document.createElement("tr");
-                    tableRow.innerHTML += "<td>" + i.classNameAb + "</td>";
-                    tableRow.innerHTML += "<td>" + i.className + "</td>";
-                    if (i.Prerequisites.length == 0) {
-                        tableRow.innerHTML += "<td></td>";
-                    }
-                    for (let j of i.Prerequisites) {
-                        tableRow.innerHTML += "<li>" + j + "</li>";
-                    }
-                    tableRow.innerHTML += "<td>" + i.Description + "</td>";
-                    tableRow.innerHTML += "<td>" + i.Units + "</td>";
-                    if (i.TermTypicallyOffered.length == 0) {
-                        tableRow.innerHTML += "<td></td>";
-                    }
-                    for (let k of i.TermTypicallyOffered) {
-                        tableRow.innerHTML += "<li>" + k + "</li>";
-                    }
-
-                    CourseList.appendChild(tableRow);
-                }
-
-            }).catch((error) => {
-                alert(error);
-            });
+                buildTable(res.data.courses);
+            })
+            .catch((error) => {
+                console(error);
+            })
     }
 
 
@@ -270,14 +164,6 @@ function Courses() {
         search();
     }
 
-
-    // window.onload = function () {
-    //     if (document.readyState == "complete") {
-    //         viewAll();
-    //     }
-
-    // };
-
     return (
         <div className="Course">
             <form onSubmit={onSubmitSearch}>
@@ -286,14 +172,9 @@ function Courses() {
                 <button type="submit">Search</button>
             </form>
             <select className="term" id="term" onChange={filter}>
-                {/* <option value="none">Every Term</option> 
-            <option value="Fall">Fall</option>
-            <option value="Spring">Spring</option>
-            <option value="Fall and Spring">Fall and Spring</option> */}
             </select>
             <table>
                 <thead>
-                    {/* <tr onLoad={viewAll}> */}
                     <tr>
                         <th>Class</th>
                         <th>Class Name</th>
