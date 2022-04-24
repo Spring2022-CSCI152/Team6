@@ -10,8 +10,8 @@ configure({ adapter: new Adapter() });
 jest.mock('../axios');
 jest.mock('../CSS/course.css');
 
-describe('Search Course Function Test', async () => {
-
+describe('Search Course Function Test',  () => {
+it('Should ', async () => {
     const wrapper = shallow(FindCourse)
 
     const finding = {"classNameAb": "", "className": ""};
@@ -22,5 +22,7 @@ describe('Search Course Function Test', async () => {
 
     expect(axios.post).toHaveBeenCalledWith('/course/search', finding)
 
+});
+    
 
 })
