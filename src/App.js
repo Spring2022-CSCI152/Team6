@@ -17,7 +17,7 @@ import CoursesForAdmin from './pages/CoursesForAdmin';
 function App() {
   return (
     <>
-      <Router forceRefresh={true}>
+      <Router forceRefresh={false}>
         <Switch>
           <Route exact path={["/", "/:page"]}><NavBar /></Route>
         </Switch >
