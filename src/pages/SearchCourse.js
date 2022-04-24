@@ -7,9 +7,14 @@ function FindCourse() {
     const handleFinding = (e) => {
         setcourse(e.target.value)
     }
-    const search = async () => {
+    const search = async (e) => {
+
+        //prevents page reload
+        e.preventDefault();
+        
         if (findingcourses == "") {
             alert("Please input class for searching");
+            
             return;
         }
         const finding = { "classNameAb": findingcourses, "className": findingcourses };
@@ -23,7 +28,7 @@ function FindCourse() {
                 className.innerHTML = "<p>Class Name: " + res.data.courses[0].className + "</p>";
 
                 const prerequisites = document.getElementById("prerequisites");
-                prerequisites.innerHTML += "<p>Prerequisites:<p>";
+                prerequisites.innerHTML = "<p>Prerequisites:<p>";
                 for (let i of res.data.courses[0].Prerequisites) {
                     prerequisites.innerHTML += "<li>" + i + "</li>";
                 }
@@ -35,22 +40,23 @@ function FindCourse() {
                 units.innerHTML = "<p>Units: " + res.data.courses[0].Units + "</p>";
 
                 const term = document.getElementById("term");
-                term.innerHTML += "<p>Course Typically Offered:<p>";
+                term.innerHTML = "<p>Course Typically Offered:<p>";
                 for (let i of res.data.courses[0].TermTypicallyOffered) {
-                    term.innerHTML += "<li>" + i + "</li>";
+                    term.innerHTML = "<li>" + i + "</li>";
                 }
 
             }).catch((error) => {
                 console.log(error);
             });
+
     }
 
     return (
         <div className="Course">
-            <form>
+            <form onSubmit={search}>
                 <label htmlFor='finding'>Search</label>
                 <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" value={findingcourses} /> <br />
-                <button type="button" name="submit" onClick={search}>Search</button>
+                <button type="submit" name="submit">Search</button>
             </form>
             <div id="result">
                 <p id="classNameAb"></p>
