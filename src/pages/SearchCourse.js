@@ -3,26 +3,41 @@ import React, { useState } from 'react';
 import axios from '../axios';
 
 function FindCourse() {
+
+    //state: search criteria
     const [findingcourses, setcourse] = useState("");
+
+    //sets search criteria with event (onChange)
     const handleFinding = (e) => {
         setcourse(e.target.value)
     }
+
+    //query database
     const search = async (e) => {
 
-        //prevents page reload
+        // prevents page reload
         e.preventDefault();
-        
+
         if (findingcourses == "") {
             alert("Please input class for searching");
-            
+
             return;
         }
+
         const finding = { "classNameAb": findingcourses, "className": findingcourses };
         //sending to server
         const req = await axios.post('/course/search', finding)
             .then((res) => {
+
+                //debug
+                // console.log(res);
+
+                //abbreviation
                 const classNameAb = document.getElementById("classNameAb");
-                classNameAb.innerHTML = "<p>Class Name Abbreviation: " + res.data.courses[0].classNameAb + "</p>";
+                classNameAb.textContent = "Class Name Abbreviation: " + res.data.courses[0].classNameAb;
+
+                //debug: tests
+                // classNameAb.textContent = res;
 
                 const className = document.getElementById("className");
                 className.innerHTML = "<p>Class Name: " + res.data.courses[0].className + "</p>";
@@ -53,7 +68,7 @@ function FindCourse() {
 
     return (
         <div className="Course">
-            <form onSubmit={search}>
+            <form onSubmit={search} name="SearchCourseForm">
                 <label htmlFor='finding'>Search</label>
                 <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" value={findingcourses} /> <br />
                 <button type="submit" name="submit">Search</button>
