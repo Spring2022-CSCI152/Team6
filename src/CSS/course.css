@@ -1,117 +1,159 @@
-body{
-    background-color: #282c34;
-    height: 100%;
-    position: relative;
+body {
+  background-color: #282c34;
+  height: 100%;
+  position: relative;
 }
-#body{
-  z-index:0;
-}
-.Course {
-    background-color: #282c34;
-    height: 100%;
-  }
-  
-  .Course-header {
-   
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
-  
-  .Course-link {
-    color: #61dafb;
-  }
-  
-  h1{
-    font-family: 'Quintessential', cursive;
-    font-size: 100px;
-    font-style: italic;
-    font-weight: 700;
-    margin: 0;
-    position: relative;
-  }
-  body{
-    color:white;
-    font-style: normal;
-  }
-  #title{
-    padding-bottom: 50px;
-    padding-top: 0;
-    font-size: 70px;
-    color:rgb(255, 58, 58);
-  }
-  label{
-    width: 100%;
-    height: 27px;
-    display: block;
-    text-align: left;
-    margin-left: 10%;
-    margin-right: 0%;
-  }
-  label a{
-    color: #005eff;
-  }
-  span{
-    margin-left: 30%;
-  }
-  input{
-    /* margin-right: 15px; */
-    margin-bottom: 20px;
-    padding: 5px;
-    height: 15px;
-    left: 10%;
-    width: 80%;
-    border-radius: 30px;
-  }
-  form{
-    position: relative;
-    display:contents;
-    font-size: 20px;
-    align-items: center;   
-  }
-  button{
-    padding: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    margin: 10px;
-    border-radius: 10px;
-  }
-  button:hover{
-    background-color: #ff4646;
-  }
-  
-  html, body, #root{
-    /* height: 100vh; */
-    height: 100%;
-    /* overflow: hidden; */
-  }
 
-  td{
-      border: 2px black solid;
-  }
-  select{
-      width: 150px;
-  }
-  #addForm{
-    display:none;
-    filter: none;
-    float: right;
-    position: absolute;
-    z-index: 5; /*Sit on top */
-    width: 100%; 
-    height: 100%;
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px; 
-    text-align: center;
-    align-items: center;
-  }
-  #hidden{
-    color: whitesmoke;
-    z-index: 5; /*Sit on top */
-  }
-  #hiddenButton{
-    color:black;
-  }
+#body {
+  z-index: 0;
+}
+
+.Course {
+  background-color: #282c34;
+  height: 100%;
+}
+
+.Course-header {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Course-link {
+  color: #61dafb;
+}
+
+.Course li{
+list-style: none;
+}
+
+.Course td{
+  text-align: center;
+  border-style: none;
+}
+
+.Course table{
+  border-collapse: collapse;
+  border-style: none;
+}
+
+.Course tr.odd{
+  background-color: rgb(34, 34, 34);
+}
+
+.Course tr.even{
+  background-color: rgb(0, 0, 0);
+}
+
+h1 {
+  font-family: 'Quintessential', cursive;
+  font-size: 100px;
+  font-style: italic;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+}
+
+body {
+  color: white;
+  font-style: normal;
+}
+
+#title {
+  padding-bottom: 50px;
+  padding-top: 0;
+  font-size: 70px;
+  color: rgb(255, 58, 58);
+}
+
+label {
+  width: 100%;
+  height: 27px;
+  display: block;
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 0%;
+}
+
+label a {
+  color: #005eff;
+}
+
+span {
+  margin-left: 30%;
+}
+
+input {
+  /* margin-right: 15px; */
+  margin-bottom: 20px;
+  padding: 5px;
+  height: 15px;
+  left: 10%;
+  width: 80%;
+  border-radius: 30px;
+}
+
+form {
+  position: relative;
+  display: contents;
+  font-size: 20px;
+  align-items: center;
+}
+
+button {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #ff4646;
+}
+
+html,
+body,
+#root {
+  /* height: 100vh; */
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+td {
+  border: 2px black solid;
+}
+
+select {
+  width: 150px;
+}
+
+#addForm {
+  display: none;
+  filter: none;
+  float: right;
+  position: absolute;
+  z-index: 5;
+  /*Sit on top */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  padding-top: 60px;
+  text-align: center;
+  align-items: center;
+}
+
+#hidden {
+  color: whitesmoke;
+  z-index: 5;
+  /*Sit on top */
+}
+
+#hiddenButton {
+  color: black;
+}
