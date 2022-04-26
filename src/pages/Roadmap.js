@@ -10,13 +10,13 @@ function Roadmap() {
     var coursesOfferInWinter= [];
 
     window.onload= function() {
-        createYear1();
-        filterFallSpring();
-        filterFall();
-        filterSpring();
+        
         if(document.readyState=="complete")
-        {
-            showCourses();
+        {createYear1();
+            
+            setTimeout(filterFall,500);
+            filterSpring();
+
         }
         
     };
@@ -41,32 +41,38 @@ function Roadmap() {
         table.appendChild(newRow);
     }
 
-    const filterFallSpring = async (e) => {
-        //sending to server
-        const req = await axios.post('/course/searchWithTermFilter', {"TermTypicallyOffered": ["Fall", "Spring"]})
-            .then((res) => {
-                for(let i of res.data.courses){
-                    if (!coursesOfferInSpring.includes(JSON.stringify(i))) {
-                        coursesOfferInSpring.push(JSON.stringify(i));
-                        }
-                    if (!coursesOfferInFall.includes(JSON.stringify(i))) {
-                        coursesOfferInFall.push(JSON.stringify(i));
-                      }
-                }
-            }).catch((error) => {
-                alert(error);
-            });
-        }
+    // const filterFallSpring = async (e) => {
+    //     //sending to server
+    //     const req = await axios.post('/course/searchWithTermFilter', {"TermTypicallyOffered": ["Fall"]})
+    //         .then((res) => {
+    //             for(let i of res.data.courses){
+    //                 if (!coursesOfferInSpring.includes(JSON.stringify(i))) {
+    //                     coursesOfferInSpring.push(JSON.stringify(i));
+    //                     }
+    //                 if (!coursesOfferInFall.includes(JSON.stringify(i))) {
+    //                     coursesOfferInFall.push(JSON.stringify(i));
+    //                   }
+    //             }
+    //         }).catch((error) => {
+    //             alert(error);
+    //         });
+    //     }
     
     const filterSpring = async (e) => {
         //sending to server
         const req = await axios.post('/course/searchWithTermFilter', {"TermTypicallyOffered": "Spring"})
             .then((res) => {
                 for(let i of res.data.courses){
-                    if (!coursesOfferInSpring.includes(JSON.stringify(i))) {
-                        coursesOfferInSpring.push(JSON.stringify(i));
-                        }
+                    coursesOfferInSpring.push(i);
+                    const springTerm = document.querySelectorAll('[id=spring-dropdown]');
+                    Array.prototype.forEach.call (springTerm, function (node) {
+                        let fallOptions = document.createElement("option");
+                        fallOptions.text = i.classNameAb;
+                        fallOptions.value = i.classNameAb;
+                        node.appendChild(fallOptions);
+                    } );
                 }
+                console.log("spring")
             }).catch((error) => {
                 alert(error);
             });    
@@ -77,57 +83,31 @@ function Roadmap() {
         const req = await axios.post('/course/searchWithTermFilter', {"TermTypicallyOffered": "Fall"})
             .then((res) => {
                 for(let i of res.data.courses){
-                    if (!coursesOfferInFall.includes(JSON.stringify(i))) {
-                        coursesOfferInFall.push(JSON.stringify(i));
-                      }
-                    // const fallTerm = document.querySelectorAll('[id=fall-dropdown]');
-                    // Array.prototype.forEach.call (fallTerm, function (node) {
-                    //     let fallOptions = document.createElement("option");
-                    //     fallOptions.text = i.classNameAb;
-                    //     fallOptions.value = i.classNameAb;
-                    //     node.appendChild(fallOptions);
-                    // } );
+                    coursesOfferInFall.push(i);
+                    const fallTerm = document.querySelectorAll('[id=fall-dropdown]');
+                    Array.prototype.forEach.call (fallTerm, function (node) {
+                        let fallOptions = document.createElement("option");
+                        fallOptions.text = i.classNameAb;
+                        fallOptions.value = i.classNameAb;
+                        node.appendChild(fallOptions);
+                    } );
                 }
+                console.log("fall")
+
+                // console.log(coursesOfferInFall.length);
+                // console.log(coursesOfferInFall);
+                // const fallTerm = document.querySelectorAll('[id=fall-dropdown]');
+                // Array.prototype.forEach.call (fallTerm, function (node) {
+                // let springOptions = document.createElement("option");
+                // springOptions.text = value;
+                // springOptions.value = value;
+                // node.appendChild(springOptions);
+                // } );
+
             }).catch((error) => {
                 alert(error);
             });    
-    }
-
-    function showCourses(){
-        console.log(Array.isArray(coursesOfferInSpring));
-        console.log(coursesOfferInSpring[1]);
-        console.log(coursesOfferInFall[1]);
-        console.log(coursesOfferInFall.length);
-        for (let i =0;i<coursesOfferInSpring.length;i++)
-        {
-            console.log(i);
-            i=JSON.parse(i);
-            console.log(i);
-        }
-        for (let i of coursesOfferInFall)
-        {
-            i=JSON.parse(i);
-        }
-        console.log(coursesOfferInSpring);
-        console.log(coursesOfferInFall);
-        for (let i of coursesOfferInSpring){
-            const springTerm = document.querySelectorAll('[id=spring-dropdown]');
-            Array.prototype.forEach.call (springTerm, function (node) {
-                let springOptions = document.createElement("option");
-                springOptions.text = i.classNameAb;
-                springOptions.value = i.classNameAb;
-                node.appendChild(springOptions);
-            } );
-        }
-        for (let i of coursesOfferInFall){
-            const fallTerm = document.querySelectorAll('[id=fall-dropdown]');
-            Array.prototype.forEach.call (fallTerm, function (node) {
-                let fallOptions = document.createElement("option");
-                fallOptions.text = i.classNameAb;
-                fallOptions.value = i.classNameAb;
-                node.appendChild(fallOptions);
-            } );
-        }
+            
         
     }
     
