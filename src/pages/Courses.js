@@ -43,7 +43,7 @@ function Courses() {
                 })
         }
 
-        buildTable(response.data.courses);
+        if(response) buildTable(response.data.courses);
 
     }
 
