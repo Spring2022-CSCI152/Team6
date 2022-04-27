@@ -28,6 +28,11 @@ const UserSchema = mongoose.Schema({
     required: true,
     default: 0 //undeclared
   },
+  role:{
+    type: String,
+    require: true,
+    default: "basic"
+  },
   catalogYear: {
     type: Number,
   },

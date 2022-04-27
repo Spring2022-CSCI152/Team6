@@ -12,7 +12,49 @@ import Calendar1 from './pages/calendar';
 import SearchCourse from './pages/SearchCourse';
 import Courses from './pages/Courses';
 import CoursesForAdmin from './pages/CoursesForAdmin';
+import CourseAdmin from './pages/CourseAdmin';
+import CatalogAdmin from './pages/CatalogAdmin';
+import { Redirect} from 'react-router-dom';
+import user from './useAuth';
+import useConfig from './useConfig';
 
+const role=""
+
+function basicRole(){
+  if (role == "admin" || role == "basic") return true;
+  return false;
+}
+
+function adminRole(){
+  if (role == "admin") return true;
+  return false;
+}
+
+function BasicRoute ({children, ...rest}) {
+  //console.log(user)
+  return(
+    <Route {...rest} render={() => {
+      return basicRole()
+        ? children
+        : <Redirect to='/home' />
+    }}/>
+  )
+}
+
+function AdminRoute ({children, ...rest}) {
+  //console.log(user)
+  return(
+    <Route {...rest} render={() => {
+      return adminRole()
+        ? children
+        : <Redirect to='/home' />
+    }}/>
+  )
+}
+
+function InvalidRoute(){
+  return console.error("invalid page");
+}
 
 function App() {
   return (
@@ -20,19 +62,25 @@ function App() {
       <Router forceRefresh={false}>
         <Switch>
           <Route exact path={["/", "/:page"]}><NavBar /></Route>
+
         </Switch >
         <Switch>
           <Route exact path={["/", "/Home"]}><HomePage /></Route>
           {/* <Route exact path="/HomePageAfterLogIn"><HomePageAfterLogIn /></Route> */}
           <Route exact path="/LogIn"><LogIn /></Route>
           <Route exact path="/Signup"><Signup /></Route>
-          <Route exact path="/RecordList"><RecordList /></Route>
-          <Route exact path="/CoursesParser"><CoursesParser /></Route>
-          <Route exact path="/Profile"><Profile /></Route>
-          <Route exact path="/Calendar"><Calendar1 /></Route>
-          <Route exact path="/SearchCourse"><SearchCourse /></Route>
-          <Route exact path="/Courses"><Courses /></Route>
-          <Route exact path="/CoursesForAdmin"><CoursesForAdmin /></Route>
+
+          <BasicRoute exact path="/RecordList"><RecordList /></BasicRoute>
+          <BasicRoute exact path="/CoursesParser"><CoursesParser /></BasicRoute>
+          <BasicRoute exact path="/Profile"><Profile /></BasicRoute>
+          <BasicRoute exact path="/Calendar"><Calendar1 /></BasicRoute>
+          <BasicRoute exact path="/SearchCourse"><SearchCourse /></BasicRoute>
+          <BasicRoute exact path="/Courses"><Courses /></BasicRoute>
+          <BasicRoute exact path="/CoursesForAdmin"><CoursesForAdmin /></BasicRoute>
+          <AdminRoute exact path="/CourseAdmin"><CourseAdmin /></AdminRoute>
+          <AdminRoute exact path="/CatalogAdmin"><CatalogAdmin /></AdminRoute>
+
+          <Route path="*"><HomePage /></Route>
         </Switch>
       </Router>
     </>

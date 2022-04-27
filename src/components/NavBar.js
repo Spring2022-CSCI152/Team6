@@ -36,29 +36,25 @@ const NavBar = () => {
   //   setLogStatus(1);
   // }, [localStorage.getItem('token')])
 
+  //if user not logged in, they only see login button
+  if(!logStatus) return <div className='NavBar'><NavLink page="LogIn" selected={page === 'LogIn'} extraClass='right-nav' /> </div>;
 
-  //Changes the log in/out button to correctly represent the user's current status
-  let logInOut = logStatus ? <Link to="/" onClick={logOut} className="right-nav">Log Out</Link> : <NavLink page="LogIn" selected={page === 'LogIn'} extraClass='right-nav' />
-
-  //Reveals the profile link based on log in status
-  let profile = logStatus ? <NavLink page="Profile" selected={page === 'Profile'} /> : ""
-
-  //Reveals degree plan link based on log-in status
-  let degreePlan = logStatus ? <NavLink page="Roadmap" selected={page === 'Roadmap'} /> : ""
-  
-
+  //else if logged, all button appears
   return <div className='NavBar'>
-
+    
     <NavLink page='Home' selected={page === 'Home' || !page} />
     <NavLink page='Calendar' selected={page === 'Calendar'} />
-    {profile}
-    {degreePlan}
-
-    {logInOut}
+    <NavLink page="Profile" selected={page === 'Profile'} />
+    <NavLink page="Roadmap" selected={page === 'Roadmap'} />
     <NavLink page='Courses' selected={page === 'Courses'} />
     <NavLink page='SearchCourse' selected={page === 'SearchCourse'} />
+    <NavLink page='CourseAdmin' selected={page === 'CourseAdmin'} />
+    <NavLink page='CatalogAdmin' selected={page === 'CatalogAdmin'} />
+
+    <Link to="/" onClick={logOut} className="right-nav">Log Out</Link>
 
   </div>;
+
 };
 
 export default NavBar;

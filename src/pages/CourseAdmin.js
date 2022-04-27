@@ -1,6 +1,6 @@
 import axios from '../axios'
 import { useState, useEffect } from 'react';
-import '../CSS/profile.css'
+import '../CSS/CourseAdmin.css'
 
 
 //ensures requests to backend include the json web token
@@ -11,7 +11,7 @@ axios.interceptors.request.use(
         const token = localStorage.getItem('token');
         // if (allowedOrigins.includes(origin)) {
         config.headers.authorization = `Bearer ${token}`;
-      
+        
         // }
         return config;
     },
@@ -20,9 +20,16 @@ axios.interceptors.request.use(
     }
 );
 
+function addClasses(){
+    var text = document.getElementById("popup");
+    text.classList.toggle("show");
+}
 
+function enterClass(){
 
-const Profile = () => {
+}
+
+const CourseAdmin = () => {
 
     //state and state change function for user object
     const [user, setUser] = useState({});
@@ -50,22 +57,43 @@ const Profile = () => {
     //console.log(user)
 
     return (<>
-        <div className='profile'>
-            <h1>Profile Page</h1>
+        <div className='CourseAdmin'>
+            <h1>Your Classes</h1>
+            <button>edit class</button>
+            <button onClick={addClasses}>add class</button>
+            <div name="popup" id="popup" class="hide">
+            Course Abbreviation
+            <div>
+                <input type="text" ></input>
+            </div>
+            Course Name
+            <div>        
+                <input type="text"></input>
+            </div>
+            Course Description
+            <div>        
+                <input type="text"></input>
+            </div>
+            Time
+            <div>        
+                <input type="text"></input>
+            </div>
+                Capacity<div>
+                    
+                    <input type="text"></input>
+                </div>
+                
+                <button onClick={enterClass}>Enter</button>
+            </div>
 
-            {/* Example of how to use user object */}
-            <ul>
-                <li>First Name: {user.firstname}</li>
-                <li>Last Name: {user.lastname}</li>
-                <li>Email: {user.email}</li>
-            </ul>
+           
 
         </div>
     </>
     )
 }
 
-export default Profile
+export default CourseAdmin
 
 /*
 To access user attributes, append its name to "user.", and put inside curly brackets.

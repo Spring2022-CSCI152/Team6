@@ -11,7 +11,7 @@ axios.interceptors.request.use(
         const token = localStorage.getItem('token');
         // if (allowedOrigins.includes(origin)) {
         config.headers.authorization = `Bearer ${token}`;
-      
+        //console.log(config)
         // }
         return config;
     },
@@ -22,7 +22,7 @@ axios.interceptors.request.use(
 
 
 
-const Profile = () => {
+const CatalogAdmin = () => {
 
     //state and state change function for user object
     const [user, setUser] = useState({});
@@ -50,22 +50,12 @@ const Profile = () => {
     //console.log(user)
 
     return (<>
-        <div className='profile'>
-            <h1>Profile Page</h1>
-
-            {/* Example of how to use user object */}
-            <ul>
-                <li>First Name: {user.firstname}</li>
-                <li>Last Name: {user.lastname}</li>
-                <li>Email: {user.email}</li>
-            </ul>
-
-        </div>
+        <h1>YOU ARE AN ADMIN</h1>
     </>
     )
 }
 
-export default Profile
+export default CatalogAdmin
 
 /*
 To access user attributes, append its name to "user.", and put inside curly brackets.
