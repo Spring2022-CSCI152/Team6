@@ -8,11 +8,11 @@ var filterterm = new Set();
 function Courses() {
 
     //state: text to be used in DB search
-    const [findingcourse, setcourse] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
     //updates text to be used in DB search
     const handleFinding = (e) => {
-        setcourse(e.target.value)
+        setSearchQuery(e.target.value)
     }
 
     //query database
@@ -21,7 +21,7 @@ function Courses() {
         let response;
 
         //view all
-        if (findingcourse == "") {
+        if (searchQuery == "") {
             const req = await axios.get('/course')
                 .then((res) => {
                     response = res;
@@ -32,18 +32,18 @@ function Courses() {
         }
         //specific criteria
         else {
-            const finding = { "classNameAb": findingcourse, "className": findingcourse };
+            // const finding = { "classNameAb": searchQuery, "className": findingcourse };
 
-            const req = await axios.post('/course/search', finding)
+            const req = await axios.post('/course/search', {"general":searchQuery})
                 .then((res) => {
                     response = res;
                 })
                 .catch((error) => {
-                    console(error);
+                    console.log(error);
                 })
         }
 
-        buildTable(response.data.courses);
+        if(response) buildTable(response.data.courses);
 
     }
 
@@ -137,19 +137,19 @@ function Courses() {
         else {
             findingTerm.push(e.target.value);
         }
-        if (findingcourse == "") {
-            finding = { "TermTypicallyOffered": findingTerm };
-        }
-        else {
-            finding = { "classNameAb": findingcourse, "className": findingcourse, "TermTypicallyOffered": findingTerm };
-        }
+        // if (searchQuery == "") {
+        //     finding = { "TermTypicallyOffered": findingTerm };
+        // }
+        // else {
+        finding = { "searchQuery": searchQuery, "TermTypicallyOffered": findingTerm };
+        // }
 
         const req = await axios.post('/course/searchWithTermFilter', finding)
             .then((res) => {
                 buildTable(res.data.courses);
             })
             .catch((error) => {
-                console(error);
+                console.log(error);
             })
     }
 
@@ -176,12 +176,12 @@ function Courses() {
             <table>
                 <thead>
                     <tr>
-                        <th>Class</th>
-                        <th>Class Name</th>
+                        <th>Code</th>
+                        <th>Title</th>
                         <th>Prerequisites</th>
                         <th>Description</th>
                         <th>Units</th>
-                        <th>Course Typically Offered</th>
+                        <th>Term Typically Offered</th>
                     </tr>
                 </thead>
                 <tbody id="CourseList">

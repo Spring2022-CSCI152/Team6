@@ -26,7 +26,7 @@ function FindCourse() {
 
         const finding = { "classNameAb": findingcourses, "className": findingcourses };
         //sending to server
-        const req = await axios.post('/course/search', finding)
+        const req = await axios.post('/course/search', {"specific":findingcourses})
             .then((res) => {
 
                 //debug
