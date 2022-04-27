@@ -57,6 +57,7 @@ const NavBar = () => {
     {logInOut}
     <NavLink page='Courses' selected={page === 'Courses'} />
     <NavLink page='SearchCourse' selected={page === 'SearchCourse'} />
+    <NavLink page='Reminders' selected={page === 'Reminders'} />
 
   </div>;
 };

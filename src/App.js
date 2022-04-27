@@ -12,6 +12,7 @@ import Calendar1 from './pages/calendar';
 import SearchCourse from './pages/SearchCourse';
 import Courses from './pages/Courses';
 import CoursesForAdmin from './pages/CoursesForAdmin';
+import Reminders from './pages/Reminder';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/SearchCourse"><SearchCourse /></Route>
           <Route exact path="/Courses"><Courses /></Route>
           <Route exact path="/CoursesForAdmin"><CoursesForAdmin /></Route>
+          <Route exact path="/Reminders"><Reminders /></Route>
         </Switch>
       </Router>
     </>
