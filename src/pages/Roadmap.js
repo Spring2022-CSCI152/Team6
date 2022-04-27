@@ -1,4 +1,4 @@
-import '../CSS/course.css';
+import '../CSS/roadmap.css';
 import { createElement, useState } from 'react';
 import axios from '../axios';
 
@@ -10,20 +10,15 @@ function Roadmap() {
     var coursesOfferInWinter= [];
 
     window.onload= function() {
-        
         if(document.readyState=="complete")
-        {createYear1();
-            
+        {   
+            createYear();
             setTimeout(filterFall,500);
             filterSpring();
-
         }
-        
     };
-    function createYear1(){
-        let td = document.getElementById('year'); 
-        td.innerHTML="<select id='date-dropdown'></select></td>";
-        let dateDropdown = document.getElementById('date-dropdown'); 
+    function createYear(){
+        let dateDropdown = document.getElementById('year-dropdown'); 
         let currentYear = new Date().getFullYear();    
         let earliestYear = 2014;     
         while (currentYear >= earliestYear) {      
@@ -40,23 +35,6 @@ function Roadmap() {
         let newRow = sample.cloneNode(true);
         table.appendChild(newRow);
     }
-
-    // const filterFallSpring = async (e) => {
-    //     //sending to server
-    //     const req = await axios.post('/course/searchWithTermFilter', {"TermTypicallyOffered": ["Fall"]})
-    //         .then((res) => {
-    //             for(let i of res.data.courses){
-    //                 if (!coursesOfferInSpring.includes(JSON.stringify(i))) {
-    //                     coursesOfferInSpring.push(JSON.stringify(i));
-    //                     }
-    //                 if (!coursesOfferInFall.includes(JSON.stringify(i))) {
-    //                     coursesOfferInFall.push(JSON.stringify(i));
-    //                   }
-    //             }
-    //         }).catch((error) => {
-    //             alert(error);
-    //         });
-    //     }
     
     const filterSpring = async (e) => {
         //sending to server
@@ -64,7 +42,7 @@ function Roadmap() {
             .then((res) => {
                 for(let i of res.data.courses){
                     coursesOfferInSpring.push(i);
-                    const springTerm = document.querySelectorAll('[id=spring-dropdown]');
+                    const springTerm = document.getElementsByClassName('spring-dropdown');
                     Array.prototype.forEach.call (springTerm, function (node) {
                         let fallOptions = document.createElement("option");
                         fallOptions.text = i.classNameAb;
@@ -93,27 +71,33 @@ function Roadmap() {
                     } );
                 }
                 console.log("fall")
-
-                // console.log(coursesOfferInFall.length);
-                // console.log(coursesOfferInFall);
-                // const fallTerm = document.querySelectorAll('[id=fall-dropdown]');
-                // Array.prototype.forEach.call (fallTerm, function (node) {
-                // let springOptions = document.createElement("option");
-                // springOptions.text = value;
-                // springOptions.value = value;
-                // node.appendChild(springOptions);
-                // } );
-
             }).catch((error) => {
                 alert(error);
             });    
-            
-        
+    }
+    const getYear = async (e) =>{
+        var a =document.getElementById(e.target.id).parentNode;
+        a.innerHTML=e.target.value;
+        console.log(a.innerHTML);
+    }
+    const addCourse = async (e) =>{
+        console.log(e.target.value);
     }
     
+    const finalize = async (e) =>{
+        console.log(e.target.value);
+        var selectdValue=document.getElementById("1");
+        console.log(selectdValue.innerHTML);
+        selectdValue.innerHTML="<p>"+e.target.value.toString()+"</p>";
+        console.log(selectdValue.innerHTML);
 
+    }
+    
+    function print(){
+        window.print();
+    }
   return (
-    <div className="Course">
+    <div className="Roadmap">
         <table id="table">
             <thead>
                 <tr>
@@ -126,32 +110,32 @@ function Roadmap() {
             </thead>
             <tbody id="sample_year">
                 <tr>
-                    <td rowSpan="5" id="year">&nbsp;</td>
-                    <td><select id='spring-dropdown'></select></td>
+                    <td rowSpan="5" className="year"><select id='year-dropdown' onChange={getYear}></select></td>
+                    <td ><select className='spring-dropdown' onChange={finalize}></select></td>
                     <td>&nbsp;</td>
                     <td><select id='fall-dropdown'></select></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td><select id='spring-dropdown'></select></td>
+                    <td><select className='spring-dropdown'></select></td>
                     <td>&nbsp;</td>
                     <td><select id='fall-dropdown'></select></td>
                     <td>&nbsp;</td>
                     </tr>
                 <tr>
-                    <td><select id='spring-dropdown'></select></td>
+                    <td><select className='spring-dropdown'></select></td>
                     <td>&nbsp;</td>
                     <td><select id='fall-dropdown'></select></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td><select id='spring-dropdown'></select></td>
+                    <td><select className='spring-dropdown'></select></td>
                     <td>&nbsp;</td>
                     <td><select id='fall-dropdown'></select></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
-                    <td><select id='spring-dropdown'></select></td>
+                    <td><select className='spring-dropdown'></select></td>
                     <td>&nbsp;</td>
                     <td><select id='fall-dropdown'></select></td>
                     <td>&nbsp;</td>
@@ -160,6 +144,7 @@ function Roadmap() {
             
         </table>
         <button onClick={addYear}>Add year</button>
+        <button onClick={print}>Print</button>
     </div>
 
   );
