@@ -26,7 +26,7 @@ function FindCourse() {
 
         const finding = { "classNameAb": findingcourses, "className": findingcourses };
         //sending to server
-        const req = await axios.post('/course/search', finding)
+        const req = await axios.post('/course/search', {"specific":findingcourses})
             .then((res) => {
 
                 //debug
@@ -71,6 +71,11 @@ function FindCourse() {
             <form onSubmit={search} name="SearchCourseForm">
                 <label htmlFor='finding'>Search</label>
                 <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" value={findingcourses} /> <br />
+                {/* <select className="field" name="field" id="field" onChange={setField}>
+                    <option value="code">Code</option>
+                    <option value="title">Title</option>
+                    <option 
+            </select> */}
                 <button type="submit" name="submit">Search</button>
             </form>
             <div id="result">

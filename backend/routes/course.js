@@ -36,9 +36,9 @@ router.post(
     try {
       var course = await Class.findOne({
         $or:
-        [{classNameAb},
-        {className}]
-      }).sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
+          [{ classNameAb },
+          { className }]
+      }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
       if (course) {
         return res.status(400).json({
           msg: "Class Already Exists",
@@ -70,15 +70,16 @@ router.post(
 router.post(
   "/search",
   async (req, res) => {
-    const { classNameAb, className  } = req.body;
+    // const { classNameAb, className  } = req.body;
+    const query = req.body;
     try {
-      var courses = await Class.find({
+      var courses = await Class.find((query.specific)?{
         $or:
-        [{classNameAb},
-        {className}]
-      }).sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
-      if (courses.toString()=="")
-      {
+        [{"classNameAb":query.specific},
+        {"className":query.specific}]}
+      :{$text: { $search: query.general }})
+      .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+      if (courses.toString() == "") {
         return res.status(400).json({
           message: "Course Not Exist",
         });
@@ -98,7 +99,7 @@ router.post(
 
 router.get("/", async (req, res) => {
   try {
-    var courses = await Class.find().sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
+    var courses = await Class.find().sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
     if (!courses)
       return res.status(400).json({
         message: "There is no course",
@@ -120,19 +121,20 @@ router.post(
   "/searchWithTermFilter",
   async (req, res) => {
     console.log(req.body);
-    const { classNameAb, className, TermTypicallyOffered  } = req.body;
-    console.log(classNameAb,className);
-    if(!classNameAb || !className)
-    {
-      console.log("hi");
+    // const { classNameAb, className, TermTypicallyOffered  } = req.body;
+    const { query, TermTypicallyOffered } = req.body;
+    // const query = req.body;
+    // console.log(classNameAb,className);
+    // if(!classNameAb || !className)
+    if (!query) { //case of "View All" filtered by selected term(s)
+      // console.log("hi");
       try {
         var courses = await Class.find({
           TermTypicallyOffered
-        }).sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
+        }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
         console.log(courses.toString());
-        if (courses.toString()=="")
-        {
-          console.log("hi");
+        if (courses.toString() == "") {
+          // console.log("hi");
           return res.status(400).json({
             message: "Course Not Exist",
           });
@@ -148,16 +150,17 @@ router.post(
         });
       }
     }
-    else{
+    else {
+      //case of non-empty search string filtered by selected term(s)
       try {
         var courses = await Class.find({
-          $or:
-          [{classNameAb},
-          {className}],
+          // $or:
+          // [{classNameAb},
+          // {className}],
+          $text: { $search: query },
           TermTypicallyOffered
-        }).sort({classNameAb: 1}).collation({locale: "en_US", numericOrdering: true});
-        if (courses.toString()=="")
-        {
+        }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+        if (courses.toString() == "") {
           return res.status(400).json({
             message: "Course Not Exist",
           });
