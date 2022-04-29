@@ -45,6 +45,10 @@ const NavBar = () => {
 
   //Reveals degree plan link based on log-in status
   let degreePlan = logStatus ? <NavLink page="Roadmap" selected={page === 'Roadmap'} /> : ""
+
+  //Reveals reminders of user link based on log-in status
+  let reminder = logStatus ? <NavLink page="Reminders" selected={page === 'Reminders'} /> : ""
+
   
 
   return <div className='NavBar'>
@@ -57,6 +61,7 @@ const NavBar = () => {
     {logInOut}
     <NavLink page='Courses' selected={page === 'Courses'} />
     <NavLink page='SearchCourse' selected={page === 'SearchCourse'} />
+    {reminder}
 
   </div>;
 };

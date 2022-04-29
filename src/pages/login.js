@@ -1,9 +1,61 @@
 import '../CSS/LogIn.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+//import axios from '../axios';
+import React from 'react';
 import axios from '../axios';
 
-function LogIn(setToken) {
+
+export class login extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      pass: "",
+      account: [],
+    };
+  }
+
+  handleEmail = (event) => {
+    this.setState({ email: event.target.value })
+  }
+
+  handlePass = (e) => {
+    this.setState({ pass: e.target.value })
+  }
+
+
+  login = async () => {
+    const user = {
+      "email": this.state.email,
+      "password": this.state.pass,
+    };
+
+    //sending to server
+    console.log(user);
+
+    const req = await axios.post('/user/login', user)
+
+      .then((res) => {
+        console.log(res);
+        alert(res.data.message);
+
+        //store json web token in local storage.
+        localStorage.setItem('token', res.data.token);
+
+        //navigate to home page
+        window.location.href = "/";
+      }).catch((error) => {
+        console.log(error)
+       
+      });
+  }
+
+
+
+
+/*function LogIn(setToken) {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [account, setAccount] = useState([]);
@@ -39,25 +91,28 @@ function LogIn(setToken) {
         alert(error.response.data.message);
       });
   }
+  */
+
+  render() {
 
   return (
     <div className="App">
       <div className='LogIn-Box-wrapper'>
         <div className='LogIn-Box'>
-          <h1 id="title">Log In</h1>
+          <p id="title">Log In</p>
           <form>
             <label htmlFor='email'>Email</label>
-            <input type="text" onChange={handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />
+            <input type="text" onChange={this.handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />
             <label htmlFor="password">Password<span /><a href="#forgotpw">Forgot Password?</a></label>
-            <input type="password" onChange={handlePass} name="password" className="password" id="password" placeholder="password..." /> <br />
-            <button type="button" onClick={login}>Log In</button>
+            <input type="password" onChange={this.handlePass} name="password" className="password" id="password" placeholder="password..." /> <br />
+            <button onClick={this.login} type="button" className="loginbutton"> Log In </button>
             <button type="button"><Link to="/Signup">Create an account</Link></button>
           </form>
         </div>
       </div>
     </div>
-
-  );
+  )
+  }
 }
 
-export default LogIn;
+export default login;

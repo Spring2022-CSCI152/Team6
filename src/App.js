@@ -13,12 +13,13 @@ import SearchCourse from './pages/SearchCourse';
 import Courses from './pages/Courses';
 import CoursesForAdmin from './pages/CoursesForAdmin';
 import Roadmap from './pages/Roadmap';
+import Reminders from './pages/Reminder';
 
 
 function App() {
   return (
     <>
-      <Router forceRefresh={true}>
+      <Router forceRefresh={false}>
         <Switch>
           <Route exact path={["/", "/:page"]}><NavBar /></Route>
         </Switch >
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/Courses"><Courses /></Route>
           <Route exact path="/CoursesForAdmin"><CoursesForAdmin /></Route>
           <Route exact path="/Roadmap"><Roadmap /></Route>
+          <Route exact path="/Reminders"><Reminders /></Route>
         </Switch>
       </Router>
     </>
