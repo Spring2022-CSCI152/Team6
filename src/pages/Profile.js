@@ -14,12 +14,9 @@ const Profile = () => {
 
     //loads user info on mount
     useEffect(async () => {
-        
-        //calls back-end to get user information
-        const userResponse = await getUserInfo();
 
-        //sets user state based on response
-        setUser(userResponse);
+        //updates user state with user object from backend, matched by stored cookie id
+        setUser(await getUserInfo());
     }, []);
 
     //render
