@@ -1,23 +1,9 @@
-import axios from '../axios'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getUserInfo } from '../components/GetUserInfo';
 import '../CSS/profile.css'
 
 
-//ensures requests to backend include the json web token
-axios.interceptors.request.use(
-    config => {
-        // const { origin } = new URL(config.url);
-        // const allowedOrigins = [apiUrl];
-        const token = localStorage.getItem('token');
-        // if (allowedOrigins.includes(origin)) {
-        config.headers.authorization = `Bearer ${token}`;
-        // }
-        return config;
-    },
-    error => {
-        return Promise.reject(error);
-    }
-);
+
 
 
 
@@ -27,27 +13,16 @@ const Profile = () => {
     const [user, setUser] = useState({});
 
     //loads user info on mount
-    useEffect(() => {
-        getUserInfo();
+    useEffect(async () => {
+        
+        //calls back-end to get user information
+        const userResponse = await getUserInfo();
+
+        //sets user state based on response
+        setUser(userResponse);
     }, []);
 
-    //gets user information from backend
-    const getUserInfo = async () => {
-
-        //request user information from server
-        const user = await axios.get("/profile")
-
-            .then((res) => {
-
-                //set user state
-                setUser(res.data.user);
-
-            }).catch((error) => {
-                console.log(error);
-            })
-    }
-
-
+    //render
     return (<>
         <div className='profile'>
             <h1>Profile Page</h1>
