@@ -78,7 +78,7 @@ describe('SearchCourse Functional Component', () => {
 
         //then
 
-        const finding = { "classNameAb": "CSCI 1", "className": "CSCI 1" };
+        const finding = {"specific": "CSCI 1" };
 
         expect(axios.post).toHaveBeenCalledWith('/course/search', finding)
 
