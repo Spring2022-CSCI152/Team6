@@ -14,6 +14,7 @@ import Courses from './pages/Courses';
 import CoursesForAdmin from './pages/CoursesForAdmin';
 import Roadmap from './pages/Roadmap';
 import Reminders from './pages/Reminder';
+import EditProfile from './pages/editProfile';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route exact path="/CoursesForAdmin"><CoursesForAdmin /></Route>
           <Route exact path="/Roadmap"><Roadmap /></Route>
           <Route exact path="/Reminders"><Reminders /></Route>
+          <Route exact path="/editProfile"><EditProfile /></Route>
         </Switch>
       </Router>
     </>

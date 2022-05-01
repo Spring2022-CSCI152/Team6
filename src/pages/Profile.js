@@ -23,9 +23,9 @@ const Profile = () => {
         <div className='profile'>
         <Container>
             <Row>
-            <Col xs={6} md={4}>
+            {/* <Col xs={6} md={4}>
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210425000233/test-300x297.png" alt = {""} class="img2"></img>
-            </Col>
+            </Col> */}
     
             <Col>
             <Form>
@@ -61,7 +61,7 @@ const Profile = () => {
                 Major
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.firstname} />
+                <Form.Control plaintext readOnly value={user.major} />
                 </Col>
             </Form.Group>
 
@@ -70,7 +70,7 @@ const Profile = () => {
                 Year
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.firstName} />
+                <Form.Control plaintext readOnly value={user.year} />
                 </Col>
             </Form.Group>
 
@@ -79,32 +79,19 @@ const Profile = () => {
                 Expected Graduation Date
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.firstName} />
-                </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                <Form.Label column sm="2">
-                Password
-                </Form.Label>
-                <Col sm="10">
-                    *******************
-                <Link to="/EditProfile"><button className="pwbutton">
-                Change your password
-                </button>
-                </Link>
+                <Form.Control plaintext readOnly value={user.expectedGraduationDate} />
                 </Col>
             </Form.Group>
 
             </Form>
             </Col>
             <div className = "profilebuttons">
-                {/* <div>
+                <div>
                     <Link to="/EditProfile"><button>
                     Edit your profile
                     </button>
                     </Link>
-                </div> */}
+                </div>
             </div>
             </Row>
 
