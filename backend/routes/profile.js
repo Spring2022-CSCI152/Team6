@@ -63,19 +63,21 @@ router.put('/', async (req, res) => {
     const objId = new ObjectId(userId);
 
     //search mongoDB for the user's document by its id
-    await User.updateOne({ _id: objId },
+    const result = await User.updateOne({ _id: objId },
         {
             //update all properties in request
             $set: req.body
 
-        })
+        }
+    );
 
     const user = await User.findOne({ _id: objId },
-        
-        //get rid of unnecessary data (avoid stamp coupling)
-        { _id: 0, password: 0, createdAt: 0, __v: 0 });
 
-    //return user's information to frontend
+        //get rid of unnecessary data (avoid stamp coupling)
+        { _id: 0, password: 0, createdAt: 0, __v: 0 }
+    );
+
+    //return user's information to frontend as proof of change
     res.json({ user: user });
 })
 

@@ -48,7 +48,7 @@ function EditProfile() {
             // password: password,
             major: major,
             year: year,
-            expectedGraduationDate: expectedGraduationDate,
+            expectedGraduationDate: expectedGraduationDate
         }
 
         await updateUserInfo(data)
