@@ -11,7 +11,8 @@
     "jsdom": "19.0.0",
     "jsdom-global": "3.0.2",
     "nodemon": "^2.0.15",
-    "react-scripts": "^5.0.0"
+    "react-scripts": "^5.0.0",
+    "supertest": "^6.2.3"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
