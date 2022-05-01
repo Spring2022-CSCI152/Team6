@@ -24,13 +24,18 @@ const UserSchema = mongoose.Schema({
     default: Date.now()
   },
   major: {
-    type: Number,
+    type: String,
     required: true,
-    default: 0 //undeclared
+    default: "undeclared"
   },
-  catalogYear: {
+  year: {
     type: Number,
   },
+  role:{
+    type: String,
+    default: "basic"
+  }
+  
 });
 
 // export model user with UserSchema
