@@ -27,6 +27,7 @@ const Profile = () => {
     //render
     return (<>
         <div className='profile'>
+            Profile
         <Container>
             <Row>
             <Col>
@@ -34,56 +35,56 @@ const Profile = () => {
             <Form>
 
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                First Name
+                <Form.Label className = "label" column sm="2">
+                First Name:
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.firstname} />
+                <Form.Control className = "input" plaintext readOnly value={user.firstname} />
                 </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                Last Name
+                <Form.Label className = "label" column sm="2">
+                Last Name:
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.lastname} />
+                <Form.Control  className = "input" plaintext readOnly value={user.lastname} />
                 </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                Email
+                <Form.Label className = "label" column sm="2">
+                Email:
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.email} />
+                <Form.Control  className = "input" plaintext readOnly value={user.email} />
                 </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                Major
+                <Form.Label className = "label" column sm="2">
+                Major:
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.major} />
+                <Form.Control className = "input" plaintext readOnly value={user.major} />
                 </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                Year
+                <Form.Label className = "label" column sm="2">
+                Year:
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.year} />
+                <Form.Control  className = "input" plaintext readOnly value={user.year} />
                 </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column sm="2">
-                Expected Graduation Date
+                <Form.Label className = "label" column sm="2">
+                Expected Graduation Date:
                 </Form.Label>
                 <Col sm="10">
-                <Form.Control plaintext readOnly value={user.expectedGraduationDate} />
+                <Form.Control className = "input" plaintext readOnly value={user.expectedGraduationDate} />
                 </Col>
             </Form.Group>
 
