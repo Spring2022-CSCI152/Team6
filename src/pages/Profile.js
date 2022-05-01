@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getUserInfo } from '../components/GetUserInfo';
 import { Button, Container, Form, Image, Row, Col } from 'react-bootstrap';
 import '../CSS/profile.css'
@@ -11,11 +11,17 @@ const Profile = () => {
     const [user, setUser] = useState({});
 
     //loads user info on mount
-    useEffect(async () => {
+    useEffect(() => {
 
-        //updates user state with user object from backend, matched by stored cookie id
-        setUser(await getUserInfo());
-        console.log(user);
+        async function getUserInfoWrapper() {
+
+            //updates user state with user object from backend, matched by stored cookie id
+            setUser(await getUserInfo());
+            console.log(user);
+        }
+
+        getUserInfoWrapper();
+        
     }, []);
 
     //render
@@ -95,7 +101,7 @@ const Profile = () => {
 
         </Container>
         </div>
-        </>
+    </>
     )
 }
 
