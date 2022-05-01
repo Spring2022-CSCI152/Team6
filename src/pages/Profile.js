@@ -23,12 +23,10 @@ const Profile = () => {
         <div className='profile'>
         <Container>
             <Row>
-            {/* <Col xs={6} md={4}>
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210425000233/test-300x297.png" alt = {""} class="img2"></img>
-            </Col> */}
-    
             <Col>
+
             <Form>
+
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                 <Form.Label column sm="2">
                 First Name

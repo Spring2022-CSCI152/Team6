@@ -97,22 +97,6 @@ function EditProfile() {
                 </Col>
                 </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                <Form.Label column sm="2">
-                Password
-                </Form.Label>
-                <Col sm="10">
-                <input
-                type="text"
-                className="form-control"
-                id="password"
-                placeholder="Change password"
-                value={password}
-                onChange={e => setPassword(e.target.value)} />
-                {/* <Form.Control plaintext defaultValue= "" />  */}
-                </Col>
-                </Form.Group>
-
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextProfileBio">
                 <Form.Label column sm="2">
                 Major
@@ -128,7 +112,6 @@ function EditProfile() {
                 {/* <Form.Control plaintext defaultValue= "" />  */}
                 </Col>
                 </Form.Group>
-
 
             <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                 <Form.Label column sm="3">
