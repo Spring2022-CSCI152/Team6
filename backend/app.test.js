@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime';
 import { request } from 'express';
 import supertest from 'supertest';
-import server from './server';
+import app from './app.js';
  
 
 
@@ -10,7 +10,7 @@ describe("POST /signup", () => {
         //should save username and password to the database
         //should respond with a json object containing the user id
         test("should respond with a 200 status code on success", async () => {
-            const response = await request(server).post("user/signup").send({
+            const response = await request(app).post("user/signup").send({
                 firstname: "TestFirst",
                 lastname: "TestLast",
                 email: "TestEmail",
