@@ -17,6 +17,7 @@ const User = require('../model/User');
 const ObjectId = require('mongodb').ObjectId;
 
 
+//get logged-in user's attributes
 router.get('/', async (req, res) => {
 
     //grab the token from the header
@@ -35,30 +36,47 @@ router.get('/', async (req, res) => {
     const objId = new ObjectId(userId);
 
     //search mongoDB for the user's document by its id
-    const user = await User.findOne({ _id: objId });
+    const user = await User.findOne({ _id: objId },
+
+        //get rid of unnecessary data (avoid stamp coupling)
+        { _id: 0, password: 0, createdAt: 0, __v: 0 });
 
     //return user's information to frontend
     res.json({ user: user });
 });
 
+//modify logged-in user's attributes
+router.put('/', async (req, res) => {
+    //grab the token from the header
+    const rawToken = req.headers.authorization;
+
+    //separate the token code from the "bearer" prefix
+    const token = rawToken.split(' ')[1];
+
+    //decode jwt
+    const payload = jwt.verify(token, "randomString");
+
+    //grab the stored id of decoded jwt
+    const userId = payload.user.id;
+
+    //create mongoDB id type for search
+    const objId = new ObjectId(userId);
+
+    //search mongoDB for the user's document by its id
+    await User.updateOne({ _id: objId },
+        {
+            //update all properties in request
+            $set: req.body
+
+        })
+
+    const user = await User.findOne({ _id: objId },
+        
+        //get rid of unnecessary data (avoid stamp coupling)
+        { _id: 0, password: 0, createdAt: 0, __v: 0 });
+
+    //return user's information to frontend
+    res.json({ user: user });
+})
+
 module.exports = router;
-
-
-//junk code.  too scared to delete
-
-    // const decoded = jwt.verify(token, "randomString");
-    // const decoded = jwt.decode(token);
-    // var userId = decoded.userId;
-    // const user = new Promise((resolve, reject) => {
-    //     jwt.verify(token, getKey, authOptions, (err, decoded) => {
-    //         if (err) return reject(err);
-    //         resolve(decoded);
-    //     })
-    // })
-
-    // const decoded = jwt.verify(token, "randomString", function (err, decodedToken) {
-    //     if (err) { error = err.message }
-    //     else {
-    //         user = decodedToken.id;
-    //     }
-    // });
