@@ -168,11 +168,11 @@ function Courses() {
         <div className="Course">
             <form onSubmit={onSubmitSearch}>
                 <label htmlFor='finding'>Search</label>
-                <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" /> <br />
-                <button type="submit">Search</button>
+                <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="Example: CSCI 1" id="finding" /> 
+                <button className='button' type="submit">Search</button>
+                <select className="term" id="term" onChange={filter}></select>
             </form>
-            <select className="term" id="term" onChange={filter}>
-            </select>
+            <br></br>
             <table>
                 <thead>
                     <tr>

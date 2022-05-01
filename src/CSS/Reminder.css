@@ -10,7 +10,7 @@
   --purple: #8b5cf6;
   --darkblue: #051747
 }
-h1 {text-align: center;}
+.h1 {text-align: center;}
 
 .collection{
   margin-top: 1rem;
@@ -105,9 +105,9 @@ h1 {text-align: center;}
   color: rgb(65, 59, 71);
 }
 *{
-  box-sizing: border-box;
-  margin: 0;
-  font-family: 'Fira sans', sans-serif;
+  /* box-sizing: border-box;
+  margin: 0; */
+  /* font-family: 'Fira sans', sans-serif; */
 }
 .task-list{
   padding: 1rem;
