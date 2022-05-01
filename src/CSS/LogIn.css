@@ -46,7 +46,7 @@ input{
     width: 80%;
     border-radius: 30px;
 }
-form{
+.form{
     margin-bottom: 20%;
     font-size: 20px;
    align-items: center;   

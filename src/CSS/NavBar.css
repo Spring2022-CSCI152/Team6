@@ -2,7 +2,10 @@
 .NavBar {
     background-color: black;
     overflow: hidden;
-    font-family: "Lucida Console", Courier, monospace;
+    font-family: 'Libre Bodoni', serif;
+    font-family: 'Oleo Script', cursive;
+    font-family: 'Quintessential', cursive;
+    font-family: 'Tinos', serif;
     padding:10px 0;
   }
   
@@ -13,7 +16,7 @@
     text-align: center;
     padding: 18px 20px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 25px;
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -50,3 +53,5 @@
   .NavLink-Hover{
 
   }
+
+  
