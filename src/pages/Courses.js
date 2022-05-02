@@ -167,7 +167,7 @@ function Courses() {
     return (
         <div className="Course">
             <form onSubmit={onSubmitSearch}>
-               <label>Search For Classes:</label>
+               <label for='finding'>  Search For Classes:</label>
                 <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" /> <br />
                 <button type="submit">Search</button>
             </form>
