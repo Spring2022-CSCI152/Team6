@@ -78,9 +78,9 @@ export class Signup extends React.Component {
 
 
     return (
-      <div className="App">
-        <div className='LogIn-Box-wrapper'>
-          <div className='LogIn-Box'>
+      <div className="Signup"><div class="bg-image"></div>
+        <div className='Signup-Box-wrapper'>
+          <div className='Signup-Box'>
             <p id="title">Create a new account</p>
             <form>
               <label htmlFor="fname">First name</label>
@@ -89,10 +89,10 @@ export class Signup extends React.Component {
               <input type="text" onChange={this.handleLastName} name="lastname" className="lastname" placeholder="lastname..." id="lname" /> <br />
               <label htmlFor="email">Email</label>
               <input type="text" onChange={this.handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />
-              <label htmlFor="pword">Password<span /><a href="#forgotpw">Forgot Password?</a></label>
+              <label htmlFor="pword">Password<span /></label>
               <input type="password" onChange={this.handlePass} name="password" className="password" id="pword" placeholder="password..." /> <br />
 
-              <button onClick={this.signup} type="button" className="signupbutton"> Submit </button>
+              <button onClick={this.signup} type="button" className="signupbutton"> Create </button>
             </form>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import '../CSS/LogIn.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-//import axios from '../axios';
 import React from 'react';
 import axios from '../axios';
 
@@ -96,14 +95,14 @@ export class login extends React.Component {
   render() {
 
   return (
-    <div className="App">
+    <div className="Login"><div class="bg-image"></div>
       <div className='LogIn-Box-wrapper'>
         <div className='LogIn-Box'>
           <p id="title">Log In</p>
           <form>
             <label htmlFor='email'>Email</label>
             <input type="text" onChange={this.handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />
-            <label htmlFor="password">Password<span /><a href="#forgotpw">Forgot Password?</a></label>
+            <label htmlFor="password">Password<a href="#forgotpw">Forgot Password?</a></label>
             <input type="password" onChange={this.handlePass} name="password" className="password" id="password" placeholder="password..." /> <br />
             <button onClick={this.login} type="button" className="loginbutton"> Log In </button>
             <button type="button"><Link to="/Signup">Create an account</Link></button>

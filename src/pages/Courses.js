@@ -1,6 +1,8 @@
 import '../CSS/course.css';
 import { useState, useEffect } from 'react';
 import axios from '../axios';
+import { FaSearch } from "react-icons/fa";
+import { FiRefreshCw } from "react-icons/fi";
 
 // var result = [];
 var filterterm = new Set();
@@ -75,13 +77,13 @@ function Courses() {
             tableRow.innerHTML += "<td>" + i.className + "</td>";
 
             //prerequisites
-            let PrerequisitesTd = document.createElement("td");
-            for (let j of i.Prerequisites) {
-                PrerequisitesTd.innerHTML += "<li>" + j + "</li>";
-            }
-            tableRow.appendChild(PrerequisitesTd);
+            // let PrerequisitesTd = document.createElement("td");
+            // for (let j of i.Prerequisites) {
+            //     PrerequisitesTd.innerHTML += "<li>" + j + "</li>";
+            // }
+            // tableRow.appendChild(PrerequisitesTd);
 
-            tableRow.innerHTML += "<td>" + i.Description + "</td>";
+            // tableRow.innerHTML += "<td>" + i.Description + "</td>";
             tableRow.innerHTML += "<td>" + i.Units + "</td>";
 
             let courseTypOffTd = document.createElement("td");
@@ -164,24 +166,29 @@ function Courses() {
         search();
     }
 
+    const reloadPage = (e) => {
+        window.location.reload();
+    }
+
     return (
         <div className="Course">
             <form onSubmit={onSubmitSearch}>
                 <label htmlFor='finding'>Search</label>
-                <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="Example: CSCI 1" id="finding" /> 
-                <button className='button' type="submit">Search</button>
+                <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="Example: CSCI 1" id="finding"></input>
+                <button className='button' type="submit"><FaSearch /></button>
+                <button className='button' type="button" onClick={reloadPage}><FiRefreshCw /></button>
                 <select className="term" id="term" onChange={filter}></select>
             </form>
             <br></br>
             <table>
                 <thead>
                     <tr>
-                        <th>Code</th>
-                        <th>Title</th>
-                        <th>Prerequisites</th>
-                        <th>Description</th>
-                        <th>Units</th>
-                        <th>Term Typically Offered</th>
+                        <th className='th-Code'>Code</th>
+                        <th className='th-Title'>Title</th>
+                        {/* <th>Prerequisites</th>
+                        <th>Description</th> */}
+                        <th className='th-Units'>Units</th>
+                        <th className='th-Term'>Term Typically Offered</th>
                     </tr>
                 </thead>
                 <tbody id="CourseList">
