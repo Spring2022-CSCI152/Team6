@@ -1,6 +1,5 @@
 import 'regenerator-runtime/runtime';
-import { request } from 'express';
-import supertest from 'supertest';
+import request from 'supertest';
 import app from './app.js';
  
 

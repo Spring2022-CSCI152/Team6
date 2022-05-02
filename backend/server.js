@@ -1,4 +1,10 @@
 const app = require('./app.js');
+const InitiateMongoServer = require("./config/db");
+
+
+// Initiate Mongo Server
+InitiateMongoServer();
+
 
 // PORT
 const PORT = process.env.PORT || 4000;

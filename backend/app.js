@@ -1,19 +1,18 @@
+//api code for backend server
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const user = require("./routes/user"); //new addition
 const course = require("./routes/course"); //new addition
 const profile = require("./routes/profile");
-const InitiateMongoServer = require("./config/db");
 const cors = require("cors");
 const jwt = require('express-jwt');
 
-// Initiate Mongo Server
-InitiateMongoServer();
+
 
 const app = express();
 app.use(cors());
-// PORT
-const PORT = process.env.PORT || 4000;
+
 
 // Middlewares
 app.use(bodyParser.json());
@@ -22,7 +21,6 @@ app.get("/", (req, res) => {
   res.json({ message: "API Working" });
 });
 
-// console.log(app.findOne());
 // API Endpoints
 app.use("/user", user);
 app.use("/course", course);
