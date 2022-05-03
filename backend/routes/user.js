@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 
+//connection to mongoDB collection "users"
 const User = require("../model/User");
 
 /**
@@ -35,6 +36,7 @@ router.post(
   async (req, res) => {
   
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array()
@@ -48,6 +50,7 @@ router.post(
       password,
       role,
     } = req.body;
+
     try {
       let user = await User.findOne({
         email
@@ -65,10 +68,12 @@ router.post(
         password,
         role,
       });
-      console.log(user);
+
+      //hash password (this should be done client side instead to avoid password exposure)
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
 
+      //save new User document to users collection
       await user.save();
 
       const payload = {
