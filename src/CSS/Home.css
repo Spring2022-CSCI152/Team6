@@ -1,0 +1,113 @@
+body {
+    height: 100%;
+  }
+  .home{
+    overflow-y: hidden;
+    height: 100%;
+    width: 100%;
+  }
+  .App-header {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(28px + 2vmin);
+    color: red;
+    overflow-y: hidden;
+    margin: 0 auto;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+
+#h1{
+    font-weight: 700px;
+    font-style: normal;
+    margin: 0;
+    position: relative;
+    background-image: linear-gradient(to right, #ff000098,#ff0000d0, #ff0000);
+    background-clip: text;
+    color: transparent;
+  }
+  #title{
+    padding-bottom: 50px;
+    padding-top: 0;
+    font-size: 70px;
+    color:rgb(255, 58, 58);
+  }
+/* 
+  #GetStart-Btn{
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #91C9FF;
+    outline: none;
+    transition: 1s ease-in-out;
+  } */
+
+  
+  #GetStart-Btn {
+    font-size: 25px;
+    width: 220px;
+    height: 80px;
+    border: none;
+    outline: none;
+    color: rgb(255, 70, 70);
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 60px;
+    border: 1px solid rgba(92, 92, 92, 0.507);
+}
+
+#GetStart-Btn:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #002bff,#ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 60px;
+}
+
+#GetStart-Btn:active {
+}
+
+#GetStart-Btn:active:after {
+    background: transparent;
+}
+
+#GetStart-Btn:hover:before {
+    opacity: 1;
+}
+
+#GetStart-Btn:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 229, 229);
+    left: 0;
+    top: 0;
+    border-radius: 60px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}

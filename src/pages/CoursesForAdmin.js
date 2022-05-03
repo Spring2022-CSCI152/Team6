@@ -265,7 +265,7 @@ function CoursesForAdmin() {
     <div className="Course">
         <div id="addForm">
             <form >
-                <h1>ADD</h1>
+                <h1 className='h1'>ADD</h1>
                 <label id="hidden">Class Name Abbreviation:</label>
                 <input type="text" onChange={classNameAbHandle}/> <br />
                 <label id="hidden">Class Name:</label>
@@ -278,24 +278,24 @@ function CoursesForAdmin() {
                 <input type="text" onChange={unitHandle} id="Units"/> <br />
                 <label id="hidden">Course Typically Offered:</label>
                 <input type="text" onChange={termHandle} placeholder="Example: Spring, Fall (seperate the additional term by comma)" /> <br />
-                <button type="button" onClick={addCourse} id="hiddenButton">Add</button>
-                <button type="button" onClick={closeAddBox} id="hiddenButton">Close</button>
+                <button className='button' type="button" onClick={addCourse} id="hiddenButton">Add</button>
+                <button className='button' type="button" onClick={closeAddBox} id="hiddenButton">Close</button>
             </form>
         </div>
         <div id="body">
             <form>
                 <label htmlFor='finding'>Search</label>
                 <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" /> <br />
-                <button type="button" onClick={search}>Search</button>
+                <button className='button' type="button" onClick={search}>Search</button>
             </form>
-            <button type="button" onClick={window.onload}>Refresh</button>
+            <button className='button' type="button" onClick={window.onload}>Refresh</button>
             <select className="term" id="term" onChange={filter}>
                 {/* <option value="none">Every Term</option> 
                 <option value="Fall">Fall</option>
                 <option value="Spring">Spring</option>
                 <option value="Fall and Spring">Fall and Spring</option> */}
             </select>
-            <button type="button" onClick={showAddBox}>Add Course</button>
+            <button className='button' type="button" onClick={showAddBox}>Add Course</button>
             <table>
                 <thead>
                     <tr onLoad={viewAll}>
