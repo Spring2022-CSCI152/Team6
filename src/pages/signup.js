@@ -84,13 +84,13 @@ export class Signup extends React.Component {
             <p id="title">Create a new account</p>
             <form>
               <label htmlFor="fname">First name</label>
-              <input type="text" onChange={this.handleFirstName} name="firstname" className="firstname" placeholder="firstname..." id="fname" /> <br />
+              <input type="text" onChange={this.handleFirstName} name="firstname" className="input" placeholder="firstname..." id="fname" /> <br />
               <label htmlFor="lname">Last name</label>
-              <input type="text" onChange={this.handleLastName} name="lastname" className="lastname" placeholder="lastname..." id="lname" /> <br />
+              <input type="text" onChange={this.handleLastName} name="lastname" className="input" placeholder="lastname..." id="lname" /> <br />
               <label htmlFor="email">Email</label>
-              <input type="text" onChange={this.handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />
+              <input type="text" onChange={this.handleEmail} name="email" className="input" placeholder="email..." id="email" /> <br />
               <label htmlFor="pword">Password<span /><a href="#forgotpw">Forgot Password?</a></label>
-              <input type="password" onChange={this.handlePass} name="password" className="password" id="pword" placeholder="password..." /> <br />
+              <input type="password" onChange={this.handlePass} name="password" className="input" id="pword" placeholder="password..." /> <br />
 
               <button onClick={this.signup} type="button" className="signupbutton"> Submit </button>
             </form>

@@ -102,9 +102,9 @@ export class login extends React.Component {
           <p id="title">Log In</p>
           <form>
             <label htmlFor='email'>Email</label>
-            <input type="text" onChange={this.handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />
+            <input type="text" onChange={this.handleEmail} name="email" className="input" placeholder="email..." id="email" /> <br />
             <label htmlFor="password">Password<span /><a href="#forgotpw">Forgot Password?</a></label>
-            <input type="password" onChange={this.handlePass} name="password" className="password" id="password" placeholder="password..." /> <br />
+            <input type="password" onChange={this.handlePass} name="password" className="input" id="password" placeholder="password..." /> <br />
             <button onClick={this.login} type="button" className="loginbutton"> Log In </button>
             <button type="button"><Link to="/Signup">Create an account</Link></button>
           </form>
