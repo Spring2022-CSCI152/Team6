@@ -20,12 +20,13 @@ axios.interceptors.request.use(
 const useUser=() =>{
     
     const [user, setUser] = useState({});
+    var uInfo
 
     //loads user info on mount
     useEffect(() => {
         getUserInfo();
     }, []);
-
+    console.log("inside USEUSER!")
     //gets user information from backend
     const getUserInfo = async () => {
 
@@ -35,15 +36,17 @@ const useUser=() =>{
             .then((res) => {
 
                 //set user state
-                setUser(res.data.user);
+                uInfo = res.data.user
             
             }).catch((error) => {
                 console.log(error);
             })
         
     }
-    const suser = "sdf"
-    return suser
+    
+    console.log("user")
+
+    return uInfo
 }
 
 export default useUser

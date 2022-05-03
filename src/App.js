@@ -15,7 +15,7 @@ import CoursesForAdmin from './pages/CoursesForAdmin';
 import CourseAdmin from './pages/CourseAdmin';
 import CatalogAdmin from './pages/CatalogAdmin';
 import { Redirect} from 'react-router-dom';
-import user from './useAuth';
+import useUser from './useAuth';
 import useConfig from './useConfig';
 
 const role=""
@@ -31,10 +31,12 @@ function adminRole(){
 }
 
 function BasicRoute ({children, ...rest}) {
+
   //console.log(user)
   return(
     <Route {...rest} render={() => {
-      return basicRole()
+      console.log(useUser)
+      return useUser
         ? children
         : <Redirect to='/home' />
     }}/>

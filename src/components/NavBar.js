@@ -41,7 +41,6 @@ const NavBar = () => {
 
   //else if logged, all button appears
   return <div className='NavBar'>
-    
     <NavLink page='Home' selected={page === 'Home' || !page} />
     <NavLink page='Calendar' selected={page === 'Calendar'} />
     <NavLink page="Profile" selected={page === 'Profile'} />
@@ -50,9 +49,7 @@ const NavBar = () => {
     <NavLink page='SearchCourse' selected={page === 'SearchCourse'} />
     <NavLink page='CourseAdmin' selected={page === 'CourseAdmin'} />
     <NavLink page='CatalogAdmin' selected={page === 'CatalogAdmin'} />
-
-    <Link to="/" onClick={logOut} className="right-nav">Log Out</Link>
-
+    <Link to="/" onClick={logOut} className="right-nav">Log Out</Link>)
   </div>;
 
 };
