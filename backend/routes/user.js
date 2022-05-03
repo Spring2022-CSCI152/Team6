@@ -69,7 +69,7 @@ router.post(
         role,
       });
 
-      //hash password (this should be done client side instead to avoid password exposure)
+      //hash password (this should be done client side instead to avoid password exposure over unencrypted connections)
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
 
@@ -82,6 +82,7 @@ router.post(
         }
       };
 
+      //json web token
       jwt.sign(
         payload,
         "randomString", {
@@ -95,7 +96,10 @@ router.post(
           });
         }
       );
-    } catch (err) {
+    } 
+    
+    // server error
+    catch (err) {
       console.log(err.message);
       res.status(500).send("Error in Saving");
     }
@@ -134,7 +138,7 @@ router.post(
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
         return res.status(400).json({
-          message: "Incorrect Password !"
+          message: "Incorrect Password!"
         });
 
       const payload = {
@@ -165,7 +169,5 @@ router.post(
     }
   }
 );
-
-// router.get("/")
 
 module.exports = router;
