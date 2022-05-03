@@ -1,0 +1,87 @@
+.Roadmap body {
+  background-color: rgb(177, 177, 177);
+  height: 100%;
+  position: relative;
+}
+
+.Roadmap h1 {
+  font-family: 'Quintessential', cursive;
+  font-size: 100px;
+  font-style: italic;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+}
+
+.Roadmap body {
+  color: black;
+  font-style: normal;
+}
+
+label {
+  width: 100%;
+  height: 27px;
+  display: block;
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 0%;
+}
+
+.Roadmap label a {
+  color: #005eff;
+}
+
+.Roadmap span {
+  margin-left: 30%;
+}
+
+.Roadmap form {
+  position: relative;
+  display: contents;
+  font-size: 20px;
+  align-items: center;
+}
+
+.Roadmap button {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.Roadmap button:hover {
+  background-color: #ff4646;
+}
+
+.Roadmap html,
+.Roadmap body,
+.Roadmap #root {
+  /* height: 100vh; */
+  height: 100%;
+  /* overflow: hidden; */
+}
+
+.Roadmap table,
+.Roadmap th,
+.Roadmap tbody {
+  border: 2px black solid;
+  width: 100%;
+  text-align: center;
+
+}
+
+.Roadmap #sample_year {
+  border: 2px white solid;
+  border-top: 10px;
+  margin: 10px;
+}
+
+.Roadmap thead {
+  border: 2px white solid;
+
+}
+
+.Roadmap select {
+  width: 150px;
+}
