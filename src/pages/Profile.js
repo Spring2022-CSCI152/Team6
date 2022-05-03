@@ -17,7 +17,7 @@ const Profile = () => {
 
             //updates user state with user object from backend, matched by stored cookie id
             setUser(await getUserInfo());
-            console.log(user);
+            //console.log(user);
         }
 
         getUserInfoWrapper();
