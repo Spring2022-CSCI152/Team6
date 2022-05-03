@@ -1,7 +1,7 @@
 // Filename : class.js
 
 const express = require("express");
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 const router = express.Router();
 
 const Class = require("../model/Course");

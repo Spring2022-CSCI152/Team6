@@ -1,11 +1,12 @@
 // Filename : user.js
 
 const express = require("express");
-const { check, validationResult } = require("express-validator/check");
+const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 
+//connection to mongoDB collection "users"
 const User = require("../model/User");
 
 /**
@@ -31,8 +32,11 @@ router.post(
     }),
 
   ],
+
   async (req, res) => {
+  
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array()
@@ -46,6 +50,7 @@ router.post(
       password,
       role,
     } = req.body;
+
     try {
       let user = await User.findOne({
         email
@@ -63,10 +68,12 @@ router.post(
         password,
         role,
       });
-      console.log(user);
+
+      //hash password (this should be done client side instead to avoid password exposure over unencrypted connections)
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
 
+      //save new User document to users collection
       await user.save();
 
       const payload = {
@@ -75,6 +82,7 @@ router.post(
         }
       };
 
+      //json web token
       jwt.sign(
         payload,
         "randomString", {
@@ -88,7 +96,10 @@ router.post(
           });
         }
       );
-    } catch (err) {
+    } 
+    
+    // server error
+    catch (err) {
       console.log(err.message);
       res.status(500).send("Error in Saving");
     }
@@ -127,7 +138,7 @@ router.post(
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch)
         return res.status(400).json({
-          message: "Incorrect Password !"
+          message: "Incorrect Password!"
         });
 
       const payload = {
@@ -158,7 +169,5 @@ router.post(
     }
   }
 );
-
-// router.get("/")
 
 module.exports = router;
