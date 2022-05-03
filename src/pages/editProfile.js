@@ -4,6 +4,7 @@ import { getUserInfo, updateUserInfo } from '../components/GetUserInfo';
 import { Button, Container, Form, Image, Row, Col } from 'react-bootstrap';
 import '../CSS/profile.css'
 
+const message = "Updated!"
 
 function EditProfile() {
     const [firstname, setFirstName] = useState('');
@@ -62,10 +63,12 @@ function EditProfile() {
                 setYear(userData.year);
                 setExpGraduationDate(userData.expectedGraduationDate);
                 setLoading(false);
+                console.log("Updated!");
             })
             .catch(err => {
                 setLoading(false);
                 setIsError(true);
+                console.log("Error")
             })
     }
 
