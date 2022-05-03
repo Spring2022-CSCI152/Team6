@@ -1,27 +1,36 @@
 import React from "react";
 import { useState } from 'react';
 import Calendar from 'react-calendar';
-import "../CSS/calendar.css"
+//import 'react-calendar/dist/Calendar.css';
+
 import {Container, Row, Col} from 'react-bootstrap/';
+import { css } from "@emotion/react";
 
 
-function Calendar1() {
+const API_KEY = "AIzaSyBO7bR7-Nja1oZbT9ERkaxIUugtf3YsDDQ";
+let calendars = [
+  {calendarId: "ttutcd57v67relg0dg4aj77l50@group.calendar.google.com", color: "#B241D1"}, //add a color field to specify the color of a calendar
+];
+
+let styles = {
+  //you can use object styles (no import required)
+  calendar: {
+    borderWidth: "3px", //make outer edge of calendar thicker
+  },
   
-  // render() {
-    const [date, setDate] = useState(new Date());
+  //you can also use emotion's string styles
+  today: css`
+  `
+}
 
+class Calendar1 extends React.Component {
+  render() {
     return (
-      <div className='calendar' style = {{textAlign : "center"}}>
-      <h1 className='text-center'>React Calendar</h1>
-      <div className='calendar-container' style = {{textAlign : "center"}}>
-        <Calendar onChange={setDate} value={date} />
+      <div>
+        <Calendar apiKey={API_KEY} calendars={calendars} styles={styles} />
       </div>
-      <p className='text-center' style={{fontSize: "20px"}} >
-        <span className='bold' style = {{color: "white"}}>Selected Date:</span>{' '}
-        <span className='bold' style = {{color: "white"}}>{date.toDateString()}</span>
-      </p>
-    </div>
-    );
+    )
   }
-//}
-export default Calendar1;
+}
+
+export default Calendar1

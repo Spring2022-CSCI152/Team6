@@ -27,81 +27,80 @@ const Profile = () => {
     //render
     return (<>
         <div className='profile'>
-            <Container>
-                <Row>
-                    {/* <Col xs={6} md={4}>
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20210425000233/test-300x297.png" alt = {""} class="img2"></img>
-            </Col> */}
+            Profile
+        <Container>
+            <Row>
+            <Col>
 
-                    <Col>
-                        <Form>
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                <Form.Label column sm="2">
-                                    First Name
-                                </Form.Label>
-                                <Col sm="10">
-                                    <Form.Control plaintext readOnly value={user.firstname} />
-                                </Col>
-                            </Form.Group>
+            <Form>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                <Form.Label column sm="2">
-                                    Last Name
-                                </Form.Label>
-                                <Col sm="10">
-                                    <Form.Control plaintext readOnly value={user.lastname} />
-                                </Col>
-                            </Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                <Form.Label className = "label" column sm="2">
+                First Name:
+                </Form.Label>
+                <Col sm="10">
+                <Form.Control className = "input" plaintext readOnly value={user.firstname} />
+                </Col>
+            </Form.Group>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                <Form.Label column sm="2">
-                                    Email
-                                </Form.Label>
-                                <Col sm="10">
-                                    <Form.Control plaintext readOnly value={user.email} />
-                                </Col>
-                            </Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                <Form.Label className = "label" column sm="2">
+                Last Name:
+                </Form.Label>
+                <Col sm="10">
+                <Form.Control  className = "input" plaintext readOnly value={user.lastname} />
+                </Col>
+            </Form.Group>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                <Form.Label column sm="2">
-                                    Major
-                                </Form.Label>
-                                <Col sm="10">
-                                    <Form.Control plaintext readOnly value={user.major} />
-                                </Col>
-                            </Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                <Form.Label className = "label" column sm="2">
+                Email:
+                </Form.Label>
+                <Col sm="10">
+                <Form.Control  className = "input" plaintext readOnly value={user.email} />
+                </Col>
+            </Form.Group>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                <Form.Label column sm="2">
-                                    Year
-                                </Form.Label>
-                                <Col sm="10">
-                                    <Form.Control plaintext readOnly value={user.year} />
-                                </Col>
-                            </Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                <Form.Label className = "label" column sm="2">
+                Major:
+                </Form.Label>
+                <Col sm="10">
+                <Form.Control className = "input" plaintext readOnly value={user.major} />
+                </Col>
+            </Form.Group>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-                                <Form.Label column sm="2">
-                                    Expected Graduation Date
-                                </Form.Label>
-                                <Col sm="10">
-                                    <Form.Control plaintext readOnly value={user.expectedGraduationDate} />
-                                </Col>
-                            </Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                <Form.Label className = "label" column sm="2">
+                Year:
+                </Form.Label>
+                <Col sm="10">
+                <Form.Control  className = "input" plaintext readOnly value={user.year} />
+                </Col>
+            </Form.Group>
 
-                        </Form>
-                    </Col>
-                    <div className="profilebuttons">
-                        <div>
-                            <Link to="/EditProfile"><button>
-                                Edit your profile
-                            </button>
-                            </Link>
-                        </div>
-                    </div>
-                </Row>
+            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                <Form.Label className = "label" column sm="2">
+                Expected Graduation Date:
+                </Form.Label>
+                <Col sm="10">
+                <Form.Control className = "input" plaintext readOnly value={user.expectedGraduationDate} />
+                </Col>
+            </Form.Group>
 
-            </Container>
+            </Form>
+            </Col>
+            <div className = "profilebuttons">
+                <div>
+                    <Link to="/EditProfile"><button>
+                    Edit your profile
+                    </button>
+                    </Link>
+                </div>
+            </div>
+            </Row>
+
+        </Container>
         </div>
     </>
     )

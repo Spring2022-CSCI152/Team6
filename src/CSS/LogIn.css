@@ -61,3 +61,13 @@ button{
 button:hover{
     background-color: #ff4646;
 }
+
+input {
+    /* margin-right: 15px; */
+    margin-bottom: 20px;
+    padding: 5px;
+    height: 35px;
+    left: 10%;
+    width: 80%;
+    border-radius: 30px;
+}
