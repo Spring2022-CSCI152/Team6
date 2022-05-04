@@ -1,10 +1,10 @@
 import 'regenerator-runtime/runtime';
 import request from 'supertest';
-import app from './app.js';
-const User = require("./model/User");
+import app from '../app.js';
+const User = require("../model/User");
 const bcrypt = require("bcryptjs");
 
-jest.mock('./model/User.js');
+jest.mock('../model/User.js');
 
 describe("POST user/login", () => {
 
