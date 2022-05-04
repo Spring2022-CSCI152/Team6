@@ -25,10 +25,9 @@ app.get("/", (req, res) => {
 app.use("/user", user);
 app.use("/course", course);
 
-//any calls defined below this line will require the java web token in their headers
+//any calls defined below this line will require the json web token in their headers
 app.use(jwt({secret: "randomString", algorithms: ['HS256']}))
 
 app.use('/profile', profile);
-
 
 module.exports = app;

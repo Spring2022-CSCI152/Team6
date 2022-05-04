@@ -17,8 +17,8 @@ const User = require('../model/User');
 const ObjectId = require('mongodb').ObjectId;
 
 
-//get logged-in user's attributes
-router.get('/', async (req, res) => {
+//uses the user id stored in the json web token of the request header to create a mongoDB id object for search
+const makeObjectIdFromReq = (req) => {
 
     //grab the token from the header
     const rawToken = req.headers.authorization;
@@ -29,11 +29,18 @@ router.get('/', async (req, res) => {
     //decode jwt
     const payload = jwt.verify(token, "randomString");
 
-    //grab the stored id of decoded jwt
+    //return the stored id of decoded jwt
     const userId = payload.user.id;
 
     //create mongoDB id type for search
-    const objId = new ObjectId(userId);
+    return new ObjectId(userId);
+}
+
+//get logged-in user's attributes
+router.get('/', async (req, res) => {
+
+    //unique document id for mongoDB collection
+    const objId = makeObjectIdFromReq(req);
 
     //search mongoDB for the user's document by its id
     const user = await User.findOne({ _id: objId },
@@ -47,20 +54,9 @@ router.get('/', async (req, res) => {
 
 //modify logged-in user's attributes
 router.put('/', async (req, res) => {
-    //grab the token from the header
-    const rawToken = req.headers.authorization;
 
-    //separate the token code from the "bearer" prefix
-    const token = rawToken.split(' ')[1];
-
-    //decode jwt
-    const payload = jwt.verify(token, "randomString");
-
-    //grab the stored id of decoded jwt
-    const userId = payload.user.id;
-
-    //create mongoDB id type for search
-    const objId = new ObjectId(userId);
+    //unique document id for mongoDB collection
+    const ObjectId = makeObjectIdFromReq(req);
 
     //search mongoDB for the user's document by its id
     const result = await User.updateOne({ _id: objId },
@@ -73,7 +69,7 @@ router.put('/', async (req, res) => {
 
     const user = await User.findOne({ _id: objId },
 
-        //get rid of unnecessary data (avoid stamp coupling)
+        //skip unnecessary data to avoid stamp coupling
         { _id: 0, password: 0, createdAt: 0, __v: 0 }
     );
 

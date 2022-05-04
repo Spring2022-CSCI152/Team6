@@ -9,14 +9,16 @@ jest.mock('../model/User.js');
 describe("POST user/login", () => {
 
     //successes
-    describe("given a firstname, lastname, unique email, and password", () => {
+    describe("given a registered email, and password", () => {
 
         test("should specify json in content type header", async () => {
-            //simulate uniqueness of user email in database
+
+            //stub email found in database to return true
             jest.spyOn(User, 'findOne').mockImplementation(() => {
                 return 1;
             })
 
+            //stub password comparison to return true
             jest.spyOn(bcrypt, 'compare').mockImplementation(() => {
                 return 1;
             })
