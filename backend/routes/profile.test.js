@@ -18,7 +18,7 @@ jest.mock('express-jwt', () => {
 })
 
 //mongoDB mock
-jest.mock('../model/User.js')
+jest.mock('../model/User.js');
 
 const token = "Bearer RandomCharacters";
 
@@ -49,6 +49,9 @@ describe("Get /profile", () => {
             //stub token verify
             jest.spyOn(jwt, 'verify').mockReturnValue({ user: "TestID" });
 
+            //stub successful mongoDB document find
+            User.findOne.mockReturnValue(1);
+
             const response = await request(app).get("/profile").set({ authorization: token });
 
 
@@ -59,11 +62,50 @@ describe("Get /profile", () => {
             //stub token verify
             jest.spyOn(jwt, 'verify').mockReturnValue({ user: "TestID" });
 
+            //stub successful mongoDB document find
+            User.findOne.mockReturnValue(1);
+
             const response = await request(app).get("/profile").set({ authorization: token });
 
 
             expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
         })
+    })
+
+    describe("Invalid user id in JWT", () => {
+
+        test("Should return status code 400", async () => {
+
+            //stub mongoDB document find failure
+            User.findOne.mockReturnValue(0);
+
+            const response = await request(app).get("/profile").set({authorization: token});
+
+            expect(response.statusCode).toBe(400);
+            expect(response.body.message).toEqual("Failed to find user");
+        })
+
+    })
+
+    describe("MongoDB throws error.", () => {
+
+        test("should return status code 500, and error message.", async () => {
+
+            jest.spyOn(jwt, 'verify').mockReturnValue({ user: "TestID" });
+
+
+            User.findOne.mockImplementation(() => {
+                throw new Error();
+            })
+
+            const response = await request(app).get("/profile").set({ authorization: token });
+
+            expect(response.statusCode).toBe(500);
+            expect(response.body.error).toEqual("MongoDB User.findOne Threw Error")
+        })
+
+
+
     })
 })
 

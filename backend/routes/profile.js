@@ -42,14 +42,26 @@ router.get('/', async (req, res) => {
     //unique document id for mongoDB collection
     const objId = makeObjectIdFromReq(req);
 
-    //search mongoDB for the user's document by its id
-    const user = await User.findOne({ _id: objId },
+    try {
+        //search mongoDB for the user's document by its id
+        const user = await User.findOne({ _id: objId },
 
-        //get rid of unnecessary data (avoid stamp coupling)
-        { _id: 0, password: 0, createdAt: 0, __v: 0 });
+            //get rid of unnecessary data (avoid stamp coupling)
+            { _id: 0, password: 0, createdAt: 0, __v: 0 });
 
-    //return user's information to frontend
-    res.status(200).json({ user: user });
+        //case of missing database record
+        if (!user) return res.status(400).json({ message: "Failed to find user", user: "" })
+
+        //return user's information to frontend
+        res.status(200).json({ user: user });
+
+    } catch (err) {
+        //case of mongoDB error
+
+        console.log(err);
+
+        res.status(500).json({error: "MongoDB User.findOne Threw Error"});
+    }
 });
 
 //modify logged-in user's attributes
