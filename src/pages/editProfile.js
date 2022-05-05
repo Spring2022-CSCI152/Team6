@@ -95,7 +95,7 @@ function EditProfile() {
                                 </Col>
                             </Form.Group>
 
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                            <Form.Group as={Row} className="mb-33" controlId="formPlaintextEmail">
                                 <Form.Label className = "label" column sm="2">
                                     Last Name:
                                 </Form.Label>
@@ -143,7 +143,7 @@ function EditProfile() {
                             </Form.Group>
 
 
-                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+                            <Form.Group as={Row} className="mb-33" controlId="formPlaintextEmail">
                                 <Form.Label className = "label" column sm="3">
                                     Year:
                                 </Form.Label>
