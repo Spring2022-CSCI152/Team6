@@ -1,14 +1,16 @@
 .profile {
-    background-color: #282c34;
+    background-color: white;
     height: 100%;
 	text-align: center;
 	font-size: 50px;
 	margin-top: 20px;
+	color: black;
 }
 
 .editProfile{
-	background-color: #282c34;
+	background-color: white;
 	height:max-content;
+	color: black;
 }
 .profilebuttons{
 	display: flex;
@@ -55,21 +57,35 @@
 	width: 80%;
 	border-radius: 20px;
 	/*margin-left: 10%;*/
+	text-align: left;
 
 
 }
 
 .row.mb-3 {
 	margin: auto;
+	right: 500px;
+	width: 650px;
+	height: 100px;
+	border: 3px solid black;
+	background-color: rgb(255, 220, 220);
+	margin-top: 30px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+
+}
+
+.row.mb-33 {
+	margin: auto;
 	float:center;
 	right: 500px;
 	width: 650px;
 	height: 100px;
-	border: 2px solid #fe4848;
-	background-color:rgb(0, 0, 0);
+	border: 3px solid black;
+	background-color: rgb(208, 234, 255);
 	margin-top: 30px;
 	margin-bottom: 20px;
-	border-radius: 5px;
+	border-radius: 10px;
 }
 
 .button1 {
@@ -79,3 +95,9 @@
 	padding: 5px 55px;
 	width: 500px;
 }
+
+.center {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+  }

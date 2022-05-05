@@ -22,7 +22,7 @@ describe("Login component's login function", () => {
         "password": "",
     };
 
-    //A limited implementation of the Signup component
+    //A limited implementation of the Login component
     const wrapper = shallow(<Login />);
 
     //Tracks what the console recieves.  Used to ensure certain messages are returned to console on success and failure.
@@ -34,12 +34,12 @@ describe("Login component's login function", () => {
 
             //given
 
-            //mock for post call.  returns a resolved (valid response), which is when a user is correctly signed up.  Message string is to simulate the response object, which contains the same message.
+            //mock for post call.  returns a resolved (valid response), which is when a user is correctly logged in.  Message string is to simulate the response object, which contains the same message.
             axios.post.mockResolvedValueOnce('Logged in!');
 
             //when
 
-            //call signup function inside Signup component
+            //call login function inside Login component
            await wrapper.instance().login();
 
 
@@ -67,7 +67,7 @@ describe("Login component's login function", () => {
 
             //when
 
-            //call signup function inside Signup component
+            //call login function inside Login component
            await wrapper.instance().login();
 
             //then

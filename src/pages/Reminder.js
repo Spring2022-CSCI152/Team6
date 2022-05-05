@@ -49,7 +49,7 @@ const Reminder = () => {
 
 
     return (
-        <div class="collection">
+        <div>
              <section class="firstsection">
              <div class="box-main">
              <div class="firstHalf">

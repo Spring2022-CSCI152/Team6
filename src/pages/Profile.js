@@ -43,7 +43,7 @@ const Profile = () => {
                 </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Group as={Row} className="mb-33" controlId="formPlaintextEmail">
                 <Form.Label className = "label" column sm="2">
                 Last Name:
                 </Form.Label>
@@ -61,7 +61,7 @@ const Profile = () => {
                 </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Group as={Row} className="mb-33" controlId="formPlaintextEmail">
                 <Form.Label className = "label" column sm="2">
                 Major:
                 </Form.Label>
@@ -79,7 +79,7 @@ const Profile = () => {
                 </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
+            <Form.Group as={Row} className="mb-33" controlId="formPlaintextEmail">
                 <Form.Label className = "label" column sm="2">
                 Expected Graduation Date:
                 </Form.Label>
@@ -99,7 +99,6 @@ const Profile = () => {
                 </div>
             </div>
             </Row>
-
         </Container>
         </div>
     </>

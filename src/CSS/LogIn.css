@@ -66,8 +66,9 @@ span{
     padding: 5px;
     height: 45px;
     left: 10%;
-    width: 80%;
+    width: 500px;
     border-radius: 100px;
+    text-align: left;
 }
 .form{
     margin-bottom: 20%;
@@ -139,7 +140,7 @@ span{
 }
 .Signup label{
     position: relative;
-    width: 100%;
+    width: 400px;
     height: 27px;
     display: block;
     text-align: left;
@@ -165,7 +166,7 @@ span{
     padding: 5px;
     height: 45px;
     left: 10%;
-    width: 80%;
+    width: 500px;
     border-radius: 100px;
 }
 .form{

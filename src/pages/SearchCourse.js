@@ -74,16 +74,16 @@ function FindCourse() {
         <div className="Course">
             <form onSubmit={search} name="SearchCourseForm">
                 <label>Search: </label>
-                <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" value={findingcourses} /> <br />
+                <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="Example: CSCI 1" id="finding" value={findingcourses} /> <br />
                 <button className='button' type="submit" name="submit">Search</button>
             </form>
             <div className = "mainbox" id="result">
-                <p className = "line" id="classNameAb"></p>
-                <p className = "line"  id="className"></p>
-                <p className = "line" id="prerequisites"></p>
-                <p className = "line" id="description"></p>
-                <p className = "line"  id="units"></p>
-                <p className = "line" id="term"></p>
+                <p className = "line1" id="classNameAb"></p>
+                <p className = "line2"  id="className"></p>
+                <p className = "line1" id="prerequisites"></p>
+                <p className = "line2" id="description"></p>
+                <p className = "line1"  id="units"></p>
+                <p className = "line2" id="term"></p>
             </div>
         </div>
 
