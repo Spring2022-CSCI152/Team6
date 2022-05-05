@@ -49,7 +49,7 @@ router.get('/', async (req, res) => {
         { _id: 0, password: 0, createdAt: 0, __v: 0 });
 
     //return user's information to frontend
-    res.json({ user: user });
+    res.status(200).json({ user: user });
 });
 
 //modify logged-in user's attributes
@@ -74,7 +74,7 @@ router.put('/', async (req, res) => {
     );
 
     //return user's information to frontend as proof of change
-    res.json({ user: user });
+    res.status(200).json({ user: user });
 })
 
 module.exports = router;
