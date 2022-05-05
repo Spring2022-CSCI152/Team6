@@ -15,6 +15,7 @@ const User = require("../model/User");
  * @description - User SignUp
  */
 
+//signup
 router.post(
   "/signup",
   [
@@ -106,6 +107,7 @@ router.post(
   }
 );
 
+//login
 router.post(
   "/login",
   [
