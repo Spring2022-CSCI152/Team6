@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
 
         console.log(err);
 
-        res.status(500).json({error: "MongoDB User.findOne Threw Error"});
+        res.status(500).json({ error: "MongoDB User.findOne() Threw Error" });
     }
 });
 
@@ -68,25 +68,38 @@ router.get('/', async (req, res) => {
 router.put('/', async (req, res) => {
 
     //unique document id for mongoDB collection
-    const ObjectId = makeObjectIdFromReq(req);
+    const objId = makeObjectIdFromReq(req);
 
-    //search mongoDB for the user's document by its id
-    const result = await User.updateOne({ _id: objId },
-        {
-            //update all properties in request
-            $set: req.body
+    try {
+        //search mongoDB for the user's document by its id
+        const result = await User.updateOne({ _id: objId },
+            {
+                //update all properties in request
+                $set: req.body
 
-        }
-    );
+            }
+        );
 
-    const user = await User.findOne({ _id: objId },
+        if(!result) return res.status(400).json({message:"failed to update user"})
 
-        //skip unnecessary data to avoid stamp coupling
-        { _id: 0, password: 0, createdAt: 0, __v: 0 }
-    );
+        res.status(200).json({message: "successfully updated user"})
 
-    //return user's information to frontend as proof of change
-    res.status(200).json({ user: user });
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({error: "MongoDB User.updateOne() Threw Error"});
+    }
+
+
+    // const user = await User.findOne({ _id: objId },
+
+    //     //skip unnecessary data to avoid stamp coupling
+    //     { _id: 0, password: 0, createdAt: 0, __v: 0 }
+    // );
+
+    // //return user's information to frontend as proof of change
+    // res.status(200).json({ user: user });
 })
 
 module.exports = router;
