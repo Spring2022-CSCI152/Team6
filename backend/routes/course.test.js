@@ -9,13 +9,6 @@ jest.mock("../model/Course.js")
 
 const queryMock = new mongoose.Query();
 
-const courseMock = {
-    findOne: jest.fn(() => courseMock),
-    sort: jest.fn(() => courseMock),
-    collation: jest.fn(() => courseMock),
-};
-
-
 describe("Post /course/addClass", () => {
 
     const data = {
@@ -93,33 +86,116 @@ describe("Post /course/search", () => {
     jest.clearAllMocks();
     jest.resetAllMocks();
 
-    describe("given course name or abbreviation with no db matches", () => {
-        test("should return status code 400, and message 'Course Not Exist' in json", async () => {
+    // describe("given course name or abbreviation with no db matches", () => {
+    //     test("should return status code 400, and message 'Course Not Exist' in json", async () => {
+
+    //         //stubs the mongoose chain
+    //         jest.spyOn(Class, 'find').mockReturnValue(queryMock);
+    //         jest.spyOn(queryMock, 'sort').mockReturnValue(queryMock);
+    //         jest.spyOn(queryMock, 'collation').mockReturnValue("");
+
+
+    //         const response = await request(app).post("/course/search").send();
+
+    //         expect(response.statusCode).toBe(400);
+    //         expect(response.body.message).toEqual("Course Not Exist")
+    //         expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+    //     })
+    // })
+    
+    describe("given course name or abbreviation with at least one db match", () => {
+        test("should return status code 200, and message of 'Course Found!' in json.", async () => {
 
             //stubs the mongoose chain
             jest.spyOn(Class, 'find').mockReturnValue(queryMock);
             jest.spyOn(queryMock, 'sort').mockReturnValue(queryMock);
-            jest.spyOn(queryMock, 'collation').mockReturnValue("");
+            jest.spyOn(queryMock, 'collation').mockReturnValue(1);
 
 
             const response = await request(app).post("/course/search").send();
 
-            expect(response.statusCode).toBe(400);
-            expect(response.body.message).toEqual("Course Not Exist")
+            expect(response.statusCode).toBe(200);
+            expect(response.body.message).toEqual("Course Found!")
             expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
         })
     })
-    describe("given course name or abbreviation with at least one db match", () => {
-        test("should return status code 200, and message of 'Course Found!' in json.", async () => {
+    describe("given mongoDB error", () => {
+        test("should return status code 500, and message 'Server Error'", async () => {
 
+            //stubs the mongoose chain
+            jest.spyOn(Class, 'find').mockImplementation(() => {
+                throw new Error();
+            })
+
+
+            const response = await request(app).post("/course/search").send();
+
+            expect(response.statusCode).toBe(500);
+            expect(response.body.message).toEqual("Server Error")
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+        })
+    })
+
+})
+
+describe("Get /course/ - route responsible for getting all courses at once", () => {
+    jest.clearAllMocks();
+    jest.resetAllMocks();
+
+    // describe("given no courses in mongoDB collection", () => {
+    //     test("should return status code 400, and message 'There is no course'.", async () => {
+
+    //         //stubs the mongoose chain
+    //         jest.spyOn(Class, 'find').mockReturnValue(queryMock);
+    //         jest.spyOn(queryMock, 'sort').mockReturnValue(queryMock);
+    //         jest.spyOn(queryMock, 'collation').mockReturnValue(0);
+
+    //         const response = await request(app).get("/course").send();
+
+    //         expect(response.statusCode).toBe(400);
+    //         expect(response.body.message).toEqual('There are no courses');
+    //         expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+    //     })
+    // })
+
+    describe("given more than one course in mongoDB collection", () => {
+        test("should return status code 200, and message 'All courses found!", async () => {
+
+            //stubs the mongoose chain
+            jest.spyOn(Class, 'find').mockReturnValue(queryMock);
+            jest.spyOn(queryMock, 'sort').mockReturnValue(queryMock);
+            jest.spyOn(queryMock, 'collation').mockReturnValue(1);
+
+            const response = await request(app).get("/course").send();
+
+            expect(response.statusCode).toBe(200);
+            expect(response.body.message).toEqual('All courses found!');
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+        })
+    })
+    describe("given mongoDB server error", () => {
+        test("should return status code 500, and message 'Server Error'", async () => {
+
+            jest.spyOn(Class, 'find').mockImplementation(() => {
+                throw new Error();
+            })
+
+            const response = await request(app).get("/course").send();
+
+            expect(response.statusCode).toBe(500);
+            expect(response.body.message).toEqual('Server Error');
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
         })
     })
 })
 
-describe("Get /course/", () => {
+describe("Post /course/searchWithTermFilter", () => {
+    jest.clearAllMocks();
+    jest.resetAllMocks();
 
+    // describe()
 })
 
-describe("Post /course/searchWithTermFilter", () => {
+describe("Put /course/update", () => {
 
 })

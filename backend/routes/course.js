@@ -28,7 +28,6 @@ const getUser_idFromReq = (req) => {
   return payload.user.id;
 }
 
-
 router.post(
   "/addClass",
   [
@@ -105,11 +104,13 @@ router.post(
       }
         : { $text: { $search: query.general } })
         .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
-      if (courses.toString() == "") {
-        return res.status(400).json({
-          message: "Course Not Exist",
-        });
-      }
+
+      // if (courses.toString() == "") {
+      //   return res.status(400).json({
+      //     message: "Course Not Exist",
+      //   });
+      // }
+
       res.status(200).json({
         message: "Course Found!",
         courses
@@ -124,15 +125,17 @@ router.post(
 );
 
 router.get("/", async (req, res) => {
+
   try {
     var courses = await Class.find().sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
-    if (!courses)
-      return res.status(400).json({
-        message: "There is no course",
-      });
+
+    // if (!courses)
+    //   return res.status(400).json({
+    //     message: "There are no courses",
+    //   });
 
     res.status(200).json({
-      message: "All courses Founded!",
+      message: "All courses found!",
       courses
     });
   } catch (e) {
@@ -146,61 +149,31 @@ router.get("/", async (req, res) => {
 router.post(
   "/searchWithTermFilter",
   async (req, res) => {
-    console.log(req.body);
-    // const { classNameAb, className, TermTypicallyOffered  } = req.body;
-    const { query, TermTypicallyOffered } = req.body;
-    // const query = req.body;
-    // console.log(classNameAb,className);
-    // if(!classNameAb || !className)
-    if (!query) { //case of "View All" filtered by selected term(s)
-      // console.log("hi");
-      try {
-        var courses = await Class.find({
-          TermTypicallyOffered
-        }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
-        console.log(courses.toString());
-        if (courses.toString() == "") {
-          // console.log("hi");
-          return res.status(400).json({
-            message: "Course Not Exist",
-          });
-        }
-        res.status(200).json({
-          message: "Course Founded!",
-          courses
-        });
-      } catch (e) {
-        console.error(e);
-        res.status(500).json({
-          message: "Server Error",
-        });
-      }
-    }
-    else {
-      //case of non-empty search string filtered by selected term(s)
-      try {
-        var courses = await Class.find({
-          // $or:
-          // [{classNameAb},
-          // {className}],
-          $text: { $search: query },
-          TermTypicallyOffered
-        }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
-        if (courses.toString() == "") {
-          return res.status(400).json({
-            message: "Course Not Exist",
-          });
-        }
-        res.status(200).json({
-          message: "Course Founded!",
-          courses
-        });
-      } catch (e) {
-        console.error(e);
-        res.status(500).json({
-          message: "Server Error",
-        });
-      }
+
+    const { searchQuery, TermTypicallyOffered } = req.body;
+
+    //case of empty vs non-empty search string
+    const criteria = searchQuery ? { $text: { $search: searchQuery }, TermTypicallyOffered } : { TermTypicallyOffered }
+
+    try {
+      const courses = await Class.find(criteria).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+
+      // if (courses.toString() == "") {
+      //   return res.status(400).json({
+      //     message: "Course Not Exist",
+      //   });
+      // }
+
+      res.status(200).json({
+        message: "Course Found!",
+        courses
+      });
+      
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({
+        message: "Server Error",
+      });
     }
   }
 );
@@ -228,7 +201,7 @@ router.put("/update", async (req, res) => {
     try {
 
       //use unique course id to find document (record), and update
-      const result = await Class.findByIdAndUpdate( req.body.class_id, { $set: req.body.classChanges });
+      const result = await Class.findByIdAndUpdate(req.body.class_id, { $set: req.body.classChanges });
 
       //return respective code and message
       if (!result) return res.status(400).json({ message: "Failed to update course.  Could not find it." })
