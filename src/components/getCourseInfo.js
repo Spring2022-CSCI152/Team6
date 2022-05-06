@@ -39,7 +39,7 @@ const getCourseInfo = async () => {
 const updateCourseInfo = async (data) => {
     console.log(data)
 
-        axios.put(`/course/update`, data).then((res) => {
+        return axios.put(`/course/update`, data).then((res) => {
             return res;
         })
         .catch((error) => {

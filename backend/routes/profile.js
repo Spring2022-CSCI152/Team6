@@ -80,7 +80,7 @@ router.put('/', async (req, res) => {
             }
         );
 
-        if (!result) return res.status(400).json({ message: "Failed to update user" })
+        if (!result.acknowledged) return res.status(400).json({ message: "Failed to update user" })
 
         res.status(200).json({ message: "Successfully updated user" })
 
