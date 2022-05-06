@@ -9,6 +9,7 @@ axios.interceptors.request.use(
         // if (allowedOrigins.includes(origin)) {
         config.headers.authorization = `Bearer ${token}`;
         // }
+
         return config;
     },
     error => {
@@ -31,18 +32,20 @@ const getUserInfo = async () => {
             return error;
         })
 
-    //returns the user or an error.  depends on server response.
+    //returns the user or an error.
     return user;
 }
 
 //sends updated user info to backend
 const updateUserInfo = async (data) => {
-    console.log(data)
 
-        axios.put(`/profile`, data).then((res) => {
+    return axios.put(`/profile`, data)
+        .then((res) => {
+
             return res;
-        })
-        .catch((error) => {
+        }, (error) => {
+
+            console.log(error);
             return error;
         })
 }
