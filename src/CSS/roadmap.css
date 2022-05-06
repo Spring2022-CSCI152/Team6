@@ -41,7 +41,30 @@
   font-size: 20px;
   align-items: center;
 }
-
+.Roadmap select{
+  width: 100px;
+}
+.Roadmap table{
+  color: black;
+}
+.Roadmap table .year{
+  width: 100px;
+}
+.Roadmap table .spring{
+  width: 100px;
+}
+.Roadmap table .summer{
+  width: 100px;
+}
+.Roadmap table .fall{
+  width: 200px;
+}
+.Roadmap table .winter{
+  width: 200px;
+}
+.Roadmap table .Units{
+  width: 100px;
+}
 .Roadmap button {
   padding: 10px;
   font-size: 15px;
@@ -63,12 +86,9 @@
 }
 
 .Roadmap table,
-.Roadmap th,
-.Roadmap tbody {
+.Roadmap th {
   border: 2px black solid;
-  width: 100%;
   text-align: center;
-
 }
 
 .Roadmap #sample_year {

@@ -21,7 +21,6 @@ import { getUserInfo } from './components/GetUserInfo';
 //state and state change function for user object
 
 function App() {
-
   const [user, setUser] = useState({});
 
   //loads user info on mount and set user role to userAuthen
