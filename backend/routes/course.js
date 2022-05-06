@@ -4,7 +4,37 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const router = express.Router();
 
+//json web token
+const jwt = require('jsonwebtoken');
+
+//needed to find mongodb document by id
+const ObjectId = require('mongodb').ObjectId;
+
 const Class = require("../model/Course");
+
+const User = require("../model/User")
+
+
+//uses the user id stored in the json web token of the request header to create a mongoDB id object for search
+const makeObjectIdFromReq = (req) => {
+
+  //grab the token from the header
+  const rawToken = req.headers.authorization;
+
+  //separate the token code from the "bearer" prefix
+  const token = rawToken.split(' ')[1];
+
+  //decode jwt
+  const payload = jwt.verify(token, "randomString");
+
+  //return the stored id of decoded jwt
+  const userId = payload.user.id;
+
+  //create mongoDB id type for search
+  return new ObjectId(userId);
+}
+
+
 
 router.post(
   "/addClass",
@@ -73,12 +103,13 @@ router.post(
     // const { classNameAb, className  } = req.body;
     const query = req.body;
     try {
-      var courses = await Class.find((query.specific)?{
+      var courses = await Class.find((query.specific) ? {
         $or:
-        [{"classNameAb":query.specific},
-        {"className":query.specific}]}
-      :{$text: { $search: query.general }})
-      .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+          [{ "classNameAb": query.specific },
+          { "className": query.specific }]
+      }
+        : { $text: { $search: query.general } })
+        .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
       if (courses.toString() == "") {
         return res.status(400).json({
           message: "Course Not Exist",
@@ -178,5 +209,49 @@ router.post(
     }
   }
 );
+
+router.put("/update", async (req, res) => {
+
+  //verify that user has privilege to modify course information
+  //unique document id for mongoDB collection
+  const objId = makeObjectIdFromReq(req);
+
+  try {
+    //search mongoDB for the user's document by its id
+    const user = await User.findById({ objId },
+
+      //get rid of unnecessary data (avoid stamp coupling)
+      { role: 1 });
+
+    //case of missing user record
+    if (!user) return res.status(400).json({ message: "Failed to find user", user: "" })
+
+    //case of wrong privilege level
+    if (user.role != "admin") return res.status(400).json({ message: "User lacks privilege to modify courses." })
+
+    try {
+      //use unique course id to find document (record), and update
+      const result = Class.updateOne({ classNameAb: req.body.classNameAb }, { $set: req.body });
+
+      //return respective code and message
+      if (!result) return res.status(400).json({ message: "Failed to update course" })
+
+      res.status(200).json({ message: "Successfully updated course" })
+
+    } catch (error) {
+      //case of mongoDB error
+      console.log(error)
+      res.status(500).json({ error: "MongoDB Class.updateOne() Threw Error" });
+    }
+
+  } catch (err) {
+    //case of mongoDB error
+
+    console.log(err);
+
+    res.status(500).json({ error: "MongoDB User.findById() Threw Error" });
+  }
+
+})
 
 module.exports = router;

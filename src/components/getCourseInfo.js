@@ -19,27 +19,27 @@ axios.interceptors.request.use(
 //gets user information from backend
 const getCourseInfo = async () => {
 
-    //request user information from server
-    const course = await axios.get("/profile")
+    // //request user information from server
+    // const course = await axios.get("/course/")
 
-        .then((res) => {
+    //     .then((res) => {
 
-            return res.data.course;
+    //         return res.data.course;
 
-        }).catch((error) => {
-            console.log(error);
-            return error;
-        })
+    //     }).catch((error) => {
+    //         console.log(error);
+    //         return error;
+    //     })
 
-    //returns the user or an error.  depends on server response.
-    return course;
+    // //returns the user or an error.  depends on server response.
+    // return course;
 }
 
 //sends updated user info to backend
 const updateCourseInfo = async (data) => {
     console.log(data)
 
-        axios.put(`/profile`, data).then((res) => {
+        axios.put(`/course/update`, data).then((res) => {
             return res;
         })
         .catch((error) => {
