@@ -95,7 +95,7 @@ export class login extends React.Component {
   render() {
 
   return (
-    <div className="Login"><div class="bg-image"></div>
+    <div className="Login"><div className="bg-image"></div>
       <div className='LogIn-Box-wrapper'>
         <div className='LogIn-Box'>
           <p id="title">Log In</p>
