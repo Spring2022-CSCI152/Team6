@@ -38,7 +38,9 @@ router.post(
         $or:
           [{ classNameAb },
           { className }]
-      }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+      })
+        .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+
       if (course) {
         return res.status(400).json({
           msg: "Class Already Exists",
@@ -73,19 +75,20 @@ router.post(
     // const { classNameAb, className  } = req.body;
     const query = req.body;
     try {
-      var courses = await Class.find((query.specific)?{
+      var courses = await Class.find((query.specific) ? {
         $or:
-        [{"classNameAb":query.specific},
-        {"className":query.specific}]}
-      :{$text: { $search: query.general }})
-      .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+          [{ "classNameAb": query.specific },
+          { "className": query.specific }]
+      }
+        : { $text: { $search: query.general } })
+        .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
       if (courses.toString() == "") {
         return res.status(400).json({
           message: "Course Not Exist",
         });
       }
       res.status(200).json({
-        message: "Course Founded!",
+        message: "Course Found!",
         courses
       });
     } catch (e) {
