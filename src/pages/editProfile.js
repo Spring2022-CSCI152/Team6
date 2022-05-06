@@ -74,7 +74,7 @@ function EditProfile() {
 
     //render
     return (
-        <div className="editProfile">
+        <div className="profile">
             <Container>
                 <Row>
 
