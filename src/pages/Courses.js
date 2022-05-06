@@ -41,7 +41,7 @@ function Courses() {
                     response = res;
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.log(error); 
                 })
         }
 

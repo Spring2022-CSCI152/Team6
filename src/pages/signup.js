@@ -78,7 +78,7 @@ export class Signup extends React.Component {
 
 
     return (
-      <div className="Signup"><div class="bg-image"></div>
+      <div className="Signup"><div className="bg-image"></div>
         <div className='Signup-Box-wrapper'>
           <div className='Signup-Box'>
             <p id="title">Create a new account</p>
