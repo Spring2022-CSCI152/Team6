@@ -1,10 +1,27 @@
-/* body{
-    color:white;
-    font-style: normal;
-} */
+.Login{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(212, 212, 212);
+    padding-top: 0;
+    margin-top: 0;
+}
+.bg-image{
+    background-image: url("../assets/blogimg11.png");
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+    filter: blur(7px);
+    height: 0%;
+    width: 100%;
+    position: absolute;
+    opacity: 0.5;
+    padding-top: -80px;
+}
 .LogIn-Box-wrapper{
     display: block;
     position: relative;
+    width: 100%;
+    height: 100% ;
     text-align: center;
     /* margin-top: 7%; */
     padding: 5% 0 0 0;
@@ -12,24 +29,34 @@
 .LogIn-Box{
     position: relative;
     margin: auto;
-    width: 35%;
-    border: 7px solid rgb(255, 58, 58)  ;
-    border-radius: 30px;
+    width: 800px;
+    /* border: 3px outset rgb(255, 58, 58)  ; */
+    border-radius: 120px;
     align-items: center;
 }
-#title{
-    padding-bottom: 50px;
+.Login #title{
+    padding-bottom: 0px;
+    font-weight: 800;
     padding-top: 0;
     font-size: 70px;
-    color:rgb(255, 58, 58);
+    margin: 50px;
+    color:black;
 }
-label{
+.Login label{
+    position: relative;
     width: 100%;
     height: 27px;
     display: block;
     text-align: left;
-    margin-left: 10%;
     margin-right: 0%;
+    margin-left: 0%;
+    padding-left: 150px;
+    color: black;
+    font-weight: 700;
+}
+.Login label a{
+    float:right;
+    margin-right: 150px;
 }
 label a{
     color: #005eff;
@@ -37,27 +64,131 @@ label a{
 span{
     margin-left: 30%;
 }
-input{
-    /* margin-right: 15px; */
+.Login input{
     margin-bottom: 20px;
     padding: 5px;
-    height: 15px;
+    height: 45px;
     left: 10%;
-    width: 80%;
-    border-radius: 30px;
+    width: 500px;
+    border-radius: 100px;
+    text-align: left;
 }
-.form{
+.Login form{
+    width: 100%;
     margin-bottom: 20%;
     font-size: 20px;
-   align-items: center;   
+    align-items: center;   
 }
-button{
+.Login button{
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 60px;
     padding: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    margin: 10px;
-    border-radius: 10px;
+    border: 2px solid black;
+    background-color: transparent;
+    color:black;
+    font-style: normal;
+    text-decoration:none;
+    padding:10px 50px;
 }
-button:hover{
+.Login button a{
+    text-decoration:none;
+    color: black;
+}
+.Login button:hover{
+    color: black;
     background-color: #ff4646;
+    border:2px solid black;
+}
+
+
+.Signup{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(212, 212, 212);
+}
+.bg-image{
+    background-image: url("../assets/blogimg11.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: blur(7px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    opacity: 0.5;
+}
+.Signup-Box-wrapper{
+    display: block;
+    position: relative;
+    text-align: center;
+    /* margin-top: 7%; */
+    padding: 5% 0 0 0;
+}
+.Signup-Box{
+    position: relative;
+    margin: auto;
+    width: 700px;
+    /* border: 3px outset rgb(255, 58, 58)  ; */
+    border-radius: 120px;
+    align-items: center;
+}
+.Signup #title{
+    padding-bottom: 0px;
+    font-weight: 800;
+    padding-top: 0;
+    font-size: 40px;
+    margin: 0px;
+    padding: 20px;
+    width: 100%;
+    color:black;
+}
+.Signup label{
+    position: relative;
+    width: 100%;
+    height: 27px;
+    display: block;
+    text-align: left;
+    margin-right: 0%;
+    margin-left: 0%;
+    padding-left: 10%;
+    color: black;
+    font-weight: 700;
+}
+.Signup label a{
+    float:right;
+    margin-right: 11%;
+
+}
+label a{
+    color: #005eff;
+}
+span{
+    margin-left: 30%;
+}
+.Signup input{
+    margin-bottom: 20px;
+    padding: 5px;
+    height: 45px;
+    left: 10%;
+    width: 500px;
+    border-radius: 100px;
+}
+.Signup button{
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 60px;
+    padding: 10px;
+    border: 2px solid black;
+    background-color: transparent;
+    color:black;
+    font-style: normal;
+    text-decoration:none;
+    padding:10px 50px;
+}
+.Signup button:hover{
+    color: black;
+    background-color: #ff4646;
+    border:2px solid black;
 }

@@ -17,7 +17,8 @@ const User = require('../model/User');
 const ObjectId = require('mongodb').ObjectId;
 
 
-router.get('/', async (req, res) => {
+//uses the user id stored in the json web token of the request header to create a mongoDB id object for search
+const makeObjectIdFromReq = (req) => {
 
     //grab the token from the header
     const rawToken = req.headers.authorization;
@@ -28,37 +29,77 @@ router.get('/', async (req, res) => {
     //decode jwt
     const payload = jwt.verify(token, "randomString");
 
-    //grab the stored id of decoded jwt
+    //return the stored id of decoded jwt
     const userId = payload.user.id;
 
     //create mongoDB id type for search
-    const objId = new ObjectId(userId);
+    return new ObjectId(userId);
+}
 
-    //search mongoDB for the user's document by its id
-    const user = await User.findOne({ _id: objId });
+//get logged-in user's attributes
+router.get('/', async (req, res) => {
 
-    //return user's information to frontend
-    res.json({ user: user });
+    //unique document id for mongoDB collection
+    const objId = makeObjectIdFromReq(req);
+
+    try {
+        //search mongoDB for the user's document by its id
+        const user = await User.findOne({ _id: objId },
+
+            //get rid of unnecessary data (avoid stamp coupling)
+            { _id: 0, password: 0, createdAt: 0, __v: 0 });
+
+        //case of missing database record
+        if (!user) return res.status(400).json({ message: "Failed to find user", user: "" })
+
+        //return user's information to frontend
+        res.status(200).json({ user: user });
+
+    } catch (err) {
+        //case of mongoDB error
+
+        console.log(err);
+
+        res.status(500).json({ error: "MongoDB User.findOne() Threw Error" });
+    }
 });
 
+//modify logged-in user's attributes
+router.put('/', async (req, res) => {
+
+    //unique document id for mongoDB collection
+    const objId = makeObjectIdFromReq(req);
+
+    try {
+        //search mongoDB for the user's document by its id
+        const result = await User.updateOne({ _id: objId },
+            {
+                //update all properties in request
+                $set: req.body
+
+            }
+        );
+
+        if(!result) return res.status(400).json({message:"failed to update user"})
+
+        res.status(200).json({message: "successfully updated user"})
+
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({error: "MongoDB User.updateOne() Threw Error"});
+    }
+
+
+    // const user = await User.findOne({ _id: objId },
+
+    //     //skip unnecessary data to avoid stamp coupling
+    //     { _id: 0, password: 0, createdAt: 0, __v: 0 }
+    // );
+
+    // //return user's information to frontend as proof of change
+    // res.status(200).json({ user: user });
+})
+
 module.exports = router;
-
-
-//junk code.  too scared to delete
-
-    // const decoded = jwt.verify(token, "randomString");
-    // const decoded = jwt.decode(token);
-    // var userId = decoded.userId;
-    // const user = new Promise((resolve, reject) => {
-    //     jwt.verify(token, getKey, authOptions, (err, decoded) => {
-    //         if (err) return reject(err);
-    //         resolve(decoded);
-    //     })
-    // })
-
-    // const decoded = jwt.verify(token, "randomString", function (err, decodedToken) {
-    //     if (err) { error = err.message }
-    //     else {
-    //         user = decodedToken.id;
-    //     }
-    // });

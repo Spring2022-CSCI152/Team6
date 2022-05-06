@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './CSS/App.css'
 import NavBar from './components/NavBar';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Profile from './pages/Profile';
 import HomePage from './pages/HomePage';
 import LogIn from './pages/login';
@@ -14,9 +14,54 @@ import Courses from './pages/Courses';
 import CoursesForAdmin from './pages/CoursesForAdmin';
 import Roadmap from './pages/Roadmap';
 import Reminders from './pages/Reminder';
+import EditProfile from './pages/editProfile';
+import AddClass from './pages/addClass'
+import { getUserInfo } from './components/GetUserInfo';
 
+//state and state change function for user object
 
 function App() {
+
+  const [user, setUser] = useState({});
+
+  //loads user info on mount and set user role to userAuthen
+  useEffect(() => {
+
+      async function getUserInfoWrapper() {
+
+          //updates user state with user object from backend, matched by stored cookie id
+          setUser(await getUserInfo());
+      }
+
+      getUserInfoWrapper();
+      
+  }, []);
+  let userAuthen = user.role;
+
+  console.log(userAuthen)
+
+  function BasicRoute ({children, ...rest}) {
+    
+    return(
+      <Route {...rest} render={() => {
+        return userAuthen == "basic"
+          ? children
+          : <Redirect to='/home' />
+      }}/>
+    )
+  }
+  
+  function AdminRoute ({children, ...rest}) {
+    
+    return(
+      <Route {...rest} render={() => {
+        return userAuthen == "admin"
+          ? children
+          : <Redirect to='/home' />
+      }}/>
+    )
+  }
+
   return (
     <>
       <Router forceRefresh={false}>
@@ -24,19 +69,27 @@ function App() {
           <Route exact path={["/", "/:page"]}><NavBar /></Route>
         </Switch >
         <Switch>
+          {/*Both basic and admin routes under here*/}
           <Route exact path={["/", "/Home"]}><HomePage /></Route>
-          {/* <Route exact path="/HomePageAfterLogIn"><HomePageAfterLogIn /></Route> */}
+          
+          <Route exact path="/Profile"><Profile /></Route>
           <Route exact path="/LogIn"><LogIn /></Route>
           <Route exact path="/Signup"><Signup /></Route>
-          <Route exact path="/RecordList"><RecordList /></Route>
-          <Route exact path="/CoursesParser"><CoursesParser /></Route>
-          <Route exact path="/Profile"><Profile /></Route>
-          <Route exact path="/Calendar"><Calendar1 /></Route>
-          <Route exact path="/SearchCourse"><SearchCourse /></Route>
-          <Route exact path="/Courses"><Courses /></Route>
-          <Route exact path="/CoursesForAdmin"><CoursesForAdmin /></Route>
-          <Route exact path="/Roadmap"><Roadmap /></Route>
-          <Route exact path="/Reminders"><Reminders /></Route>
+          {/*Basic routes under here*/}
+          <BasicRoute exact path="/RecordList"><RecordList /></BasicRoute>
+          <BasicRoute exact path="/CoursesParser"><CoursesParser /></BasicRoute>
+          <BasicRoute exact path="/Calendar"><Calendar1 /></BasicRoute>
+          <BasicRoute exact path="/SearchCourse"><SearchCourse /></BasicRoute>
+          <BasicRoute exact path="/Courses"><Courses /></BasicRoute>
+          <BasicRoute exact path="/CoursesForAdmin"><CoursesForAdmin /></BasicRoute>
+          <BasicRoute exact path="/Roadmap"><Roadmap /></BasicRoute>
+          <BasicRoute exact path="/Reminders"><Reminders /></BasicRoute>
+          <BasicRoute exact path="/editProfile"><EditProfile /></BasicRoute>
+
+          {/*admin routes under here*/}
+          <AdminRoute exact path="/add Class"><AddClass /></AdminRoute>
+
+          <Redirect from="*" to="/" />
         </Switch>
       </Router>
     </>
@@ -44,18 +97,3 @@ function App() {
 }
 
 export default App;
-
-// {/*
-// AuthContext is an authorization method?  Saved old code here for future reference.  Will delete once authorization problem is solved/approved.
-// import {useState} from 'react';
-// //  export const AuthContext = React.createContext()
-//   // const [authState, setAuthState] = useState(localStorage.getItem("user") ? true : false)
-//         function App(){
-//         return(
-//           { <AuthContext.Provider value={[authState, setAuthState]}> }
-//           /*{Routes Here}
-//            { </AuthContext.Provider>}
-// );
-// }
-
-// */}

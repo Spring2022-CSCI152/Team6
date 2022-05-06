@@ -5,6 +5,7 @@ import FindCourse from '../pages/SearchCourse';
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import 'regenerator-runtime/runtime';
+import { render, fireEvent } from '@testing-library/react'
 
 
 configure({ adapter: new Adapter() });
@@ -96,4 +97,50 @@ describe('SearchCourse Functional Component', () => {
 
     // })
 
-});
+    //testing updated input without using mock
+    describe('Input search from user', () => {
+        it('updates the change', () => {
+          const setcourse = jest.fn((value) => {})
+          
+          const { queryByPlaceholderText } = render(<FindCourse setCourse={setcourse}/>)
+      
+          const searchInput = queryByPlaceholderText('finding...')
+      
+          fireEvent.change(searchInput, { target: { value: 'test' } })
+      
+          expect(searchInput.value).toBe('test')
+        })
+      })
+
+    
+
+      });
+
+
+    /*describe("When API call is successful", () => {
+        it("Should log a response object with message on console.", async () => {
+
+            //given
+
+            //mock for post call.  returns a resolved (valid response), which is when a user is correctly logged in.  Message string is to simulate the response object, which contains the same message.
+            axios.post.mockResolvedValueOnce('Please input class for searching');
+
+            //when
+
+            //call signup function inside Login component
+           await wrapper.instance().FindCourse();
+
+
+            //then
+
+            //generic test for post function call
+            expect(axios.post).toHaveBeenCalledWith("/user/FindCourse", user)
+
+            //substitue for response object on success
+            expect(consoleSpy).toHaveBeenCalledWith('Please input class for searching');
+
+        })
+
+    })
+
+});*/

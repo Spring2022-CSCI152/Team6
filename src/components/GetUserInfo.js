@@ -35,4 +35,16 @@ const getUserInfo = async () => {
     return user;
 }
 
-export { getUserInfo }
+//sends updated user info to backend
+const updateUserInfo = async (data) => {
+    console.log(data)
+
+        axios.put(`/profile`, data).then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            return error;
+        })
+}
+
+export { getUserInfo, updateUserInfo }

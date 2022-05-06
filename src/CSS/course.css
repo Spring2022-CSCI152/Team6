@@ -1,5 +1,4 @@
 body {
-  background-color: #282c34;
   height: 100%;
   position: relative;
 }
@@ -9,9 +8,11 @@ body {
 }
 
 .Course {
-  background-color: #282c34;
+  background-color: rgba(255, 255, 255, 0.473);
   height: 100%;
   word-wrap: break-word;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .Course-header {
@@ -20,7 +21,7 @@ body {
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .Course-link {
@@ -36,6 +37,7 @@ body {
   align-items: center;
   vertical-align: middle;
   margin-bottom: 0;
+  color:black;
 }
 
 .Course form a {
@@ -47,6 +49,7 @@ body {
   text-align: center;
   vertical-align: middle;
   display:inline-block;
+  margin-left: 0;
 }
 
 .Course form input {
@@ -57,53 +60,82 @@ body {
   width: 25%;
   border-radius: 30px;
   box-sizing: border-box;
+  text-align: left;
 }
 .Course button {
-  font-size: 15px;
-  font-weight: 600;
   border-radius: 10px;
   display:  inline-block;
   box-sizing: border-box;
+  height: auto;
+  border:1px solid black;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .Course button:hover {
   background-color: #ff4646;
+  border: 1px solid #ff4646;
 }
 
 .Course .term {
   width: 150px;
   display:  inline-block;
 }
-
+.Course table{
+  font-size: 20px;
+  border-collapse: collapse;
+  border-style: none;
+  display: block;
+  width: 950px;
+  position: relative;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border:3px solid black;
+  border-radius: 10px;
+}
 .Course li{
 list-style: none;
 }
-
+.Course .th-Code{
+  width: 150px;
+}
+.Course .th-Title{
+  width: 406px;
+}
+.Course .th-Units{
+  width: 196px;
+}
+.Course .th-Term{
+  width: 220px;
+}
 .Course td{
   text-align: center;
   border-style: none;
+  padding: 12px;
 }
 .Course table thead{
   position: relative;
   left: 0;
   padding-left: 0;
   margin-left: 0;
+  color:black;
 }
 
-.Course table{
-  border-collapse: collapse;
-  border-style: none;
-  display: block;
-  position: relative;
-  float: left;
+.Course tr{
+  height: 60px;
+  color:black;
+  font-weight: 400;
 }
 
 .Course tr.odd{
-  background-color: rgb(34, 34, 34);
+  background-color: rgb(255, 220, 220);
 }
-
+.Course tr:hover td{
+  padding: 30px;
+}
 .Course tr.even{
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(208, 234, 255);
 }
 
 .h1 {
@@ -113,11 +145,6 @@ list-style: none;
   font-weight: 700;
   margin: 0;
   position: relative;
-}
-
-body {
-  color: white;
-  font-style: normal;
 }
 
 #title {
@@ -168,3 +195,58 @@ td {
 #hiddenButton {
   color: black;
 }
+
+.finding{ 
+  height: 30px;
+  margin-left: 20px;
+}
+
+.mainbox {
+  text-align: left;
+  max-width: 80%;
+  margin: auto;
+  padding: 2rem;
+  height: auto;
+}
+
+.line1{ 
+  border: 3px solid black;
+  border-radius: 25px;
+  background-color: rgb(255, 220, 220);
+  padding: 30px;
+  margin-bottom: 10px;
+  color: black;
+}
+.line2{
+  border: 3px solid black;
+  border-radius: 25px;
+  background-color: rgb(208, 234, 255);
+  padding: 30px;
+  margin-bottom: 10px;
+  color: black;
+
+}
+
+.Course form input {
+  display: inline-block;
+  padding: 20px;
+  height: 20px;
+  left: 10%;
+  width: 35%;
+  border-radius: 30px;
+  box-sizing: px border-box;
+  text-align: left;
+}
+
+/* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Fira sans', sans-serif;
+}*/
+
+
+
+
+
+
+

@@ -17,12 +17,15 @@ function FindCourse() {
 
         // prevents page reload
         e.preventDefault();
+        
 
         if (findingcourses == "") {
             alert("Please input class for searching");
 
+
             return;
         }
+
 
         const finding = { "classNameAb": findingcourses, "className": findingcourses };
         //sending to server
@@ -64,22 +67,23 @@ function FindCourse() {
                 console.log(error);
             });
 
+
     }
 
     return (
         <div className="Course">
             <form onSubmit={search} name="SearchCourseForm">
-                <label htmlFor='finding'>Search</label>
-                <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="finding..." id="finding" value={findingcourses} /> <br />
+                <label>Search: </label>
+                <input type="text" onChange={handleFinding} name="finding" className="finding" placeholder="Example: CSCI 1" id="finding" value={findingcourses} /> <br />
                 <button className='button' type="submit" name="submit">Search</button>
             </form>
-            <div id="result">
-                <p id="classNameAb"></p>
-                <p id="className"></p>
-                <div id="prerequisites"></div>
-                <p id="description"></p>
-                <p id="units"></p>
-                <p id="term"></p>
+            <div className = "mainbox" id="result">
+                <p className = "line1" id="classNameAb"></p>
+                <p className = "line2"  id="className"></p>
+                <p className = "line1" id="prerequisites"></p>
+                <p className = "line2" id="description"></p>
+                <p className = "line1"  id="units"></p>
+                <p className = "line2" id="term"></p>
             </div>
         </div>
 

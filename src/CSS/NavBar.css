@@ -7,6 +7,8 @@
     font-family: 'Quintessential', cursive;
     font-family: 'Tinos', serif;
     padding:10px 0;
+    display: block;
+    margin-bottom: 0;
   }
   
   /* Style the links inside the navigation bar */
