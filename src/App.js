@@ -15,7 +15,9 @@ import CoursesForAdmin from './pages/CoursesForAdmin';
 import Roadmap from './pages/Roadmap';
 import Reminders from './pages/Reminder';
 import EditProfile from './pages/editProfile';
-import AddClass from './pages/addClass'
+import AddClass from './pages/Admin/addClass'
+import EditClass from './pages/Admin/editClass'
+import SearchCourseAdmin from './pages/Admin/SearchCourseAdmin'
 import { getUserInfo } from './components/GetUserInfo';
 
 //state and state change function for user object
@@ -88,6 +90,8 @@ function App() {
 
           {/*admin routes under here*/}
           <AdminRoute exact path="/add Class"><AddClass /></AdminRoute>
+          <AdminRoute exact path="/editClass"><EditClass /></AdminRoute>
+          <AdminRoute exact path="/Search Course"><SearchCourseAdmin/></AdminRoute>
 
           <Redirect from="*" to="/" />
         </Switch>

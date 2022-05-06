@@ -1,14 +1,24 @@
 import axios from '../axios';
 import React from 'react';
+import 'regenerator-runtime/runtime';
 const User = require("../../backend/model/User");
 import EditProfile from '../pages/editProfile';
 import { shallow, configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import 'regenerator-runtime/runtime';
+import { render, fireEvent } from '@testing-library/react'
+
+
+// // // CommonJS
+// // const regeneratorRuntime = require("regenerator-runtime");
+
+// // ECMAScript 2015
+// import regeneratorRuntime from "regenerator-runtime";
 
 configure({ adapter: new Adapter() });
 
 jest.mock('../axios');
+
+
 
 describe("editProfile component's EditProfile function", () => {
 
@@ -16,10 +26,11 @@ describe("editProfile component's EditProfile function", () => {
 
     //used for function call check
     const user = {
-        "firstname": "",
-        "lastname": "",
-        "email": "",
-        "password": "",
+        "firstname": "ginu",
+        "lastname": "kaur",
+        "major": "computer science",
+        "year" : "0",
+        "expectedGraduationDate" : "0"
     };
 
     //A limited implementation of the EditProfile component
@@ -78,4 +89,19 @@ describe("editProfile component's EditProfile function", () => {
             expect(consoleSpy).toHaveBeenCalledWith(message);
         })
     })
+
+    describe('Input update from user', () => {
+        it('updates the change', () => {
+          const setFirstName = jest.fn((value) => {})
+          
+          const { queryByPlaceholderText } = render(<EditProfile setFirstName={setFirstName}/>)
+      
+          const EditProfile = queryByPlaceholderText('Change First name')
+      
+          fireEvent.change(EditProfile, { target: { value: 'test' } })
+      
+          expect(EditProfile.value).toBe('test')
+        })
+      })
 });
+ 

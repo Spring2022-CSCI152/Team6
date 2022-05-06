@@ -80,26 +80,16 @@ router.put('/', async (req, res) => {
             }
         );
 
-        if(!result) return res.status(400).json({message:"failed to update user"})
+        if (!result.acknowledged) return res.status(400).json({ message: "Failed to update user" })
 
-        res.status(200).json({message: "successfully updated user"})
+        res.status(200).json({ message: "Successfully updated user" })
 
     } catch (error) {
 
         console.log(error);
 
-        res.status(500).json({error: "MongoDB User.updateOne() Threw Error"});
+        res.status(500).json({ error: "MongoDB User.updateOne() Threw Error" });
     }
-
-
-    // const user = await User.findOne({ _id: objId },
-
-    //     //skip unnecessary data to avoid stamp coupling
-    //     { _id: 0, password: 0, createdAt: 0, __v: 0 }
-    // );
-
-    // //return user's information to frontend as proof of change
-    // res.status(200).json({ user: user });
 })
 
 module.exports = router;

@@ -3,6 +3,9 @@ import roadmap from '../assets/line-art-map_2.gif';
 import '../CSS/Home.css';
 import React, { useEffect } from 'react';
 
+function getStart(){
+  window.location.href="./LogIn";
+}
 
 function HomePage() {
   //logged out view
@@ -10,7 +13,7 @@ function HomePage() {
   loggedOutTags.push(<img src={roadmap} height="auto" key={1}/>)
   loggedOutTags.push(<p key={2}>Set your educational path</p>)
   loggedOutTags.push(
-  <button id='GetStart-Btn' key={3}>Get Started</button>
+  <button id='GetStart-Btn' onClick={getStart} key={3}>Get Started</button>
   )
 
   //current view state
