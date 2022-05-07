@@ -187,7 +187,7 @@ router.put("/update", async (req, res) => {
   } catch (error) {
     //case of mongoDB error
     console.log(error)
-    res.status(500).json({ error: "MongoDB Class.findByIdAndUpdate() Threw Error" });
+    res.status(500).json({ message: "MongoDB Class.findByIdAndUpdate() Threw Error" });
   }
 
 })

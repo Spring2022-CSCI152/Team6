@@ -2,12 +2,15 @@ import 'regenerator-runtime/runtime'
 import request from 'supertest';
 import app from '../app';
 import Class from '../model/Course';
+import Utility from './utility'
 
+//to stubs Mongoose chain
 const mongoose = require("mongoose");
-
-jest.mock("../model/Course.js")
-
 const queryMock = new mongoose.Query();
+
+//mocks
+jest.mock("../model/Course.js")
+jest.mock('./utility.js')
 
 describe("Post /course/addClass", () => {
 
@@ -236,7 +239,7 @@ describe("Post /course/searchWithTermFilter", () => {
         test("should return status code 500, and error message 'Server Error' in json", async () => {
 
             //stubs the mongoose chain
-            jest.spyOn(Class, 'find').mockImplementation(()=>{
+            jest.spyOn(Class, 'find').mockImplementation(() => {
                 throw new Error();
             })
 
@@ -251,5 +254,97 @@ describe("Post /course/searchWithTermFilter", () => {
 })
 
 describe("Put /course/update", () => {
+    test("should get user id from token", async () => {
 
+        const userIdFromToken = jest.spyOn(Utility, "getUser_idFromReq");
+
+        await request(app).put("/course/update").send();
+
+        expect(userIdFromToken).toHaveBeenCalled();
+    })
+    test("should check user's privilege level in mongoDB", async () => {
+
+        const userPrivilegeCheck = jest.spyOn(Utility, "verifyAdminRole");
+
+        await request(app).put("/course/update").send();
+
+        expect(userPrivilegeCheck).toHaveBeenCalled();
+    })
+
+    describe("given user without admin role", () => {
+        test("should return status code 400, and json message 'Failed to verify user role.'", async () => {
+
+            jest.spyOn(Utility, "verifyAdminRole").mockReturnValue(0);
+
+            const response = await request(app).put("/course/update").send();
+
+            expect(response.statusCode).toBe(400);
+            expect(response.body.message).toEqual('Failed to verify user role.');
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+        })
+    })
+    describe("given user with admin role", () => {
+        test("should query mongoDB collection Class with findByIdAndUpdate()", async () => {
+
+            //stub successful check
+            jest.spyOn(Utility, "verifyAdminRole").mockReturnValue(1);
+
+            //spy mongodb call
+            const classUpdateCall = jest.spyOn(Class, 'findByIdAndUpdate');
+
+            await request(app).put("/course/update").send();
+
+            expect(classUpdateCall).toHaveBeenCalled();
+        })
+        describe("given invalid course id", () => {
+            test("should return status code 400, and json message 'Failed to update course.  Could not find it.'", async () => {
+
+                //stub successful check
+                jest.spyOn(Utility, "verifyAdminRole").mockReturnValue(1);
+
+                //stub unsuccessful mongodb call
+                jest.spyOn(Class, 'findByIdAndUpdate').mockReturnValue(0);
+
+                const response = await request(app).put("/course/update").send();
+
+                expect(response.statusCode).toBe(400);
+                expect(response.body.message).toEqual('Failed to update course.  Could not find it.');
+                expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+            })
+        })
+        describe("given valid course id", () => {
+            test("should return status code 200, and json message 'Successfully updated course'.", async () => {
+                 
+                //stub successful check
+                 jest.spyOn(Utility, "verifyAdminRole").mockReturnValue(1);
+
+                 //stub successful mongodb call
+                 jest.spyOn(Class, 'findByIdAndUpdate').mockReturnValue(1);
+ 
+                 const response = await request(app).put("/course/update").send();
+ 
+                 expect(response.statusCode).toBe(200);
+                 expect(response.body.message).toEqual('Successfully updated course');
+                 expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+            })
+        })
+        describe("given mongodb error", () => {
+            test("should return status code 500, and json message 'MongoDB Class.findByIdAndUpdate() Threw Error'", async () => {
+
+                //stub successful check
+                jest.spyOn(Utility, "verifyAdminRole").mockReturnValue(1);
+
+                //stub error from mongodb call
+                jest.spyOn(Class, 'findByIdAndUpdate').mockImplementation(()=>{
+                    throw new Error("Mocked Error");
+                })
+
+                const response = await request(app).put("/course/update").send();
+
+                expect(response.statusCode).toBe(500);
+                expect(response.body.message).toEqual('MongoDB Class.findByIdAndUpdate() Threw Error');
+                expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+            })
+        })
+    })
 })
