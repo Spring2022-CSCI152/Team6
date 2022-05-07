@@ -102,7 +102,7 @@ describe("Post /course/search", () => {
     //         expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
     //     })
     // })
-    
+
     describe("given course name or abbreviation with at least one db match", () => {
         test("should return status code 200, and message of 'Course Found!' in json.", async () => {
 
@@ -120,7 +120,7 @@ describe("Post /course/search", () => {
         })
     })
     describe("given mongoDB error", () => {
-        test("should return status code 500, and message 'Server Error'", async () => {
+        test("should return status code 500, and message 'Server Error' in json", async () => {
 
             //stubs the mongoose chain
             jest.spyOn(Class, 'find').mockImplementation(() => {
@@ -159,7 +159,7 @@ describe("Get /course/ - route responsible for getting all courses at once", () 
     // })
 
     describe("given more than one course in mongoDB collection", () => {
-        test("should return status code 200, and message 'All courses found!", async () => {
+        test("should return status code 200, and message 'All courses found!' in json", async () => {
 
             //stubs the mongoose chain
             jest.spyOn(Class, 'find').mockReturnValue(queryMock);
@@ -174,7 +174,7 @@ describe("Get /course/ - route responsible for getting all courses at once", () 
         })
     })
     describe("given mongoDB server error", () => {
-        test("should return status code 500, and message 'Server Error'", async () => {
+        test("should return status code 500, and message 'Server Error' in json", async () => {
 
             jest.spyOn(Class, 'find').mockImplementation(() => {
                 throw new Error();
@@ -193,7 +193,61 @@ describe("Post /course/searchWithTermFilter", () => {
     jest.clearAllMocks();
     jest.resetAllMocks();
 
-    // describe()
+    // test("should dynamically create search query based on provided criteria", async () => {
+    //     const criteria = searchQuery ? { $text: { $search: searchQuery }, TermTypicallyOffered } : { TermTypicallyOffered }
+
+    //     //stubs the mongoose chain
+    //     const classFindCall = jest.spyOn(Class, 'find').mockReturnValue(queryMock);
+    //     jest.spyOn(queryMock, 'sort').mockReturnValue(queryMock);
+    //     jest.spyOn(queryMock, 'collation').mockReturnValue(1);
+
+    //     const response = await request(app).post("/course/searchWithTermFilter").send();
+    // })
+
+    test("should query database", async () => {
+
+        //stubs the mongoose chain
+        const classFindCall = jest.spyOn(Class, 'find').mockReturnValue(queryMock);
+        jest.spyOn(queryMock, 'sort').mockReturnValue(queryMock);
+        jest.spyOn(queryMock, 'collation').mockReturnValue(1);
+
+        await request(app).post("/course/searchWithTermFilter").send();
+
+        expect(classFindCall).toHaveBeenCalled();
+    })
+
+    describe("give: no server errors", () => {
+        test("should return status code 200, and success message 'Course Found!' in json", async () => {
+
+            //stubs the mongoose chain
+            jest.spyOn(Class, 'find').mockReturnValue(queryMock);
+            jest.spyOn(queryMock, 'sort').mockReturnValue(queryMock);
+            jest.spyOn(queryMock, 'collation').mockReturnValue(1);
+
+            const response = await request(app).post("/course/searchWithTermFilter").send();
+
+            expect(response.statusCode).toBe(200);
+            expect(response.body.message).toEqual('Course Found!')
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+        })
+    })
+
+    describe("given: server errors", () => {
+        test("should return status code 500, and error message 'Server Error' in json", async () => {
+
+            //stubs the mongoose chain
+            jest.spyOn(Class, 'find').mockImplementation(()=>{
+                throw new Error();
+            })
+
+            const response = await request(app).post("/course/searchWithTermFilter").send();
+
+            expect(response.statusCode).toBe(500);
+            expect(response.body.message).toEqual('Server Error');
+            expect(response.headers['content-type']).toEqual(expect.stringContaining("json"));
+        })
+
+    })
 })
 
 describe("Put /course/update", () => {
