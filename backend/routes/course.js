@@ -4,12 +4,10 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const router = express.Router();
 
-//json web token
-// const jwt = require('jsonwebtoken');
-
+//used to query mongoDB collection Class
 const Class = require("../model/Course");
 
-//verify admin role, and get user id
+//verify admin role, and get user id from json web token
 const Utility = require('./utility')
 
 router.post(
