@@ -40,8 +40,8 @@ export class login extends React.Component {
 
       .then((res) => {
         
-        //debug:
-        // console.log(res);
+        //gives "Logged in!" message
+        console.log(res);
         
         alert(res.data.message);
 

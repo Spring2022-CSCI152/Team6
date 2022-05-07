@@ -30,11 +30,11 @@ const UserSchema = mongoose.Schema({
   },
   year: {
     type: Number,
-    default: "0"
+    default: "2022"
   },
   expectedGraduationDate: {
     type: Number,
-    default: "0"
+    default: "2026"
   },
   role:{
     type: String,
