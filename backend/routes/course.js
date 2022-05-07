@@ -4,30 +4,11 @@ const express = require("express");
 const { check, validationResult } = require("express-validator");
 const router = express.Router();
 
-//json web token
-const jwt = require('jsonwebtoken');
-
+//used to query mongoDB collection Class
 const Class = require("../model/Course");
 
-const User = require("../model/User")
-
-
-//uses the user id stored in the json web token of the request header to create a mongoDB id object for search
-const getUser_idFromReq = (req) => {
-
-  //grab the token from the header
-  const rawToken = req.headers.authorization;
-
-  //separate the token code from the "bearer" prefix
-  const token = rawToken.split(' ')[1];
-
-  //decode jwt
-  const payload = jwt.verify(token, "randomString");
-
-  //return the stored id of decoded jwt
-  return payload.user.id;
-}
-
+//verify admin role, and get user id from json web token
+const Utility = require('./utility')
 
 router.post(
   "/addClass",
@@ -40,8 +21,12 @@ router.post(
     }),
   ],
   async (req, res) => {
-    console.log(req.body);
+
+    //debug
+    // console.log(req.body);
+
     const errors = validationResult(req);
+    
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
@@ -61,7 +46,9 @@ router.post(
         $or:
           [{ classNameAb },
           { className }]
-      }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+      })
+        .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+
       if (course) {
         return res.status(400).json({
           msg: "Class Already Exists",
@@ -103,13 +90,15 @@ router.post(
       }
         : { $text: { $search: query.general } })
         .sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
-      if (courses.toString() == "") {
-        return res.status(400).json({
-          message: "Course Not Exist",
-        });
-      }
+
+      // if (courses.toString() == "") {
+      //   return res.status(400).json({
+      //     message: "Course Not Exist",
+      //   });
+      // }
+
       res.status(200).json({
-        message: "Course Founded!",
+        message: "Course Found!",
         courses
       });
     } catch (e) {
@@ -122,15 +111,17 @@ router.post(
 );
 
 router.get("/", async (req, res) => {
+
   try {
     var courses = await Class.find().sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
-    if (!courses)
-      return res.status(400).json({
-        message: "There is no course",
-      });
+
+    // if (!courses)
+    //   return res.status(400).json({
+    //     message: "There are no courses",
+    //   });
 
     res.status(200).json({
-      message: "All courses Founded!",
+      message: "All courses found!",
       courses
     });
   } catch (e) {
@@ -144,107 +135,57 @@ router.get("/", async (req, res) => {
 router.post(
   "/searchWithTermFilter",
   async (req, res) => {
-    console.log(req.body);
-    // const { classNameAb, className, TermTypicallyOffered  } = req.body;
-    const { query, TermTypicallyOffered } = req.body;
-    // const query = req.body;
-    // console.log(classNameAb,className);
-    // if(!classNameAb || !className)
-    if (!query) { //case of "View All" filtered by selected term(s)
-      // console.log("hi");
-      try {
-        var courses = await Class.find({
-          TermTypicallyOffered
-        }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
-        console.log(courses.toString());
-        if (courses.toString() == "") {
-          // console.log("hi");
-          return res.status(400).json({
-            message: "Course Not Exist",
-          });
-        }
-        res.status(200).json({
-          message: "Course Founded!",
-          courses
-        });
-      } catch (e) {
-        console.error(e);
-        res.status(500).json({
-          message: "Server Error",
-        });
-      }
-    }
-    else {
-      //case of non-empty search string filtered by selected term(s)
-      try {
-        var courses = await Class.find({
-          // $or:
-          // [{classNameAb},
-          // {className}],
-          $text: { $search: query },
-          TermTypicallyOffered
-        }).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
-        if (courses.toString() == "") {
-          return res.status(400).json({
-            message: "Course Not Exist",
-          });
-        }
-        res.status(200).json({
-          message: "Course Founded!",
-          courses
-        });
-      } catch (e) {
-        console.error(e);
-        res.status(500).json({
-          message: "Server Error",
-        });
-      }
+
+    const { searchQuery, TermTypicallyOffered } = req.body;
+
+    //case of empty vs non-empty search string
+    const criteria = searchQuery ? { $text: { $search: searchQuery }, TermTypicallyOffered } : { TermTypicallyOffered }
+
+    try {
+      const courses = await Class.find(criteria).sort({ classNameAb: 1 }).collation({ locale: "en_US", numericOrdering: true });
+
+      // if (courses.toString() == "") {
+      //   return res.status(400).json({
+      //     message: "Course Not Exist",
+      //   });
+      // }
+
+      res.status(200).json({
+        message: "Course Found!",
+        courses
+      });
+
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({
+        message: "Server Error",
+      });
     }
   }
 );
 
 router.put("/update", async (req, res) => {
 
-  //verify that user has privilege to modify course information
+  //get unique document id of user for mongoDB collection
+  const user_id = Utility.getUser_idFromReq(req);
 
-  //unique document id of user for mongoDB collection
-  const user_id = getUser_idFromReq(req);
+  //verify user has admin privileges
+  if(! await Utility.verifyAdminRole(user_id)) return res.status(400).json({message:"Failed to verify user role."});
 
   try {
-    //search mongoDB for the user's document by its id
-    const user = await User.findById(user_id,
 
-      //only get role value (avoid stamp coupling)
-      { role: 1 });
+    //use unique course id to find document (record), and update
+    const result = await Class.findByIdAndUpdate(req.body.class_id, { $set: req.body.classChanges });
 
-    //case of missing user record
-    if (!user) return res.status(400).json({ message: "Failed to find user", user: "" })
+    //return respective code and message
+    if (!result) return res.status(400).json({ message: "Failed to update course.  Could not find it." })
 
-    //case of wrong privilege level
-    if (user.role != "admin") return res.status(400).json({ message: "User lacks privilege to modify courses." })
+    res.status(200).json({ message: "Successfully updated course" })
 
-    try {
-
-      //use unique course id to find document (record), and update
-      const result = await Class.findByIdAndUpdate( req.body.class_id, { $set: req.body.classChanges });
-
-      //return respective code and message
-      if (!result) return res.status(400).json({ message: "Failed to update course.  Could not find it." })
-
-      res.status(200).json({ message: "Successfully updated course" })
-
-    } catch (error) {
-      //case of mongoDB error
-      console.log(error)
-      res.status(500).json({ error: "MongoDB Class.findByIdAndUpdate() Threw Error" });
-    }
-
-  } catch (err) {
+  } catch (error) {
     //case of mongoDB error
-
-    console.log(err);
-
-    res.status(500).json({ error: "MongoDB User.findById() Threw Error" });
+    console.log(error)
+    res.status(500).json({ message: "MongoDB Class.findByIdAndUpdate() Threw Error" });
   }
 
 })
