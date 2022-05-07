@@ -43,7 +43,7 @@ const Profile = () => {
                     </button>
                     </Link>
             <button onClick={addClasses}>add class</button>
-            <div name="popup" id="popup" class="hide">
+            <div name="popup" id="popup" className="hide">
                 Course Abbreviation
                 <div>
                     <input type="text" ></input>

@@ -75,8 +75,10 @@ function App() {
           <Route exact path={["/", "/Home"]}><HomePage /></Route>
           
           <Route exact path="/Profile"><Profile /></Route>
+          <Route exact path="/editProfile"><EditProfile /></Route>
           <Route exact path="/LogIn"><LogIn /></Route>
           <Route exact path="/Signup"><Signup /></Route>
+
           {/*Basic routes under here*/}
           <BasicRoute exact path="/RecordList"><RecordList /></BasicRoute>
           <BasicRoute exact path="/CoursesParser"><CoursesParser /></BasicRoute>
@@ -86,7 +88,6 @@ function App() {
           <BasicRoute exact path="/CoursesForAdmin"><CoursesForAdmin /></BasicRoute>
           <BasicRoute exact path="/Roadmap"><Roadmap /></BasicRoute>
           <BasicRoute exact path="/Reminders"><Reminders /></BasicRoute>
-          <BasicRoute exact path="/editProfile"><EditProfile /></BasicRoute>
 
           {/*admin routes under here*/}
           <AdminRoute exact path="/add Class"><AddClass /></AdminRoute>

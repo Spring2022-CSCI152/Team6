@@ -32,12 +32,17 @@ export class login extends React.Component {
     };
 
     //sending to server
-    console.log(user);
+
+    //debug:
+    // console.log(user);
 
     const req = await axios.post('/user/login', user)
 
       .then((res) => {
-        console.log(res);
+        
+        //debug:
+        // console.log(res);
+        
         alert(res.data.message);
 
         //store json web token in local storage.
