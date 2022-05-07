@@ -20,8 +20,10 @@ axios.interceptors.request.use(
 //gets user information from backend
 const getUserInfo = async () => {
 
+    if(!localStorage.getItem('token')) return 'noTokenStored';
+
     //request user information from server
-    const user = await axios.get("/profile")
+    return await axios.get("/profile")
 
         .then((res) => {
 
@@ -32,8 +34,8 @@ const getUserInfo = async () => {
             return error;
         })
 
-    //returns the user or an error.
-    return user;
+    // //returns the user or an error.
+    // return user;
 }
 
 //sends updated user info to backend

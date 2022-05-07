@@ -7,8 +7,17 @@ import '../CSS/profile.css'
 
 const Profile = () => {
 
+    const emptyUser = {
+        firstname: "",
+        lastname:"",
+        email:"",
+        major:"",
+        year:"",
+        expectedGraduationDate:""
+    }
+
     //state and state change function for user object
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(emptyUser);
 
     //loads user info on mount
     useEffect(() => {
