@@ -26,7 +26,7 @@ router.post(
     // console.log(req.body);
 
     const errors = validationResult(req);
-    
+
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
@@ -170,7 +170,7 @@ router.put("/update", async (req, res) => {
   const user_id = Utility.getUser_idFromReq(req);
 
   //verify user has admin privileges
-  if(! await Utility.verifyAdminRole(user_id)) return res.status(400).json({message:"Failed to verify user role."});
+  if (! await Utility.verifyAdminRole(user_id)) return res.status(400).json({ message: "Failed to verify user role." });
 
   try {
 
@@ -186,6 +186,25 @@ router.put("/update", async (req, res) => {
     //case of mongoDB error
     console.log(error)
     res.status(500).json({ message: "MongoDB Class.findByIdAndUpdate() Threw Error" });
+  }
+
+})
+
+router.get("/byId", async (req, res) => {
+  
+  try {
+    const result = await Class.findById(req.query.id);
+
+    if (!result) return res.status(400).json({ message: "Failed to find course." })
+
+    res.status(200).json({ course: result })
+  }
+  catch (error) {
+    //case of mongoDB error
+
+    console.log(error)
+
+    res.status(500).json({ message: "MongoDB Class.findById() Threw Error" });
   }
 
 })

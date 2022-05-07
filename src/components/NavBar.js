@@ -75,6 +75,10 @@ const NavBar = () => {
   <NavLink page="Profile" selected={page === 'Profile'} />
   <NavLink page="Add Class" selected={page === 'AddClass'} />
   <NavLink page="Search Course" selected={page === 'SearchCourseAdmin'} />
+  <NavLink page='CoursesForAdmin' selected={page === 'CoursesForAdmin'} />
+  <NavLink page='Courses' selected={page === 'Courses'} />
+
+
   </>
   : " "
 

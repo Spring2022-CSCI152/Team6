@@ -3,14 +3,19 @@ import { useState, useEffect } from 'react';
 import axios from '../axios';
 import { FaSearch } from "react-icons/fa";
 import { FiRefreshCw } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
 
-// var result = [];
+
 var filterterm = new Set();
 
 function Courses() {
 
     //state: text to be used in DB search
     const [searchQuery, setSearchQuery] = useState("");
+
+    const [resultsTbl, setResultsTbl] = useState([]);
+
+    const navigate = useNavigate();
 
     //updates text to be used in DB search
     const handleFinding = (e) => {
@@ -52,6 +57,7 @@ function Courses() {
     //use query results to build html table
     const buildTable = (result) => {
 
+        const resultsTbl = [];
 
         //get table
         var CourseList = document.getElementById("CourseList");
@@ -62,12 +68,24 @@ function Courses() {
         // for css to make table rows differentialable
         let even = 0;
 
+        let keyNum = 0;
+
         //create all rows
         for (let i of result) {
+
+            // // console.log(i);
+            // resultsTbl.push(
+            // // <Link to='/Course/' key={i._id}>
+            //     <TableRow course={i} key={keyNum++} even={even} />
+            // //{/* </Link> */}
+            // )
+
+
             var tableRow = document.createElement("tr");
 
             // for css to make table rows differentialable
             tableRow.className = even === 0 ? "odd" : "even";
+
             //change even tracker for next iteration
             even = 1 - even;
 
@@ -91,9 +109,13 @@ function Courses() {
             }
             tableRow.appendChild(courseTypOffTd);
 
+            tableRow.onclick= () => {navigate("/course/"+ i._id );}
+
+
             CourseList.appendChild(tableRow);
         }
 
+        setResultsTbl(resultsTbl);
 
 
     }
@@ -212,6 +234,7 @@ function Courses() {
                     </tr>
                 </thead>
                 <tbody id="CourseList">
+                    {resultsTbl}
                 </tbody>
             </table>
         </div>
