@@ -67,9 +67,7 @@ function Roadmap() {
     }
 
     var display=document.getElementById("display");
-    const filter= async(e)=>{
-        
-    }
+    
     const viewCourse= async(e)=>{
         const req = await axios.get('/course')
                 .then((res) => {
@@ -268,7 +266,7 @@ function Roadmap() {
         table.innerHTML="";
         console.log(window.sample);
         table.appendChild(window.sampleTHead);
-        table.appendChild(window.sample);
+        addYear();
         viewCourse();
     }
     
@@ -347,7 +345,7 @@ function Roadmap() {
         </table>
         <button onClick={addYear}>Add year</button>
         <button onClick={print}>Print</button>
-        <button onClick={refresh}>clear</button>
+        <button onClick={refresh}>Clear Table</button>
         <p id="display">Warning </p>
     </div>
 
