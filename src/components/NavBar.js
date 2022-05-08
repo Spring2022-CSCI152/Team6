@@ -82,7 +82,7 @@ const NavBar = () => {
   let adminAuth = "admin" == userAuthen ?
     <>
       <NavLink page="Profile" selected={page === 'Profile'} />
-      <NavLink page="Add_Class" selected={page === 'Add_Class'} />
+      <NavLink page="Add_Course" selected={page === 'Add_Course'} />
       <NavLink page='Courses' selected={page === 'Courses'} />
 
 

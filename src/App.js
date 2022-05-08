@@ -12,7 +12,7 @@ import Courses from './pages/Courses';
 import Roadmap from './pages/Roadmap';
 import Reminders from './pages/Reminder';
 import EditProfile from './pages/editProfile';
-import AddClass from './pages/Admin/addClass'
+import AddCourse from './pages/Admin/AddCourse'
 import EditClass from './pages/Admin/editClass'
 import Course from './pages/Course';
 // import { getUserInfo } from './components/GetUserInfo';
@@ -90,7 +90,7 @@ function App() {
           {/* <Route exact path="/SearchCourse" element={<SearchCourse />} /> */}
           <Route exact path="/Calendar" element={<Calendar1 />} />
           <Route exact path="/Roadmap" element={<Roadmap />} />
-          <Route exact path="/Add_Class" element={<AddClass />}/>
+          <Route exact path="/Add_Course" element={<AddCourse />}/>
 
           {/* Basic routes under here
           <BasicRoute exact path="/RecordList"><RecordList /></BasicRoute>
@@ -103,7 +103,6 @@ function App() {
           admin routes under here
           <AdminRoute exact path="/add Class"><AddClass /></AdminRoute>
           <AdminRoute exact path="/editClass"><EditClass /></AdminRoute>
-          <AdminRoute exact path="/Search Course"><SearchCourseAdmin /></AdminRoute>
           <AdminRoute exact path="/CoursesParser"><CoursesParser /></AdminRoute>
           <AdminRoute exact path="/CoursesForAdmin"><CoursesForAdmin /></AdminRoute> */}
 

@@ -207,7 +207,6 @@ function Course() {
 
   }, [])
 
-
   const saveButton = <button onClick={() => { save(course) }}>Save</button>
 
   return (

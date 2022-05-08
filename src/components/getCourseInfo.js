@@ -41,12 +41,26 @@ const getCourseInfo = async (id) => {
 const updateCourseInfo = async (data) => {
     console.log(data)
 
-    return axios.put(`/course/update`, data).then((res) => {
-        return res;
-    })
+    return axios.put(`/course/update`, data)
+        .then((res) => {
+            return res;
+        })
         .catch((error) => {
             return error;
         })
 }
 
-export { getCourseInfo, updateCourseInfo }
+const addCourse = async (data) => {
+
+    
+    return axios.post("/course/addClass", data)
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            return error;
+        })
+}
+
+export { getCourseInfo, updateCourseInfo, addCourse }
+
