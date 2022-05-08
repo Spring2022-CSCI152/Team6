@@ -55,8 +55,8 @@ const AddCourse = () => {
             <table>
                 <tbody>
                     <tr>
-                        <td className="line1">Class Name Abbreviation: </td>
-                        <td className="line1" id="classNameAb"><input type="text" id="classNameAbInput" value={course.classNameAb} onChange={()=>{updateCourse("classNameAb",document.getElementById('classNameAbInput').value,course,setCourse)}}/></td>
+                        <td className="line1" width="450">Class Name Abbreviation: </td>
+                        <td className="line1" width="450" id="classNameAb"><input type="text" id="classNameAbInput" value={course.classNameAb} onChange={()=>{updateCourse("classNameAb",document.getElementById('classNameAbInput').value,course,setCourse)}}/></td>
                     </tr>
                     <tr>
                         <td className="line2" >Class Name: </td>
@@ -68,7 +68,7 @@ const AddCourse = () => {
                     </tr>
                     <tr>
                         <td className="line2" >Description: </td>
-                        <td className="line2" id="description"><input type="text" id="descriptionInput" value={course.Description} onChange={()=>{updateCourse("Description",document.getElementById('descriptionInput').value,course,setCourse)}}/></td>
+                        <td className="line2"  id="description"><input type="text" id="descriptionInput" value={course.Description} onChange={()=>{updateCourse("Description",document.getElementById('descriptionInput').value,course,setCourse)}}/></td>
                     </tr>
                     <tr>
                         <td className="line1" >Units: </td>
