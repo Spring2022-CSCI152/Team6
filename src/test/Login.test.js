@@ -2,7 +2,7 @@ import axios from '../axios';
 import React from 'react';
 import '../CSS/LogIn.css';
 const User = require("../../backend/model/User");
-import Login from '../pages/login';
+import Login, { login } from '../pages/login';
 import { shallow, configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import 'regenerator-runtime/runtime';
@@ -11,6 +11,9 @@ configure({ adapter: new Adapter() });
 
 jest.mock('../axios');
 jest.mock('../CSS/LogIn.css');
+
+
+global.alert = jest.fn();
 
 describe("Login component's login function", () => {
 
@@ -57,6 +60,18 @@ describe("Login component's login function", () => {
     describe("When API call fails", () => {
         it("Should kick error to console", async () => {
 
+            global.alert.mockClear();
+
+            axios.post.mockResolvedValueOnce('Error');
+
+            await wrapper.instance().login();
+
+            expect(axios.post).toHaveBeenCalledWith("/user/login", user)
+
+            expect(global.alert).toBeCalledWith("Error");
+    
+
+/*
             //given
 
             //can be anything.  just simulates an error.
@@ -76,7 +91,7 @@ describe("Login component's login function", () => {
             expect(axios.post).toHaveBeenCalledWith("/user/login", user);
 
             //check for the error message
-           expect(consoleSpy).toHaveBeenCalledWith(message);
+           expect(consoleSpy).toHaveBeenCalledWith(message);*/
         })
     })
 });

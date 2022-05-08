@@ -55,7 +55,9 @@ export class login extends React.Component {
         window.location.href = "/";
       }).catch((error) => {
         console.log(error)
-
+        global.alert("Error");
+      
+       
       });
   }
 
