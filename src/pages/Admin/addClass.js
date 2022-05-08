@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getUserInfo } from '../components/GetUserInfo';
+import { getUserInfo } from '../../components/GetUserInfo';
 import { Button, Container, Form, Image, Row, Col } from 'react-bootstrap';
-import '../CSS/CourseAdmin.css'
+import '../../CSS/CourseAdmin.css'
+import EditClass from './editClass';
 
 
 const Profile = () => {
@@ -37,16 +38,19 @@ const Profile = () => {
     return (<>
         <div className='CourseAdmin'>
             <h2>Your Classes</h2>
-            <button>edit class</button>
+            <Link to="/EditClass"><button>
+                    Edit Class
+                    </button>
+                    </Link>
             <button onClick={addClasses}>add class</button>
-            <div name="popup" id="popup" class="hide">
+            <div name="popup" id="popup" className="hide">
                 Course Abbreviation
                 <div>
                     <input type="text" ></input>
                 </div>
                 Course Name
                 <div>        
-                    <input type="text"></input>
+                    <input type="text" ></input>
                 </div>
                 Course Description
                 <div>        

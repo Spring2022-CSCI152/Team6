@@ -9,7 +9,6 @@ axios.interceptors.request.use(
         // if (allowedOrigins.includes(origin)) {
         config.headers.authorization = `Bearer ${token}`;
         // }
-
         return config;
     },
     error => {
@@ -18,38 +17,34 @@ axios.interceptors.request.use(
 );
 
 //gets user information from backend
-const getUserInfo = async () => {
+const getCourseInfo = async () => {
 
-    if(!localStorage.getItem('token')) return 'noTokenStored';
+    // //request user information from server
+    // const course = await axios.get("/course/")
 
-    //request user information from server
-    return await axios.get("/profile")
+    //     .then((res) => {
 
-        .then((res) => {
+    //         return res.data.course;
 
-            return res.data.user;
+    //     }).catch((error) => {
+    //         console.log(error);
+    //         return error;
+    //     })
 
-        }).catch((error) => {
-            console.log(error);
-            return error;
-        })
-
-    // //returns the user or an error.
-    // return user;
+    // //returns the user or an error.  depends on server response.
+    // return course;
 }
 
 //sends updated user info to backend
-const updateUserInfo = async (data) => {
+const updateCourseInfo = async (data) => {
+    console.log(data)
 
-    return axios.put(`/profile`, data)
-        .then((res) => {
-
+        return axios.put(`/course/update`, data).then((res) => {
             return res;
-        }, (error) => {
-
-            console.log(error);
+        })
+        .catch((error) => {
             return error;
         })
 }
 
-export { getUserInfo, updateUserInfo }
+export { getCourseInfo, updateCourseInfo }

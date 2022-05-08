@@ -34,7 +34,7 @@ class Calendar1 extends React.Component {
              <div className="firstsection">
              <div className="box-main">
              <div className="firstHalf">
-             <h1 className="text-big" id="web"> <u className = "underline">Schedule</u></h1>
+             <h1 className="text-big" id="web"> <u className = "underline">Important Dates</u></h1>
                 <section className="task-list">
                   <div id="tasks">
               <div className = "reg"> Holiday - Martin Luther King Jr. Day </div>

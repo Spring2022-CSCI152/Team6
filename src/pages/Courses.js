@@ -32,28 +32,27 @@ function Courses() {
                     console(error);
                 })
         }
+
         //specific criteria
         else {
-            // const finding = { "classNameAb": searchQuery, "className": findingcourse };
 
-            const req = await axios.post('/course/search', {"general":searchQuery})
+            const req = await axios.post('/course/search', { "general": searchQuery })
                 .then((res) => {
                     console.log(searchQuery)
                     response = res;
                 })
                 .catch((error) => {
-                    console.log(error); 
+                    console.log(error);
                 })
         }
 
-        if(response) buildTable(response.data.courses);
+        if (response) buildTable(response.data.courses);
 
     }
 
     //use query results to build html table
     const buildTable = (result) => {
 
-        filterterm = new Set();
 
         //get table
         var CourseList = document.getElementById("CourseList");
@@ -66,7 +65,6 @@ function Courses() {
 
         //create all rows
         for (let i of result) {
-            filterterm.add(JSON.stringify(i.TermTypicallyOffered));
             var tableRow = document.createElement("tr");
 
             // for css to make table rows differentialable
@@ -97,31 +95,50 @@ function Courses() {
             CourseList.appendChild(tableRow);
         }
 
-        //dynamically fill in options of term drop down menu
-        var searchBox = document.getElementById("term");
-        searchBox.innerHTML = "";
-        var a = Array.from(filterterm);
-        a.sort();
-        a.reverse();
-        for (var i of a) {
-            i = i.replace("[", '');
-            i = i.replace("]", '');
-            i = i.replaceAll("\"", '');
-            var option = document.createElement("option");
-            if (i == "") {
-                option.innerHTML += "<option>Every Term</option>";
-            }
-            else {
-                option.innerHTML += "<option>" + i + "</option>";
-            }
-            searchBox.appendChild(option);
-        }
+
 
     }
 
-    //prompts search to happen on mount (component load)
-    useEffect(() => {
-        search();
+    //gets all courses on mount (component load)
+    useEffect(async () => {
+
+        const req = await axios.get('/course')
+            .then((res) => {
+
+                buildTable(res.data.courses);
+
+                //dynamically fill in options of term drop down menu
+                filterterm = new Set();
+
+                for (let i of res.data.courses) {
+                    filterterm.add(JSON.stringify(i.TermTypicallyOffered));
+                }
+
+                var searchBox = document.getElementById("term");
+                searchBox.innerHTML = "";
+                var a = Array.from(filterterm);
+                a.sort();
+                a.reverse();
+                for (var i of a) {
+                    i = i.replace("[", '');
+                    i = i.replace("]", '');
+                    i = i.replaceAll("\"", '');
+                    var option = document.createElement("option");
+                    if (i == "") {
+                        option.innerHTML += "<option>Every Term</option>";
+                    }
+                    else {
+                        option.innerHTML += "<option>" + i + "</option>";
+                    }
+                    searchBox.appendChild(option);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+
+
     }, [])
 
     //term filter
@@ -130,6 +147,7 @@ function Courses() {
         var findingTerm = [];
         var finding;
         if (e.target.value == "Every Term") {
+            console.log("every term path");
             search();
             return;
         }
@@ -146,6 +164,8 @@ function Courses() {
         // else {
         finding = { "searchQuery": searchQuery, "TermTypicallyOffered": findingTerm };
         // }
+
+        console.log(finding)
 
         const req = await axios.post('/course/searchWithTermFilter', finding)
             .then((res) => {

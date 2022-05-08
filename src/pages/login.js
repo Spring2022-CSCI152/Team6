@@ -32,12 +32,17 @@ export class login extends React.Component {
     };
 
     //sending to server
-    console.log(user);
+
+    //debug:
+    // console.log(user);
 
     const req = await axios.post('/user/login', user)
 
       .then((res) => {
+        
+        //gives "Logged in!" message
         console.log(res);
+        
         alert(res.data.message);
 
         //store json web token in local storage.
@@ -47,6 +52,8 @@ export class login extends React.Component {
         window.location.href = "/";
       }).catch((error) => {
         console.log(error)
+        global.alert("Error");
+      
        
       });
   }

@@ -52,12 +52,12 @@ describe("Route: /profile", () => {
                 await request(app).get("/profile").set({ authorization: token });
 
 
-                expect(User.findOne).toHaveBeenCalled();
+                expect(User.findById).toHaveBeenCalled();
             });
             test("should return status code 200", async () => {
 
                 //stub successful mongoDB document find
-                User.findOne.mockReturnValue(1);
+                User.findById.mockReturnValue(1);
 
                 const response = await request(app).get("/profile").set({ authorization: token });
 
@@ -67,7 +67,7 @@ describe("Route: /profile", () => {
             test("should specify json in response content type header", async () => {
 
                 //stub successful mongoDB document find
-                User.findOne.mockReturnValue(1);
+                User.findById.mockReturnValue(1);
 
                 const response = await request(app).get("/profile").set({ authorization: token });
 
@@ -81,7 +81,7 @@ describe("Route: /profile", () => {
             test("Should return status code 400", async () => {
 
                 //stub mongoDB document find failure
-                User.findOne.mockReturnValue(0);
+                User.findById.mockReturnValue(0);
 
                 const response = await request(app).get("/profile").set({ authorization: token });
 
@@ -95,7 +95,7 @@ describe("Route: /profile", () => {
 
             test("should return status code 500, and error message.", async () => {
 
-                User.findOne.mockImplementation(() => {
+                User.findById.mockImplementation(() => {
                     throw new Error();
                 })
 
@@ -128,7 +128,7 @@ describe("Route: /profile", () => {
             test("should return status code 200", async () => {
 
                 //stub successful mongoDB document update
-                User.updateOne.mockReturnValue(1);
+                User.findByIdAndUpdate.mockReturnValue(1);
 
                 const response = await request(app).put("/profile").set({ authorization: token });
 
@@ -139,19 +139,19 @@ describe("Route: /profile", () => {
             test("Return status code 400, and error message", async () => {
 
                 //stub mongoDB modify failure
-                User.updateOne.mockReturnValue(0);
+                User.findByIdAndUpdate.mockReturnValue(0);
 
                 const response = await request(app).put("/profile").set({ authorization: token });
 
                 expect(response.statusCode).toBe(400);
-                expect(response.body.message).toEqual("failed to update user");
+                expect(response.body.message).toEqual("Failed to update user");
             })
         })
         describe("MongoDB error", () => {
             test("should return status code 500, and error message", async () => {
 
                 //stub error throw on mongoDB document update attempt
-                User.updateOne.mockImplementation(() => {
+                User.findByIdAndUpdate.mockImplementation(() => {
                     throw new Error();
                 })
 

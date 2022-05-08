@@ -15,49 +15,53 @@ import CoursesForAdmin from './pages/CoursesForAdmin';
 import Roadmap from './pages/Roadmap';
 import Reminders from './pages/Reminder';
 import EditProfile from './pages/editProfile';
-import AddClass from './pages/addClass'
+import AddClass from './pages/Admin/addClass'
+import EditClass from './pages/Admin/editClass'
+import SearchCourseAdmin from './pages/Admin/SearchCourseAdmin'
 import { getUserInfo } from './components/GetUserInfo';
 
-//state and state change function for user object
 
 function App() {
+
+  //state and state change function for user object
   const [user, setUser] = useState({});
 
-  //loads user info on mount and set user role to userAuthen
+  //loads user info on mount and sets user role to userAuthen
   useEffect(() => {
 
-      async function getUserInfoWrapper() {
+    async function getUserInfoWrapper() {
 
-          //updates user state with user object from backend, matched by stored cookie id
-          setUser(await getUserInfo());
-      }
+      //updates user state with user object from backend, matched by stored cookie id
+      setUser(await getUserInfo());
+    }
 
-      getUserInfoWrapper();
-      
+    getUserInfoWrapper();
+
   }, []);
+  
   let userAuthen = user.role;
 
   console.log(userAuthen)
 
-  function BasicRoute ({children, ...rest}) {
-    
-    return(
+  function BasicRoute({ children, ...rest }) {
+
+    return (
       <Route {...rest} render={() => {
         return userAuthen == "basic"
           ? children
           : <Redirect to='/home' />
-      }}/>
+      }} />
     )
   }
-  
-  function AdminRoute ({children, ...rest}) {
-    
-    return(
+
+  function AdminRoute({ children, ...rest }) {
+
+    return (
       <Route {...rest} render={() => {
         return userAuthen == "admin"
           ? children
           : <Redirect to='/home' />
-      }}/>
+      }} />
     )
   }
 
@@ -70,23 +74,26 @@ function App() {
         <Switch>
           {/*Both basic and admin routes under here*/}
           <Route exact path={["/", "/Home"]}><HomePage /></Route>
-          
+
           <Route exact path="/Profile"><Profile /></Route>
+          <Route exact path="/editProfile"><EditProfile /></Route>
           <Route exact path="/LogIn"><LogIn /></Route>
           <Route exact path="/Signup"><Signup /></Route>
+
           {/*Basic routes under here*/}
           <BasicRoute exact path="/RecordList"><RecordList /></BasicRoute>
-          <BasicRoute exact path="/CoursesParser"><CoursesParser /></BasicRoute>
           <BasicRoute exact path="/Calendar"><Calendar1 /></BasicRoute>
           <BasicRoute exact path="/SearchCourse"><SearchCourse /></BasicRoute>
           <BasicRoute exact path="/Courses"><Courses /></BasicRoute>
-          <BasicRoute exact path="/CoursesForAdmin"><CoursesForAdmin /></BasicRoute>
           <BasicRoute exact path="/Roadmap"><Roadmap /></BasicRoute>
           <BasicRoute exact path="/Reminders"><Reminders /></BasicRoute>
-          <BasicRoute exact path="/editProfile"><EditProfile /></BasicRoute>
 
           {/*admin routes under here*/}
           <AdminRoute exact path="/add Class"><AddClass /></AdminRoute>
+          <AdminRoute exact path="/editClass"><EditClass /></AdminRoute>
+          <AdminRoute exact path="/Search Course"><SearchCourseAdmin /></AdminRoute>
+          <AdminRoute exact path="/CoursesParser"><CoursesParser /></AdminRoute>
+          <AdminRoute exact path="/CoursesForAdmin"><CoursesForAdmin /></AdminRoute>
 
           <Redirect from="*" to="/" />
         </Switch>

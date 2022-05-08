@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from '../axios';
 import React from 'react';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 
 
@@ -16,6 +17,7 @@ export class Signup extends React.Component {
       email: "",
       pass: "",
       account: [],
+      passStyle: {color: "black"},
     };
   }
 
@@ -67,8 +69,8 @@ export class Signup extends React.Component {
 
         //fail case
       }).catch((error) => {
-
         console.log(error)
+        global.alert("Error");
 
       });
   }
@@ -91,6 +93,8 @@ export class Signup extends React.Component {
               <input type="text" onChange={this.handleEmail} name="email" className="email" placeholder="email..." id="email" /> <br />
               <label htmlFor="pword">Password<span /></label>
               <input type="password" onChange={this.handlePass} name="password" className="password" id="pword" placeholder="password..." /> <br />
+              <PasswordStrengthBar scoreWordClassName="scoreWord" scoreWordStyle={this.state.passStyle} password={this.state.pass} />
+
 
               <button onClick={this.signup} type="button" className="signupbutton"> Create </button>
             </form>

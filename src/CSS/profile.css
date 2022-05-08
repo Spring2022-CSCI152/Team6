@@ -21,9 +21,9 @@
     width: 10px;
 }
 .profilebuttons{
-	display: flex;
+	display: revert;
 	flex-direction: row;
-	padding-left: 10%;
+	
 }
 
 .pwbutton{

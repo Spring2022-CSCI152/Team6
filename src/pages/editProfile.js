@@ -53,21 +53,25 @@ function EditProfile() {
         }
 
         await updateUserInfo(data)
-            .then(res => {
-                const userData = JSON.parse(res.config.data)
+            .then((res) => {
 
-                setFirstName(userData.firstname);
-                setLastName(userData.lastname);
-                // setPassword(userData.password);
-                setMajor(userData.major);
-                setYear(userData.year);
-                setExpGraduationDate(userData.expectedGraduationDate);
+
+                //no user data is returned
+                // const userData = JSON.parse(res.config.data)
+
+                // setFirstName(userData.firstname);
+                // setLastName(userData.lastname);
+                // // setPassword(userData.password);
+                // setMajor(userData.major);
+                // setYear(userData.year);
+                // setExpGraduationDate(userData.expectedGraduationDate);
                 setLoading(false);
-                console.log("Updated!");
+                console.log(res.data.message);
             })
-            .catch(err => {
+            .catch((err) => {
                 setLoading(false);
                 setIsError(true);
+                console.log(err)
                 console.log("Error")
             })
     }
