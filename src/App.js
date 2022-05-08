@@ -81,6 +81,7 @@ function App() {
         <Routes>
           {/* Both basic and admin routes under here */}
           <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/Home" element={<HomePage />} />
 
           <Route exact path="/Profile" element={<Profile />} />
           <Route exact path="/editProfile" element={<EditProfile />} />
@@ -88,6 +89,9 @@ function App() {
           <Route exact path="/Signup" element={<Signup />} />
           <Route exact path="/Courses" element={<Courses />} />
           <Route exact path="/Course/:courseId" element={<Course/>} />
+          {/* <Route exact path="/SearchCourse" element={<SearchCourse />} /> */}
+          <Route exact path="/Calendar" element={<Calendar1 />} />
+          <Route exact path="/Roadmap" element={<Roadmap />} />
 
           {/* Basic routes under here
           <BasicRoute exact path="/RecordList"><RecordList /></BasicRoute>

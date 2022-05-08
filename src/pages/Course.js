@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom'
 import { getCourseInfo } from '../components/getCourseInfo';
 import { getUserInfo } from '../components/GetUserInfo'
 
-function setRoleView(role){
+function setRoleView(role) {
 
-  if(role==='admin'){
-    
+  if (role === 'admin') {
+
   }
 }
 
@@ -16,7 +16,7 @@ function Course() {
 
   const [course, setCourse] = useState();
 
-  const [role, setRole] = useState();
+  const [view, setView] = useState();
 
   const [editButton, setEditButton] = useState();
 
@@ -61,19 +61,25 @@ function Course() {
 
       })
 
-    setRoleView(await getUserInfo().role);
+    if(await getUserInfo().role === 'admin'){
+
+      
+    }
 
   }, [])
 
   return (
-    <div className="mainbox" id="result">
-      <p className="line1" id="classNameAb"></p>
-      <p className="line2" id="className"></p>
-      <p className="line1" id="prerequisites"></p>
-      <p className="line2" id="description"></p>
-      <p className="line1" id="units"></p>
-      <p className="line2" id="term"></p>
-    </div>
+    <>
+      <div className="mainbox" id="result">
+        <p className="line1" id="classNameAb"></p>
+        <p className="line2" id="className"></p>
+        <p className="line1" id="prerequisites"></p>
+        <p className="line2" id="description"></p>
+        <p className="line1" id="units"></p>
+        <p className="line2" id="term"></p>
+      </div>
+      {editButton}
+    </>
   )
 }
 
