@@ -154,16 +154,16 @@ const buildEditView = (course, setCourse, setCourseViewHtml) => {
 }
 
 //saves course changes to database
-const save = async (course) =>{
+const save = async (course) => {
 
-  await updateCourseInfo({class_id:course._id,classChanges:course})
-  .then((res) =>{
+  await updateCourseInfo({ class_id: course._id, classChanges: course })
+    .then((res) => {
 
-    alert(res.data.message);
-  })
-  .catch((error) =>{
-    console.log(error);
-  })
+      alert(res.data.message);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 
 }
 
@@ -177,6 +177,8 @@ function Course() {
   const [courseViewHtml, setCourseViewHtml] = useState([]);
 
   const [viewButton, setViewButton] = useState();
+
+  const [view, setView] = useState("basic");
 
   // const [disable, setDisable] = useState(true);
 
@@ -194,9 +196,9 @@ function Course() {
 
       const role = localStorage.getItem('role');
 
-      const editButton = role === 'admin' ? <button onClick={() => { setCourseViewHtml(buildEditView(course, setCourse, setCourseViewHtml)); setViewButton(readButton) }}>Edit Course</button> : ""
+      const editButton = role === 'admin' ? <button onClick={() => { setCourseViewHtml(buildEditView(course, setCourse, setCourseViewHtml)); setViewButton(readButton); setView("edit") }}>Edit Course</button> : ""
 
-      const readButton = role === 'admin' ? <button onClick={() => { setCourseViewHtml(basicView(course)); setViewButton(editButton) }}>View Course</button> : ""
+      const readButton = role === 'admin' ? <button onClick={() => { setCourseViewHtml(basicView(course)); setViewButton(editButton); setView("basic") }}>Back to View</button> : ""
 
       setViewButton(editButton);
     })
@@ -207,7 +209,7 @@ function Course() {
 
   }, [])
 
-  const saveButton = <button onClick={() => { save(course) }}>Save</button>
+  const saveButton = view === 'edit' ? <button onClick={() => { save(course) }}>Save</button> : ""
 
   return (
     <>
