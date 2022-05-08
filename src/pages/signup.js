@@ -69,8 +69,8 @@ export class Signup extends React.Component {
 
         //fail case
       }).catch((error) => {
-
         console.log(error)
+        global.alert("Error");
 
       });
   }

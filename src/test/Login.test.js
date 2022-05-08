@@ -66,7 +66,9 @@ describe("Login component's login function", () => {
 
             await wrapper.instance().login();
 
-            expect(axios.post).toHaveBeenCalledWith("/user/login", user)
+            expect(axios.post).toHaveBeenCalledWith("/user/login", user);
+            
+            expect(consoleSpy).toHaveBeenCalledWith("Error");
 
             expect(global.alert).toBeCalledWith("Error");
     
