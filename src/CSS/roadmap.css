@@ -110,3 +110,7 @@
   display: none;
   padding-top: 40px;
 }
+.Roadmap td button {
+  padding: 2px;
+  z-index: 2;
+}
