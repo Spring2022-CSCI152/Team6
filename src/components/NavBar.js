@@ -64,7 +64,10 @@ const NavBar = () => {
   // }, [localStorage.getItem('token')])
 
   //if users are not logged in, they will onlyy see log out button
-  if (!logStatus) return <div className='NavBar'><NavLink page="LogIn" selected={page === 'LogIn'} extraClass='right-nav' /> </div>;
+  if (!logStatus) return <div className='NavBar'>
+    <NavLink page='Home' selected={page === 'Home' || !page} />
+    <NavLink page="LogIn" selected={page === 'LogIn'} extraClass='right-nav' />
+  </div>;
 
   //if user have basic authentication, these are the pages they see
   let basicAuth = "basic" == userAuthen ?
@@ -81,15 +84,19 @@ const NavBar = () => {
 
   let adminAuth = "admin" == userAuthen ?
     <>
+      <NavLink page='Home' selected={page === 'Home' || !page} />
+      <NavLink page='Calendar' selected={page === 'Calendar'} />
       <NavLink page="Profile" selected={page === 'Profile'} />
-      <NavLink page="Add_Course" selected={page === 'Add_Course'} />
+      <NavLink page="Roadmap" selected={page === 'Roadmap'} />
       <NavLink page='Courses' selected={page === 'Courses'} />
+      <NavLink page="Add_Course" selected={page === 'Add_Course'} />
 
 
     </>
     : " "
 
   return <div className='NavBar'>
+
     {basicAuth}
     {adminAuth}
     <Link to="/" onClick={logOut} className="right-nav">Log Out</Link>
