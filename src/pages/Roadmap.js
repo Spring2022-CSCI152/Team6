@@ -16,9 +16,10 @@ function Roadmap() {
     useEffect(() => {
 
         async function getUserInfoWrapper() {
-            window.courseAlreadyTaken=["MATH 75"];
+            window.courseAlreadyTaken=[];
             createYear();
             window.sample=document.getElementsByClassName("year1")[0].cloneNode(true);
+            window.sampleTHead=document.getElementById("thead").cloneNode(true);
             viewCourse();
             //updates user state with user object from backend, matched by stored cookie id  
         }
@@ -89,6 +90,9 @@ function Roadmap() {
                                 }
                                 else if(element.includes("Permission from instructor OR"))
                                 {
+                                    break;
+                                }
+                                else if (element.includes("Mathematics placement category I or II, and calculus placement according to department standars.")){
                                     break;
                                 }
                                 if((window.courseAlreadyTaken.filter((item) => item == element)[0]))
@@ -206,6 +210,7 @@ function Roadmap() {
                     else if (prerequesite.includes(" (can be taken concurrently)")){
                         prerequesite=prerequesite.replace(" (can be taken concurrently)","");
                     }
+                    
                     if(prerequesite.includes("OR"))
                     {
                         prerequesite=prerequesite.replace(" OR","");
@@ -259,7 +264,12 @@ function Roadmap() {
         console.log(window.courseAlreadyTaken)
     }
     function refresh(){
-        window.location.reload();
+        var table=document.getElementById("table");
+        table.innerHTML="";
+        console.log(window.sample);
+        table.appendChild(window.sampleTHead);
+        table.appendChild(window.sample);
+        viewCourse();
     }
     
     function print(){
@@ -275,7 +285,6 @@ function Roadmap() {
                     <th className="Summer" colSpan="2">Summer</th>
                     <th className="Fall" colSpan="2">Fall</th>
                     <th className="Winter" colSpan="2">Winter</th>
-                    <th className="comment">Comment</th>
                 </tr>
             </thead>
             <tbody className='year1'>
@@ -292,7 +301,6 @@ function Roadmap() {
                     <td className="Units"></td>
                     <td className="Winter"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
                     <td className="Units"></td>
-                    <td className="comment"></td>
                 </tr>
                 <tr>
                     <td className="Spring"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
@@ -303,7 +311,6 @@ function Roadmap() {
                     <td className="Units"></td>
                     <td className="Winter"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
                     <td className="Units"></td>
-                    <td className="comment"></td>
                 </tr>
                 <tr>
                     <td className="Spring"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
@@ -314,7 +321,6 @@ function Roadmap() {
                     <td className="Units"></td>
                     <td className="Winter"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
                     <td className="Units"></td>
-                    <td className="comment"></td>
                 </tr>
                 <tr>
                     <td className="Spring"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
@@ -325,7 +331,6 @@ function Roadmap() {
                     <td className="Units"></td>
                     <td className="Winter"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
                     <td className="Units"></td>
-                    <td className="comment"></td>
                 </tr>
                 <tr>
                     <td className="Spring"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
@@ -336,7 +341,6 @@ function Roadmap() {
                     <td className="Units"></td>
                     <td className="Winter"><select className='course-dropdown'></select><button className='finalize-course-dropdown'><FaCheckCircle /></button></td>
                     <td className="Units"></td>
-                    <td className="comment"></td>
                 </tr>
             </tbody>
             
