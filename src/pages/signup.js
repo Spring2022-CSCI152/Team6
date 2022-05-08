@@ -64,6 +64,9 @@ export class Signup extends React.Component {
         //store json web token in local storage.
         localStorage.setItem('token', res.data.token);
 
+        //store user role locally
+        localStorage.setItem('role', res.data.role);
+
         //navigate to home page
         window.location.href = "/";
 

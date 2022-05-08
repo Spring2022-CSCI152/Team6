@@ -19,7 +19,7 @@ import AddClass from './pages/Admin/addClass'
 import EditClass from './pages/Admin/editClass'
 import SearchCourseAdmin from './pages/Admin/SearchCourseAdmin'
 import Course from './pages/Course';
-import { getUserInfo } from './components/GetUserInfo';
+// import { getUserInfo } from './components/GetUserInfo';
 
 
 function App() {
@@ -27,20 +27,22 @@ function App() {
   //state and state change function for user object
   const [user, setUser] = useState({});
 
-  //loads user info on mount and sets user role to userAuthen
-  useEffect(() => {
+  // //loads user info on mount and sets user role to userAuthen
+  // useEffect(() => {
 
-    async function getUserInfoWrapper() {
+  //   async function getUserInfoWrapper() {
 
-      //updates user state with user object from backend, matched by stored cookie id
-      setUser(await getUserInfo());
-    }
+  //     //updates user state with user object from backend, matched by stored cookie id
+  //     setUser(await getUserInfo());
+  //   }
 
-    getUserInfoWrapper();
+  //   getUserInfoWrapper();
 
-  }, []);
+  // }, []);
 
-  let userAuthen = user.role;
+  // let userAuthen = user.role;
+
+  let userAuthen = localStorage.getItem('role');
 
   console.log(userAuthen)
 

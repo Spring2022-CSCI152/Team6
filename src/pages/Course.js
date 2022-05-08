@@ -6,12 +6,6 @@ import ContentEditable from 'react-contenteditable'
 import { Button, Table } from 'react-bootstrap';
 
 
-function setRoleView(role) {
-
-  if (role === 'admin') {
-
-  }
-}
 
 function Course() {
 
@@ -19,9 +13,9 @@ function Course() {
 
   const [course, setCourse] = useState();
 
-  const [view, setView] = useState();
-
-  const [editButton, setEditButton] = useState();
+  const testFunction = () => {
+    
+  }
 
   const [disable, setDisable] = useState(true);
   function handleClick(event) {
@@ -70,12 +64,11 @@ function Course() {
 
       })
 
-    if(await getUserInfo().role === 'admin'){
-
-      
-    }
-
   }, [])
+
+  const role = localStorage.getItem('role');
+
+  const editButton = role === 'admin' ? <button onClick={testFunction}>Edit</button> : ""
 
   return (
     <>
