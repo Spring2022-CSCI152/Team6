@@ -102,6 +102,7 @@ router.post(
         courses
       });
     } catch (e) {
+      console.log(req)
       console.error(e);
       res.status(500).json({
         message: "Server Error",

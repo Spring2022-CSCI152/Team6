@@ -9,6 +9,7 @@ import 'regenerator-runtime/runtime';
 configure({ adapter: new Adapter() });
 
 jest.mock('../axios');
+global.alert = jest.fn();
 
 describe("SignUp component's signup function", () => {
 
@@ -57,13 +58,14 @@ describe("SignUp component's signup function", () => {
     describe("When API call fails", () => {
         it("Should kick error to console", async () => {
 
+            global.alert.mockClear();
+
             //given
 
             //can be anything.  just simulates an error.
-            const message = 'Network Error Mock';
 
             //mock for the post call.  returns a rejection, like when the server encounters an error such as not enough characters in password, username, etc.
-            axios.post.mockRejectedValueOnce(message);
+            axios.post.mockResolvedValueOnce('Error');
 
             //when
 
@@ -76,7 +78,9 @@ describe("SignUp component's signup function", () => {
             expect(axios.post).toHaveBeenCalledWith("/user/signup", user);
 
             //check for the error message
-            expect(consoleSpy).toHaveBeenCalledWith(message);
+            expect(consoleSpy).toHaveBeenCalledWith("Error");
+
+            expect(global.alert).toBeCalledWith("Error");
         })
     })
 });

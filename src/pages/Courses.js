@@ -43,6 +43,7 @@ function Courses() {
 
             const req = await axios.post('/course/search', { "general": searchQuery })
                 .then((res) => {
+                    console.log(searchQuery)
                     response = res;
                 })
                 .catch((error) => {
