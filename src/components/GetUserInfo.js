@@ -33,9 +33,6 @@ const getUserInfo = async () => {
             console.log(error);
             return error;
         })
-
-    // //returns the user or an error.
-    // return user;
 }
 
 //sends updated user info to backend

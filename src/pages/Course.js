@@ -3,12 +3,6 @@ import { useParams } from 'react-router-dom'
 import { getCourseInfo } from '../components/getCourseInfo';
 import { getUserInfo } from '../components/GetUserInfo'
 
-function setRoleView(role) {
-
-  if (role === 'admin') {
-
-  }
-}
 
 function Course() {
 
@@ -16,9 +10,9 @@ function Course() {
 
   const [course, setCourse] = useState();
 
-  const [view, setView] = useState();
-
-  const [editButton, setEditButton] = useState();
+  const testFunction = () => {
+    
+  }
 
   useEffect(async () => {
 
@@ -61,12 +55,11 @@ function Course() {
 
       })
 
-    if(await getUserInfo().role === 'admin'){
-
-      
-    }
-
   }, [])
+
+  const role = localStorage.getItem('role');
+
+  const editButton = role === 'admin' ? <button onClick={testFunction}>Edit</button> : ""
 
   return (
     <>

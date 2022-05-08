@@ -93,7 +93,8 @@ router.post(
           if (err) throw err;
           res.status(200).json({
             message: "Signed Up!",
-            token
+            token,
+            role: user.role,
           });
         }
       );
@@ -159,7 +160,8 @@ router.post(
           if (err) throw err;
           res.status(200).json({
             message: "Logged in!",
-            token
+            token,
+            role: user.role,
           });
         }
       );
