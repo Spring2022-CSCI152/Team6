@@ -275,6 +275,7 @@ function Roadmap() {
     }
   return (
     <div className="Roadmap">
+        <h1>Roadmap</h1>
         <table id="table">
             <thead>
                 <tr id='thead'>
