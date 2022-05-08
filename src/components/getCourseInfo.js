@@ -17,29 +17,32 @@ axios.interceptors.request.use(
 );
 
 //gets user information from backend
-const getCourseInfo = async () => {
+const getCourseInfo = async (id) => {
 
-    // //request user information from server
-    // const course = await axios.get("/course/")
+    const reqParams = { params: { "id": id } }
 
-    //     .then((res) => {
+    //request user information from server
+    return await axios.get("/course/byId", reqParams)
 
-    //         return res.data.course;
 
-    //     }).catch((error) => {
-    //         console.log(error);
-    //         return error;
-    //     })
+        .then((res) => {
 
-    // //returns the user or an error.  depends on server response.
-    // return course;
+            return res.data.course;
+
+        }).catch((error) => {
+
+            console.log(error);
+            return error;
+        })
+
 }
 
 //sends updated user info to backend
 const updateCourseInfo = async (data) => {
     console.log(data)
 
-        return axios.put(`/course/update`, data).then((res) => {
+    return axios.put(`/course/update`, data)
+        .then((res) => {
             return res;
         })
         .catch((error) => {
@@ -47,4 +50,17 @@ const updateCourseInfo = async (data) => {
         })
 }
 
-export { getCourseInfo, updateCourseInfo }
+const addCourse = async (data) => {
+
+    
+    return axios.post("/course/addClass", data)
+        .then((res) => {
+            return res;
+        })
+        .catch((error) => {
+            return error;
+        })
+}
+
+export { getCourseInfo, updateCourseInfo, addCourse }
+
