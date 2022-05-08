@@ -110,6 +110,7 @@
 }
 .Roadmap th {
   background-color: rgb(255, 220, 220);
+  color: black;
 }
 .Roadmap tbody:nth-child(even){
   background-color: rgb(208, 234, 255);
@@ -126,7 +127,7 @@
   background-color: white;
 }
 .Roadmap td {
-  border: 1px rgba(0, 0, 0, 0.534) solid;
+  border: 0px rgba(0, 0, 0, 0.534) solid;
   text-align: center;
 }
 
