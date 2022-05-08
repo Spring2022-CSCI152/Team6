@@ -98,7 +98,7 @@ describe('SearchCourse Functional Component', () => {
     // })
 
     //testing updated input without using mock
-    describe('Input search from user', () => {
+   /*describe('Input search from user', () => {
         it('updates the change', () => {
           const setcourse = jest.fn((value) => {})
           
@@ -117,7 +117,7 @@ describe('SearchCourse Functional Component', () => {
       });
 
 
-    /*describe("When API call is successful", () => {
+    describe("When API call is successful", () => {
         it("Should log a response object with message on console.", async () => {
 
             //given
@@ -141,6 +141,6 @@ describe('SearchCourse Functional Component', () => {
 
         })
 
-    })
+    })*/
 
-});*/
+});
