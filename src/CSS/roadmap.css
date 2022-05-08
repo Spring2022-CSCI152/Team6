@@ -1,6 +1,4 @@
-.Roadmap table{
-  
-}
+
 .Roadmap body {
   background-color: rgb(177, 177, 177);
   height: 100%;
@@ -10,14 +8,14 @@
 }
 
 .Roadmap h1 {
-  font-family: 'Quintessential', cursive;
+  /*font-family: 'Quintessential', cursive;*/
   font-size: 50px;
   font-style: normal;
   font-weight: 700;
   margin: 0;
   position: relative;
   padding: 20px;
-  color: red;
+  color: black;
 }
 
 .label {
