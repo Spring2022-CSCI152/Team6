@@ -7,17 +7,13 @@ import HomePage from './pages/HomePage';
 import LogIn from './pages/login';
 import Signup from './pages/signup';
 import RecordList from './components/RecordList';
-import CoursesParser from './pages/Admin/CoursesParser';
 import Calendar1 from './pages/calendar';
-import SearchCourse from './pages/SearchCourse';
 import Courses from './pages/Courses';
-import CoursesForAdmin from './pages/CoursesForAdmin';
 import Roadmap from './pages/Roadmap';
 import Reminders from './pages/Reminder';
 import EditProfile from './pages/editProfile';
 import AddClass from './pages/Admin/addClass'
 import EditClass from './pages/Admin/editClass'
-import SearchCourseAdmin from './pages/Admin/SearchCourseAdmin'
 import Course from './pages/Course';
 // import { getUserInfo } from './components/GetUserInfo';
 
@@ -94,6 +90,7 @@ function App() {
           {/* <Route exact path="/SearchCourse" element={<SearchCourse />} /> */}
           <Route exact path="/Calendar" element={<Calendar1 />} />
           <Route exact path="/Roadmap" element={<Roadmap />} />
+          <Route exact path="/Add_Class" element={<AddClass />}/>
 
           {/* Basic routes under here
           <BasicRoute exact path="/RecordList"><RecordList /></BasicRoute>

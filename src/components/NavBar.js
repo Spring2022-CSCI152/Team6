@@ -4,7 +4,16 @@ import '../CSS/NavBar.css';
 import { getUserInfo } from './GetUserInfo';
 
 const NavLink = ({ page, selected, extraClass }) => {
-  const title = page.charAt(0).toUpperCase() + page.slice(1);
+
+  var title = [...page.charAt(0).toUpperCase() + page.slice(1)];
+
+  for (let i = 0; i < title.length; i++) {
+    if (title[i] === '_') {
+      title[i] = ' ';
+      // if(title[i+1]) title[i+1]=title[i+1].toUpperCase;
+    }
+  }
+
   let classes = selected ? 'NavLink-Active' : 'NavLink';
   if (extraClass) classes += ' ' + extraClass;
   return <Link to={'/' + page} className={classes}>{title}</Link>
@@ -38,14 +47,14 @@ const NavBar = () => {
   //loads user info on mount and set user role to userAuthen
   useEffect(() => {
 
-      async function getUserInfoWrapper() {
+    async function getUserInfoWrapper() {
 
-          //updates user state with user object from backend, matched by stored cookie id
-          setUser(await getUserInfo());
-      }
+      //updates user state with user object from backend, matched by stored cookie id
+      setUser(await getUserInfo());
+    }
 
-      getUserInfoWrapper();
-      
+    getUserInfoWrapper();
+
   }, []);
   let userAuthen = user.role;
 
@@ -53,41 +62,39 @@ const NavBar = () => {
   // useEffect(() => {
   //   setLogStatus(1);
   // }, [localStorage.getItem('token')])
-  
+
   //if users are not logged in, they will onlyy see log out button
-  if(!logStatus) return <div className='NavBar'><NavLink page="LogIn" selected={page === 'LogIn'} extraClass='right-nav' /> </div>;
+  if (!logStatus) return <div className='NavBar'><NavLink page="LogIn" selected={page === 'LogIn'} extraClass='right-nav' /> </div>;
 
   //if user have basic authentication, these are the pages they see
-  let basicAuth = "basic"== userAuthen ?
-  <>
-  <NavLink page='Home' selected={page === 'Home' || !page} />
-  <NavLink page='Calendar' selected={page === 'Calendar'} />
-  <NavLink page="Profile" selected={page === 'Profile'} />
-  <NavLink page="Roadmap" selected={page === 'Roadmap'} />
-  <NavLink page='Courses' selected={page === 'Courses'} />
-  {/* <NavLink page='SearchCourse' selected={page === 'SearchCourse'} /> */}
-  
-  </>
-  : ""
+  let basicAuth = "basic" == userAuthen ?
+    <>
+      <NavLink page='Home' selected={page === 'Home' || !page} />
+      <NavLink page='Calendar' selected={page === 'Calendar'} />
+      <NavLink page="Profile" selected={page === 'Profile'} />
+      <NavLink page="Roadmap" selected={page === 'Roadmap'} />
+      <NavLink page='Courses' selected={page === 'Courses'} />
+      {/* <NavLink page='SearchCourse' selected={page === 'SearchCourse'} /> */}
+
+    </>
+    : ""
 
   let adminAuth = "admin" == userAuthen ?
-  <>
-  <NavLink page="Profile" selected={page === 'Profile'} />
-  <NavLink page="Add Class" selected={page === 'AddClass'} />
-  <NavLink page="Search Course" selected={page === 'SearchCourseAdmin'} />
-  <NavLink page='CoursesForAdmin' selected={page === 'CoursesForAdmin'} />
-  <NavLink page='Courses' selected={page === 'Courses'} />
+    <>
+      <NavLink page="Profile" selected={page === 'Profile'} />
+      <NavLink page="Add_Class" selected={page === 'Add_Class'} />
+      <NavLink page='Courses' selected={page === 'Courses'} />
 
 
-  </>
-  : " "
+    </>
+    : " "
 
   return <div className='NavBar'>
     {basicAuth}
     {adminAuth}
     <Link to="/" onClick={logOut} className="right-nav">Log Out</Link>
   </div>;
-  
+
 };
 
 export default NavBar;
