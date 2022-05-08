@@ -17,7 +17,7 @@ function Roadmap() {
 
         async function getUserInfoWrapper() {
             createYear();
-            window.sample=document.getElementsByClassName("year1")[0].cloneNode(true);
+            window.sample=document.getElementById("year1").cloneNode(true);
             viewCourse();
             //updates user state with user object from backend, matched by stored cookie id
             
@@ -28,7 +28,7 @@ function Roadmap() {
     }, []);
 
     function createYear(){
-        let dateDropdown = document.getElementById('year-dropdown'); 
+        let dateDropdown = document.getElementById('year1-dropdown'); 
         let currentYear = new Date().getFullYear();    
         let earliestYear = 2014;     
         while (currentYear >= earliestYear) {      
@@ -40,12 +40,24 @@ function Roadmap() {
         }
     }
     function addYear(){
-        console.log(window.sample)
         countYear++;
         let table =  document.getElementById("table");
         var newSample=window.sample.cloneNode(true);
         newSample.id="year"+countYear.toString();
         table.appendChild(newSample);
+        const term = document.getElementsByClassName('year-dropdown');
+        var count=1;
+        Array.prototype.forEach.call (term, function (node) {
+            node.id="year"+count+"-dropdown";
+            node.addEventListener("change",getYear, false);
+            count+=1;
+        } );
+        const course = document.getElementsByClassName('course-dropdown');
+        Array.prototype.forEach.call (course, function (node) {
+            node.addEventListener("change",finalize, false);
+        } );
+        clearCourse();
+        viewCourse();
     }
 
     var display=document.getElementById("display");
@@ -55,18 +67,20 @@ function Roadmap() {
     const viewCourse= async(e)=>{
         const req = await axios.get('/course')
                 .then((res) => {
-                    console.log(res);
                     for(let i of res.data.courses){
                         var meetRequirement=true;
                         if(i.Prerequisites.length!=0)
                         {
                             OR=[];
-                            console.log("has prerequesite",i.Prerequisites);
+                            // console.log("has prerequesite",i.Prerequisites);
                             for (var element of i.Prerequisites)
                             {
                                 // console.log(element)
                                 if (element.includes(" (may be taken concurrently)")){
                                     element=element.replace(" (may be taken concurrently)","");
+                                }
+                                else if (element.includes(" (can be taken concurrently)")){
+                                    element=element.replace(" (can be taken concurrently)","");
                                 }
                                 else if(element.includes("Permission from instructor OR"))
                                 {
@@ -75,7 +89,7 @@ function Roadmap() {
                                 if((courseAlreadyTaken.filter((item) => item == element)[0]))
                                 {
                                     meetRequirement = true;
-                                    console.log("Meet the requirement for "+i.classNameAb + " with " + element);
+                                    // console.log("Meet the requirement for "+i.classNameAb + " with " + element);
                                 }
                                 else if(element.includes("OR"))
                                 {
@@ -84,33 +98,30 @@ function Roadmap() {
                                 }
                                 else{
                                     meetRequirement = false;
-                                    console.log("Doesn't the requirement for "+i.classNameAb + " with " + element);
+                                    // console.log("Doesn't the requirement for "+i.classNameAb + " with " + element);
                                     break;
                                 }
                             }
                             if(OR!=[] && meetRequirement==true)
                             {
-                                console.log("get in")
                                 for (const element of OR)
                                 {
                                     var courseMeetORRequirement=courseAlreadyTaken.filter((item) => item == element);
-                                    console.log(courseMeetORRequirement.length)
                                     if(courseMeetORRequirement.length!=0)
                                     {
-                                        
-                                        console.log("Meet the requirement for "+i.classNameAb + " with ",courseMeetORRequirement);
+                                        // console.log("Meet the requirement for "+i.classNameAb + " with ",courseMeetORRequirement);
                                         meetRequirement = true;
                                         break;
                                     }
                                     meetRequirement = false;
-                                    console.log("Doesn't meet the requirement for "+i.classNameAb + " because of ",element);
+                                    // console.log("Doesn't meet the requirement for "+i.classNameAb + " because of ",element);
                                 }
                             }
                         }
-                        console.log(meetRequirement)
+                        // console.log(meetRequirement)
                         if(meetRequirement==true)
                         {
-                            console.log(i,"Meet all requirement");
+                            // console.log(i,"Meet all requirement");
                             coursesOfferInSpring.push(i);
                             const term = document.getElementsByClassName('course-dropdown');
                             Array.prototype.forEach.call (term, function (node) {
@@ -123,7 +134,7 @@ function Roadmap() {
                         }
                         else
                         {
-                            console.log(i,"Doesn't Meet all requirement");
+                            // console.log(i,"Doesn't Meet all requirement");
                         }
                     }
                 })
@@ -139,10 +150,8 @@ function Roadmap() {
         } );
     }
 
-    document.getElementsByClassName("year-dropdown").onChange= function(e){
-        console.log(e.target.value);
-    }
     const getYear = async (e) =>{
+        console.log(e.target.id);
         var td =document.getElementById(e.target.id).parentNode;
         td.innerHTML=e.target.value;
         var tr=td.parentNode;
@@ -168,13 +177,23 @@ function Roadmap() {
             .then((res) => {
                 //data of the course will be res.data.courses[0]
                 console.log(res.data.courses[0].Units);
+                courseAlreadyTaken.push(e.target.value);
+                var display=document.getElementById("display");
+                display.style.display="block";
+                var warning=document.createElement("p");
+                if(res.data.courses[0].TermTypicallyOffered.length!=0 && res.data.courses[0].TermTypicallyOffered.includes(e.target.parentNode.className)==false){
+                    warning.innerHTML=res.data.courses[0].classNameAb+ " is typically offered in " + res.data.courses[0].TermTypicallyOffered.join(", ") + "\n<br>";
+                }
+                if(res.data.courses[0].Prerequisites.length!=0)
+                {
+                    warning.innerHTML+=res.data.courses[0].classNameAb + " - Prequesites: "+res.data.courses[0].Prerequisites.join(", ");
+                }
+                display.appendChild(warning);
                 e.target.parentNode.nextElementSibling.innerHTML=res.data.courses[0].Units.toString();
                 e.target.parentNode.innerHTML=e.target.value;
-                courseAlreadyTaken.push(e.target.value);
-                // setCourseAlreadyTaken([res.data.courses[0]]);
+                
                 clearCourse();
                 viewCourse();
-                console.log(courseAlreadyTaken);
             }).catch((error) => {
                 console.log(error);
             });
@@ -194,67 +213,67 @@ function Roadmap() {
             <thead>
                 <tr id='thead'>
                     <th className="year">Year</th>
-                    <th className="spring" colSpan="2">Spring</th>
-                    <th className="summer" colSpan="2">Summer</th>
-                    <th className="fall" colSpan="2">Fall</th>
-                    <th className="winter" colSpan="2">Winter</th>
+                    <th className="Spring" colSpan="2">Spring</th>
+                    <th className="Summer" colSpan="2">Summer</th>
+                    <th className="Fall" colSpan="2">Fall</th>
+                    <th className="Winter" colSpan="2">Winter</th>
                     <th className="comment">Comment</th>
                 </tr>
             </thead>
-            <tbody className="year1">
+            <tbody id="year1" className='year'>
                 <tr>
-                    <td rowSpan="5" className="year"><select className='year-dropdown' id='year-dropdown' onChange={getYear}></select></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td rowSpan="5" className="year"><select className='year-dropdown' id='year1-dropdown' onChange={getYear}></select></td>
+                    <td className="Spring"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Summer"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Fall"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Winter"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
                     <td className="comment"></td>
                 </tr>
                 <tr>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Spring"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Summer"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Fall"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
-                    <td className="Units"></td>
-                    <td className="comment"></td>
-                </tr>
-                <tr>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
-                    <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
-                    <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
-                    <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Winter"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
                     <td className="comment"></td>
                 </tr>
                 <tr>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Spring"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Summer"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Fall"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Winter"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
                     <td className="comment"></td>
                 </tr>
                 <tr>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Spring"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Summer"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Fall"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
-                    <td className="spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Winter"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Units"></td>
+                    <td className="comment"></td>
+                </tr>
+                <tr>
+                    <td className="Spring"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Units"></td>
+                    <td className="Summer"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Units"></td>
+                    <td className="Fall"><select className='course-dropdown' onChange={finalize}></select></td>
+                    <td className="Units"></td>
+                    <td className="Winter"><select className='course-dropdown' onChange={finalize}></select></td>
                     <td className="Units"></td>
                     <td className="comment"></td>
                 </tr>
@@ -264,7 +283,7 @@ function Roadmap() {
         <button onClick={addYear}>Add year</button>
         <button onClick={print}>Print</button>
         <button onClick={refresh}>clear</button>
-        <p id="display"> </p>
+        <p id="display">Warning </p>
     </div>
 
   );
