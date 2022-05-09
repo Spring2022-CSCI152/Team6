@@ -34,6 +34,9 @@ const NavBar = () => {
     //delete jwt
     localStorage.removeItem('token');
 
+    //clear local storage
+    localStorage.clear();
+
     //update lot status state
     setLogStatus(null);
 
@@ -81,7 +84,7 @@ const NavBar = () => {
 
     </>
     : ""
-
+  //if user have admin auth, these are what they see
   let adminAuth = "admin" == userAuthen ?
     <>
       <NavLink page='Home' selected={page === 'Home' || !page} />
